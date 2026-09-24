@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL Motion FX</title>
+<link rel="stylesheet" href="../audioxl-shared/axl.css">
+<link rel="stylesheet" href="../audioxl-shared/slides.css">
+<style>
+.stop img{height:40px}
+.pill{display:inline-flex;align-items:center;font:500 12px/1 var(--mono);letter-spacing:.08em;padding:8px 11px;border-radius:7px;border:1px solid var(--line2);background:var(--panel2);text-transform:uppercase;color:var(--soft)}
+.kv{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.kv span{font:700 12px/1 var(--mono);color:var(--ink);background:#0A0E15;border:1px solid var(--line2);border-radius:6px;padding:7px 9px}
+.kv span i{font-style:normal;color:var(--muted);margin-right:5px}
+</style></head>
+<body data-product="AudioXL Motion FX" data-version="1.1.0" data-logo="img/logo.png">
+
+<!-- 1 HERO -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(55% 70% at 78% 55%,rgba(60,200,242,.13),transparent 70%),radial-gradient(40% 50% at 8% 10%,rgba(154,123,255,.09),transparent 70%),#05070B">
+  <div class="panel" style="position:absolute;left:830px;top:120px;width:560px;padding:22px 24px;border-radius:18px;transform:perspective(1600px) rotateY(-16deg) rotateX(6deg) rotateZ(-3deg);box-shadow:0 50px 90px rgba(0,0,0,.7)">
+    <div style="display:flex;gap:6px;margin-bottom:16px"><span class="pill" style="color:var(--cyan);border-color:var(--cyan)">MAIN</span><span class="pill" style="color:var(--purple)">SEQ 1</span><span class="pill" style="color:var(--pink)">SEQ 2</span><span class="pill" style="color:var(--amber)">SEQ 3</span></div>
+    <div id="heroLanes" style="display:flex;flex-direction:column;gap:14px"></div>
+    <div style="display:flex;gap:10px;margin-top:18px"><span class="btn on" style="flex:1">FILTER</span><span class="btn" style="flex:1">VOLUME</span><span class="btn" style="flex:1">PAN</span></div>
+  </div>
+  <div style="position:absolute;left:92px;top:64px;width:760px">
+    <img src="img/logo.png" alt="" style="width:220px">
+    <div style="display:flex;gap:12px;margin-top:30px">
+      <span class="chip hot" style="font-size:13px;padding:11px 16px"><span class="dot"></span>VST3 · AU · STANDALONE</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">MOTION SHAPER</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">EFFECT</span>
+    </div>
+    <h1 class="display" style="font-size:136px;margin-top:24px;line-height:.86">Motion<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">FX</span></h1>
+    <p style="font:400 24px/1.3 var(--mono);color:var(--soft);margin:22px 0 0">The Creative Motion Shaper</p>
+    <div class="panel" style="margin-top:30px;display:flex;align-items:center;gap:34px;padding:20px 28px;width:715px;border-radius:18px">
+      <div style="width:66px;height:66px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;background:#0A0E15"><svg width="22" height="24" viewBox="0 0 18 20"><path d="M2 1.5v17L17 10z" fill="#E9EDF3"/></svg></div>
+      <div><div class="lab" style="letter-spacing:.3em">Lanes</div><div style="font:700 42px/1 var(--mono);color:var(--ink)">4</div></div>
+      <div><div class="lab" style="letter-spacing:.3em">Targets</div><div style="font:700 42px/1 var(--mono);color:var(--ink)">27</div></div>
+      <div><div class="lab" style="letter-spacing:.3em">Presets</div><div style="font:700 42px/1 var(--mono);color:var(--ink)">145</div></div>
+      <div id="heroLeds" style="margin-left:auto;display:flex;gap:5px;align-items:flex-end"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 WHAT -->
+<section class="slide" data-chip="Overview" data-status="Sync · <b>host BPM</b>">
+  <div class="eyebrow">01 — What is it</div>
+  <h1 class="display title">What is <span class="c-cyan">Motion FX?</span></h1>
+  <p class="lede sub">An effect that moves your sound in time — filter, volume and pan, driven by sequenced lanes.</p>
+  <div class="cols" style="grid-template-columns:1.35fr 1fr 1fr;margin-top:34px">
+    <div class="panel card" style="grid-row:span 2">
+      <h4>Three modules in parallel</h4>
+      <p>Filter (SVF, log sweep), Volume (rhythmic gating) and Pan (tempo-synced stereo sweep) — plus drive, noise, an FX rack, granular and beat repeat.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px">
+        <div class="panel" style="padding:14px;border-left:4px solid var(--orange)"><div style="font:800 22px/1 var(--display);color:var(--orange)">FILTER</div><div class="lab" style="margin-top:6px">acid sweeps</div></div>
+        <div class="panel" style="padding:14px;border-left:4px solid var(--green)"><div style="font:800 22px/1 var(--display);color:var(--green)">VOLUME</div><div class="lab" style="margin-top:6px">gating</div></div>
+        <div class="panel" style="padding:14px;border-left:4px solid var(--blue)"><div style="font:800 22px/1 var(--display);color:var(--blue)">PAN</div><div class="lab" style="margin-top:6px">stereo motion</div></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><span class="pill">Drive</span><span class="pill">Noise</span><span class="pill">Reverb</span><span class="pill">Delay</span><span class="pill">Chorus</span><span class="pill">Flanger</span><span class="pill">Granular</span><span class="pill">Beat repeat</span></div>
+    </div>
+    <div class="panel card"><div class="big c-cyan">4</div><h4 style="margin-top:6px">Sequenced lanes</h4><p>MAIN plus SEQ 1-3.</p></div>
+    <div class="panel card"><div class="big c-purple">3</div><h4 style="margin-top:6px">LFO / step generators</h4><p>9 shapes, or 16 steps.</p></div>
+    <div class="panel card"><div class="big c-pink">27</div><h4 style="margin-top:6px">Mod destinations</h4><p>One matrix, many targets.</p></div>
+    <div class="panel card"><div class="big c-orange">145</div><h4 style="margin-top:6px">Factory presets</h4><p>17 genre / instrument folders.</p></div>
+  </div>
+</section>
+
+<!-- 3 SEQUENCER -->
+<section class="slide" data-chip="Motion seq" data-status="LEN 16 · <b>1/16</b>">
+  <div class="cols" style="grid-template-columns:540px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">02 — Motion sequencer</div>
+      <h1 class="display title">Four lanes,<br><span class="c-purple">one big graph</span></h1>
+      <p class="lede sub">MAIN shapes Filter, Volume, Pan. SEQ 1-3 go anywhere.</p>
+      <div class="rows" style="--acc:var(--purple)">
+        <div class="r"><span class="k">LEN 1-16</span><span class="d">Per lane: <b>7 against 16</b> realigns after <b>112 steps</b>.</span></div>
+        <div class="r"><span class="k">Swing 0-75 %</span><span class="d">Each lane its own groove.</span></div>
+        <div class="r"><span class="k">Linear · Glide</span><span class="d">Interpolate MAIN, slide SEQ lanes.</span></div>
+        <div class="r"><span class="k">Bipolar</span><span class="d">SEQ steps −100 … +100 % around the knob.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px">
+      <div class="panel" style="padding:20px 22px" id="seqLanes"></div>
+      <div class="panel" style="padding:18px 22px" id="poly"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 TRIGGER -->
+<section class="slide" data-chip="Trigger" data-status="Euclid · <b>16 / 5</b>">
+  <div class="eyebrow">03 — Trigger</div>
+  <h1 class="display title">When the <span class="c-amber">motion starts</span></h1>
+  <div class="cols" style="grid-template-columns:320px 1fr;gap:26px;margin-top:28px">
+    <div class="panel" style="padding:20px;text-align:center"><div id="eucl"></div><div class="lab" style="margin-top:8px">Euclidean · N 16 · K 5 · R 0</div></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="cols" style="grid-template-columns:repeat(4,1fr);gap:12px">
+        <div class="panel card"><div class="lab">01</div><h4 style="margin-top:8px;color:var(--amber)">Euclidean</h4><p style="font-size:13px">N 1-32 steps, K pulses, rotation, rate.</p></div>
+        <div class="panel card"><div class="lab">02</div><h4 style="margin-top:8px;color:var(--amber)">Clock</h4><p style="font-size:13px">1/32 … 1 bar, triplets, phase, reset on bar.</p></div>
+        <div class="panel card"><div class="lab">03</div><h4 style="margin-top:8px;color:var(--amber)">MIDI</h4><p style="font-size:13px">Note On, note filter, CC threshold, latch.</p></div>
+        <div class="panel card"><div class="lab">04</div><h4 style="margin-top:8px;color:var(--amber)">Transients</h4><p style="font-size:13px">Low · Mid · High · Full band, cooldown.</p></div>
+      </div>
+      <div class="panel card">
+        <h4>Combine them</h4>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px">
+          <span class="btn">FIRST</span><span class="btn">AND ±1</span><span class="btn on" style="border-color:var(--amber);color:var(--amber);background:rgba(226,179,71,.12)">OR · DEFAULT</span><span class="btn">PRIORITY</span>
+        </div>
+        <p style="margin-top:12px">RND Euclidean keeps K between <b>N/4 and N/2</b> — always a musical density.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 LFO MATRIX -->
+<section class="slide" data-chip="Modulation" data-status="LFO 1 → <b>Cutoff</b>">
+  <div class="eyebrow">04 — LFOs &amp; routing</div>
+  <h1 class="display title">Three generators, <span class="c-purple">27 destinations</span></h1>
+  <div class="cols" style="grid-template-columns:1fr 1fr;gap:22px;margin-top:28px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="panel card"><h4>9 shapes — or 16 steps</h4><div id="shapes" style="display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-top:12px"></div><p style="margin-top:12px">Rate <b>0.01–20 Hz</b> free or <b>1/1–1/32</b> synced · Depth 0–1 · SEQ mode: LEN, swing, glide, bipolar steps.</p></div>
+      <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="panel card"><h4 style="color:var(--purple)">LFO 1</h4><p style="font-size:13px">Slow, the global shape.</p></div>
+        <div class="panel card"><h4 style="color:var(--pink)">LFO 2</h4><p style="font-size:13px">Secondary, or in quadrature.</p></div>
+        <div class="panel card"><h4 style="color:var(--amber)">LFO 3</h4><p style="font-size:13px">Fast, timbral, variation.</p></div>
+      </div>
+    </div>
+    <div class="panel" style="padding:18px 22px" id="matrix"></div>
+  </div>
+</section>
+
+<!-- 6 DRIVE NOISE -->
+<section class="slide" data-chip="Drive &amp; noise" data-status="Soft clip · <b>65 %</b>">
+  <div class="eyebrow">05 — Drive &amp; noise</div>
+  <h1 class="display title">Dirt, <span class="c-red">before or after</span></h1>
+  <div class="cols" style="grid-template-columns:1fr 1fr;gap:22px;margin-top:28px">
+    <div class="panel card">
+      <h4>Drive · 5 modes</h4>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0"><span class="pill" style="color:var(--red)">Soft clip</span><span class="pill" style="color:var(--red)">Hard clip</span><span class="pill" style="color:var(--red)">Fold</span><span class="pill" style="color:var(--red)">Bitcrush 1-16 bit</span><span class="pill" style="color:var(--red)">Tube</span></div>
+      <p>DRIVE, TONE dark ↔ bright, MIX for parallel distortion. <b>Pre</b> colours the sweep, <b>Post</b> distorts the result.</p>
+    </div>
+    <div class="panel card">
+      <h4>Noise · 5 colours</h4>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0"><span class="pill">White</span><span class="pill" style="color:var(--pink)">Pink</span><span class="pill" style="color:var(--orange)">Brown</span><span class="pill" style="color:var(--amber)">Vinyl</span><span class="pill" style="color:var(--cyan)">Digital</span></div>
+      <p>Band-pass filter, stereo width — and <b>GATE</b>: the noise follows the envelope, rhythmic and in sync.</p>
+    </div>
+  </div>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px">
+    <div class="panel card"><h4 style="color:var(--red)">Acid Dirt</h4><div class="kv"><span><i>Drive</i>Soft clip</span><span>65 %</span><span><i>Tone</i>Bright</span><span>Pre</span><span><i>Mix</i>80 %</span></div></div>
+    <div class="panel card"><h4 style="color:var(--red)">Industrial Noise</h4><div class="kv"><span><i>Noise</i>White</span><span>−18 dB</span><span>3 kHz / Q 2</span><span><i>Gate</i>ON</span></div></div>
+    <div class="panel card"><h4 style="color:var(--red)">Lo-Fi Crunch</h4><div class="kv"><span><i>Drive</i>Bitcrush 8 bit</span><span>Dark</span><span>60 %</span><span><i>+</i>Vinyl −24 dB</span></div></div>
+  </div>
+</section>
+
+<!-- 7 BEAT REPEAT -->
+<section class="slide" data-chip="Beat repeat" data-status="Grid 1/32 · <b>Roll 4×</b>">
+  <div class="cols" style="grid-template-columns:540px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">06 — Beat repeat</div>
+      <h1 class="display title">Catch it,<br><span class="c-green">loop it, flip it</span></h1>
+      <p class="lede sub">Real-time capture and repeat, locked to the host BPM.</p>
+      <div class="rows" style="--acc:var(--green)">
+        <div class="r"><span class="k">Grid · interval</span><span class="d">Cells from <b>1/32 to 1 bar</b>, every N grids.</span></div>
+        <div class="r"><span class="k">Pitch</span><span class="d"><b>±12 semitones</b>, or Glitch jitter.</span></div>
+        <div class="r"><span class="k">Chance</span><span class="d">0-100 % — never the same twice.</span></div>
+        <div class="r"><span class="k">Reverse · Roll</span><span class="d">Backwards, or sliced <b>2× · 4× · 8×</b>.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px">
+      <div class="panel" style="padding:20px 22px" id="roll"></div>
+      <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="panel card"><h4 style="font-size:20px;color:var(--green)">Micro-Stutter</h4><div class="kv"><span>1/32</span><span>50 %</span><span>40 %</span><span>4×</span></div></div>
+        <div class="panel card"><h4 style="font-size:20px;color:var(--green)">Glitch Drop</h4><div class="kv"><span>1/8</span><span>REV</span><span>Glitch</span><span>60 %</span></div></div>
+        <div class="panel card"><h4 style="font-size:20px;color:var(--green)">Tape Loop</h4><div class="kv"><span>1/4</span><span>100 %</span><span>−12</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 PRESETS & RND -->
+<section class="slide" data-chip="Presets" data-status="145 · <b>17 folders</b>">
+  <div class="eyebrow">07 — Presets &amp; randomize</div>
+  <h1 class="display title">145 presets, <span class="c-orange">infinite dice</span></h1>
+  <div class="cols" style="grid-template-columns:1.2fr 1fr;gap:22px;margin-top:28px">
+    <div class="panel" style="padding:16px 20px" id="presets"></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="panel card"><h4>Self-contained</h4><p>A preset resets the whole tree — modules, envelopes, lanes, beat-repeat grid. <b>Nothing leaks</b> from the previous patch.</p></div>
+      <div class="panel card"><h4>RND everywhere</h4><p>Each section has its own dice and <b>Seed Lock</b>; <b>ALL RND</b> rolls everything, avoiding clashes on the same target.</p><div style="margin-top:12px"><span class="btn on" style="display:inline-flex;gap:10px;padding:0 20px"><span class="dice"></span>ALL RND</span></div></div>
+      <div class="panel card"><h4>Start here</h4><p><b>Modulation Lab</b>: Triple Lanes, Poly Lanes 5-7-16 (560 steps), Glide Lane Bass, Shuffle Lanes, Cross Mod Chaos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 SAFE -->
+<section class="slide" data-chip="Workflow" data-status="Undo · <b>ready</b>">
+  <div class="eyebrow">08 — Safe to play</div>
+  <h1 class="display title">Undo anything, <span class="c-cyan">hurt nobody</span></h1>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px">
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Undo / redo</div>
+      <div class="big c-cyan" style="margin:10px 0 6px">1 = 1</div>
+      <p>One knob turn, one preset (~150 parameters), one ALL RND across ten modules: <b>one undo step each</b>. Loading a preset never wipes your history.</p>
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Output ceiling</div>
+      <div class="big c-pink" style="margin:10px 0 6px">2× · 4×</div>
+      <p>Transparent up to <b>2× full scale</b>, a knee that <b>never exceeds 4×</b>. No parameter combination can slam your monitors.</p>
+      <div id="ceil" style="margin-top:10px"></div>
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Activation</div>
+      <div class="big c-amber" style="margin:10px 0 6px">10 min</div>
+      <p>Full demo on the machine, then stand-by. One serial <b>AXLM-…</b> unlocks VST3, AU and Standalone together — and survives updates.</p>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><span class="pill">General</span><span class="pill" style="color:var(--amber);border-color:var(--amber)">Authorization</span><span class="pill">About</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 CLOSE -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(50% 70% at 50% 60%,rgba(60,200,242,.10),transparent 70%),#05070B">
+  <div id="closeBg" style="position:absolute;inset:0;opacity:.3;-webkit-mask-image:radial-gradient(60% 60% at 50% 50%,transparent 20%,#000 100%)"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img src="img/logo.png" alt="" style="width:220px;margin-bottom:30px">
+    <h1 class="display" style="font-size:150px">Make it<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">move</span></h1>
+    <span class="btn on" style="margin-top:34px;width:260px;height:64px;font-size:18px;display:flex;gap:12px"><span class="dice" style="--sz:22px"></span>ALL RND</span>
+  </div>
+</section>
+
+<script src="../audioxl-shared/core.js"></script>
+<script>
+(function(){
+const {$}=AXL;
+const MAIN=[1,.2,.6,.15,.9,.25,.7,.1,1,.3,.55,.2,.85,.4,.65,.15];
+const S1=[.8,-.4,.2,-.9,.5,-.1,.9,-.6,.3,-.3,.7,-.8,.4,0,-.5,.6];
+function lane(label,c,vals,bip,h){ return `<div style="display:grid;grid-template-columns:80px 1fr;gap:12px;align-items:center"><span class="tag" style="color:var(--${c})">${label}</span><div style="display:grid;grid-template-columns:repeat(${vals.length},1fr);gap:4px;height:${h}px;position:relative">${
+   vals.map(v=>bip?`<div style="position:relative"><i style="position:absolute;left:0;right:0;${v>=0?`bottom:50%;height:${v*50}%`:`top:50%;height:${-v*50}%`};background:var(--${c});border-radius:3px"></i></div>`:`<div style="display:flex;align-items:flex-end;background:#10161F;border-radius:3px"><i style="width:100%;height:${v*100}%;background:var(--${c});border-radius:3px"></i></div>`).join('')}${bip?'<div style="position:absolute;left:0;right:0;top:50%;border-top:1px dashed #2A3446"></div>':''}</div></div>`;}
+$('#heroLanes').innerHTML=lane('MAIN','cyan',MAIN,0,80)+lane('SEQ 1','purple',S1,1,70)+lane('SEQ 2','pink',S1.map((v,i)=>S1[(i*5)%16]),1,60);
+$('#seqLanes').innerHTML='<div style="display:flex;flex-direction:column;gap:14px">'+lane('MAIN','cyan',MAIN,0,80)+lane('SEQ 1','purple',S1,1,80)+'</div><div style="display:flex;justify-content:space-between;margin-top:10px" class="lab"><span>MAIN · 0 … 100 %</span><span>SEQ · −100 … +100 %</span></div>';
+$('#heroLeds').innerHTML=MAIN.slice(0,12).map(v=>`<i style="width:10px;height:${10+v*34}px;border-radius:3px;background:var(--cyan)"></i>`).join('');
+
+// poly
+(function(){let h=`<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><span class="lab">LEN 16 vs LEN 7</span><span style="font:800 24px/1 var(--display);color:var(--ink)">in phase after <span class="c-cyan">112 steps</span></span></div>`;
+ [['MAIN',16,'cyan'],['SEQ 1',7,'purple']].forEach(([n,L,c])=>{h+=`<div style="display:grid;grid-template-columns:100px 1fr;gap:10px;align-items:center;margin-bottom:6px"><span class="tag" style="color:var(--${c})">${n} · ${L}</span><div style="display:grid;grid-template-columns:repeat(32,1fr);gap:2px">`+[...Array(32)].map((_,s)=>`<i style="height:22px;border-radius:2px;background:${s%L==0?`var(--${c})`:'#141B28'}"></i>`).join('')+'</div></div>';});
+ $('#poly').innerHTML=h;})();
+
+// euclid
+(function(){const n=16,k=5,size=270,R=size/2-16,cx=size/2;const p=[];for(let i=0;i<n;i++)p.push(Math.floor((i*k)/n)!==Math.floor(((i-1)*k)/n)?1:0);const f=p.indexOf(1);const q=p.slice(f).concat(p.slice(0,f));
+ let s=`<svg viewBox="0 0 ${size} ${size}" style="width:100%"><circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="#283243"/>`;const pts=[];
+ q.forEach((b,i)=>{const a=-Math.PI/2+i*2*Math.PI/n,x=cx+R*Math.cos(a),y=cx+R*Math.sin(a);if(b)pts.push(x+','+y);s+=`<circle cx="${x}" cy="${y}" r="${b?11:5}" fill="${b?'var(--amber)':'#2A3446'}"/>`;});
+ s+=`<polygon points="${pts.join(' ')}" fill="rgba(226,179,71,.08)" stroke="var(--amber)" stroke-opacity=".6"/></svg>`;$('#eucl').innerHTML=s;})();
+
+// shapes
+const sh={SINE:x=>Math.sin(x*2*Math.PI),TRI:x=>1-4*Math.abs(((x+.25)%1)-.5),SAW:x=>2*(x%1)-1,RSAW:x=>1-2*(x%1),SQR:x=>(x%1)<.5?1:-1,'S&H':x=>[.6,-.4,.9,-.8,.2,-.1,.7,-.6][Math.floor(x*8)%8],BIN:x=>[1,-1,-1,1,1,-1,1,-1][Math.floor(x*8)%8],RND:x=>.7*Math.sin(x*9.3)*Math.cos(x*4.1),SEQ:x=>[.8,-.4,.2,-.9,.5,-.1,.9,-.6][Math.floor(x*8)%8]};
+$('#shapes').innerHTML=Object.entries(sh).map(([n,f])=>{let d='';for(let i=0;i<=120;i++){const x=i/120;d+=(i?'L':'M')+(x*100).toFixed(1)+' '+(23-f(x*1.999)*19).toFixed(1);}
+ return `<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:8px;padding:6px"><svg viewBox="0 0 100 46" preserveAspectRatio="none" style="width:100%;height:40px;display:block"><path d="${d}" fill="none" stroke="${n=='SEQ'?'var(--pink)':'var(--purple)'}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div style="font:800 13px/1 var(--display);text-align:center;color:var(--ink);margin-top:4px">${n}</div></div>`}).join('');
+
+// matrix
+const T=['Filter Cutoff','Volume','Pan','Drive','Noise','Granular','Filter Res','Filter Depth','Volume Depth','Pan Center','Pan Depth','Drive Mix','Drive Output','Reverb Size','Reverb Damp','Reverb Mix','Delay Feedback','Delay Mix','Chorus Rate','Chorus Depth','Chorus Mix','Flanger Rate','Flanger Depth','Flanger Fdbk','Flanger Mix','Beat Rep. Mix','Output Gain'];
+const col=i=>i<=2||(i>=6&&i<=10)?'cyan':i<=5||i==11||i==12?'red':i<=24?'purple':'green';
+$('#matrix').innerHTML='<div class="lab" style="margin-bottom:10px">TARGETS · 27 destinations</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px 12px">'+T.map((t,i)=>`<div style="display:flex;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line)"><b style="font:700 10px/1 var(--mono);color:var(--dim);width:18px">${AXL.pad(i)}</b><span style="font:700 12px/1.2 var(--mono);color:var(--ink);border-left:3px solid var(--${col(i)});padding-left:7px">${t}</span></div>`).join('')+'</div>';
+
+// roll
+$('#roll').innerHTML='<div class="lab" style="margin-bottom:12px">Roll · one captured cell, subdivided</div>'+[['OFF',1],['2×',2],['4×',4],['8×',8]].map(([n,k])=>`<div style="display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;margin-bottom:8px"><span style="font:800 22px/1 var(--display);color:var(--green)">${n}</span><div style="display:grid;grid-template-columns:repeat(${k},1fr);gap:4px">${[...Array(k)].map(()=>`<i style="height:26px;border-radius:4px;background:linear-gradient(90deg,var(--green),rgba(79,217,138,.25))"></i>`).join('')}</div></div>`).join('');
+
+// presets
+const P=[['Acid',10],['Techno',13],['House',9],['Minimal / Dub',7],['Trance / Psy',5],['Bass Music',7],['D&amp;B / Breaks',5],['IDM / Glitch',14],['Transitions',7],['Ambient',12],['Dub / Delay',3],['Texture / Lo-Fi',7],['Modulation Lab',13],['Lead',8],['Vocal',8],['Keys',8],['Pad',8]];
+$('#presets').innerHTML=P.map(([n,k])=>`<div style="display:grid;grid-template-columns:150px 1fr 26px;gap:12px;align-items:center;padding:4px 0"><span style="font:700 15px/1 var(--display);text-transform:uppercase;color:var(--ink)">${n}</span><div style="height:9px;border-radius:5px;background:#1A2230"><i style="display:block;height:100%;width:${k/14*100}%;background:var(--orange);border-radius:5px"></i></div><b style="font:700 12px/1 var(--mono);color:var(--orange);text-align:right">${k}</b></div>`).join('');
+
+// ceiling
+(function(){const W=300,H=90,sx=x=>x/6*W,sy=y=>H-4-y/5*(H-8);const f=x=>x<=2?x:2+2*(1-Math.exp(-(x-2)/2));let d='';for(let i=0;i<=100;i++){const x=i/100*6;d+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(f(x)).toFixed(1);}
+ $('#ceil').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="0" y1="${sy(4)}" x2="${W}" y2="${sy(4)}" stroke="var(--red)" stroke-dasharray="3 4"/><path d="${d}" fill="none" stroke="var(--pink)" stroke-width="2.4"/></svg>`;})();
+
+// close bg
+(function(){const cs=['cyan','purple','pink','amber','cyan','purple','pink','amber','cyan','purple'];let h='';cs.forEach((c,r)=>{h+=`<div style="display:grid;grid-template-columns:repeat(24,1fr);gap:8px;height:10%;padding:6px 0;align-items:end">`+[...Array(24)].map((_,k)=>{const v=MAIN[(k+r*3)%16];return `<i style="border-radius:6px;height:${20+v*80}%;background:var(--${c});opacity:${.35+v*.5}"></i>`}).join('')+'</div>';});
+ $('#closeBg').innerHTML=`<div style="position:absolute;inset:-20px;padding:0 20px;display:flex;flex-direction:column">${h}</div>`;})();
+AXL.dice();
+})();
+</script>
+</body></html>

@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL Motion FX — User Manual</title>
+<link rel="stylesheet" href="../audioxl-shared/axl.css">
+<link rel="stylesheet" href="../audioxl-shared/manual.css">
+<style>
+.cover .logo{width:230px;margin-top:10px}
+.cover h1{font-size:104px;margin-top:22px}
+.cover .sub{max-width:40ch}
+.cover .transport{margin-top:24px}
+.back{justify-content:flex-start;padding-top:150px}
+.statrow{padding:18px 20px;display:grid;gap:10px}
+.statrow .n{font:800 42px/1 var(--display);color:var(--ink)}
+.pill{display:inline-flex;align-items:center;font:500 10px/1 var(--mono);letter-spacing:.08em;padding:6px 9px;border-radius:6px;border:1px solid var(--line2);background:var(--panel2);color:var(--soft);text-transform:uppercase}
+.recipe{padding:14px 16px}
+.recipe h3{margin-bottom:8px}
+.recipe .kv{display:flex;flex-wrap:wrap;gap:5px}
+.kv span{font:700 9.5px/1 var(--mono);color:var(--ink);background:#0A0E15;border:1px solid var(--line2);border-radius:5px;padding:5px 7px}
+.kv span i{font-style:normal;color:var(--muted);margin-right:4px}
+.shape svg{width:100%;height:46px;display:block}
+.mtx{display:grid;grid-template-columns:28px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);align-items:center}
+.mtx b{font:700 10px/1 var(--mono);color:var(--dim)}
+.mtx span{font:700 10.5px/1.3 var(--mono);color:var(--ink)}
+</style></head>
+<body data-product="AudioXL Motion FX" data-version="1.1.0" data-logo="img/logo.png">
+
+<!-- COVER -->
+<section class="page cover" data-nochrome>
+  <img class="logo" src="img/logo.png" alt="AudioXL Motion FX">
+  <div class="pills">
+    <span class="chip hot"><span class="dot"></span>VST3 · AU · STANDALONE</span>
+    <span class="chip">MOTION SHAPER</span>
+    <span class="chip">EFFECT</span>
+  </div>
+  <h1 class="display">Make<br><span class="outline">it</span><br><span class="c-cyan">move</span></h1>
+  <p class="sub">Creative Motion Shaper: a 16-step motion sequencer, three step-LFOs, beat repeat, drive, noise and an FX rack — all locked to your tempo.</p>
+  <div class="transport panel" style="width:400px">
+    <div class="play"><svg width="18" height="20" viewBox="0 0 18 20"><path d="M2 1.5v17L17 10z" fill="#E9EDF3"/></svg></div>
+    <div><div class="lab">User manual</div><div class="num">1.1.0<small>VER</small></div></div>
+    <div><div class="lab">Presets</div><div class="num">145</div></div>
+  </div>
+  <div class="deco panel" id="coverLanes"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>User manual</span></div>
+</section>
+
+<!-- CONTENTS -->
+<section class="page" data-title="Contents">
+  <div class="opener">
+    <span class="eyebrow">00 — Contents</span>
+    <h1 class="display">What's<br><span class="c-cyan">inside</span></h1>
+  </div>
+  <nav class="toc" id="toc"></nav>
+</section>
+
+<!-- 01 -->
+<section class="page" data-ch="01" data-title="Getting started" data-acc="cyan" data-sub="How it works, first sound">
+  <div class="opener">
+    <span class="eyebrow">01 — Getting started</span>
+    <h1 class="display">Three modules,<br><span class="c-cyan">four lanes of motion</span></h1>
+  </div>
+  <p style="font-size:12px;line-height:1.7">AudioXL Motion FX applies <b>three effect modules — Filter, Volume, Pan — in parallel</b>, plus drive/noise, an FX rack, a granular engine and beat repeat. The movement comes from <b>four independent sequenced lanes</b>, all synced to the host tempo.</p>
+  <div class="cols3">
+    <div class="panel card" style="border-left:3px solid var(--orange)"><h3 class="c-orange">Filter</h3><p>SVF (State Variable) filter with a logarithmic sweep — ideal for acid sweeps.</p></div>
+    <div class="panel card" style="border-left:3px solid var(--green)"><h3 class="c-green">Volume</h3><p>Rhythmic gating — depth sets how far the envelope pulls the volume down.</p></div>
+    <div class="panel card" style="border-left:3px solid var(--blue)"><h3 class="c-blue">Pan</h3><p>Stereo sweep in sync with the rhythm.</p></div>
+  </div>
+  <h2>First sound <span class="c-cyan">in Logic Pro</span></h2>
+  <div class="steps" style="grid-template-columns:repeat(4,1fr)">
+    <div class="step" style="--acc:var(--cyan)"><span class="no">01</span><span class="t">Insert</span><p>Put AudioXL Motion FX on a channel as an Audio Effect Unit.</p></div>
+    <div class="step" style="--acc:var(--purple)"><span class="no">02</span><span class="t">Play</span><p>Start playback — the envelope syncs automatically to the project BPM.</p></div>
+    <div class="step" style="--acc:var(--pink)"><span class="no">03</span><span class="t">Draw</span><p>Shape the envelope by clicking on the 16 bars.</p></div>
+    <div class="step" style="--acc:var(--amber)"><span class="no">04</span><span class="t">Switch on</span><p>Enable the modules with their ON buttons — Filter is on by default.</p></div>
+  </div>
+  <div class="panel statrow" style="grid-template-columns:repeat(4,1fr);margin-top:auto">
+    <div><div class="lab">Steps</div><div class="n">16</div></div>
+    <div><div class="lab">Lanes</div><div class="n c-cyan">4</div></div>
+    <div><div class="lab">Mod targets</div><div class="n c-purple">27</div></div>
+    <div><div class="lab">Presets</div><div class="n c-pink">145</div></div>
+  </div>
+  <p style="font-size:10px;color:var(--muted)">Formats: VST3, AU and Standalone. Works on stereo and mono buses (insert on a mono track or aux). The macOS installer is universal: Intel x86_64 and Apple Silicon arm64 in a single .pkg / .dmg.</p>
+</section>
+
+<!-- 02 MOTION SEQUENCER -->
+<section class="page" data-ch="02" data-title="Motion sequencer" data-acc="purple" data-sub="MAIN and SEQ 1-3, LEN, swing, glide">
+  <div class="opener">
+    <span class="eyebrow">02 — Motion sequencer</span>
+    <h1 class="display">Four lanes,<br><span class="c-purple">one big graph</span></h1>
+  </div>
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r hd"><span>Lane</span><span>What it is</span><span>Destinations</span></div>
+    <div class="r"><span class="k c-cyan">MAIN</span><span class="v" style="color:var(--cyan)">16-step motion seq</span><span class="d">Filter / Volume / Pan</span></div>
+    <div class="r"><span class="k c-purple">SEQ 1</span><span class="v">LFO 1, step mode</span><span class="d">Any of the <em>27 targets</em> of the matrix</span></div>
+    <div class="r"><span class="k c-pink">SEQ 2</span><span class="v" style="color:var(--pink)">LFO 2, step mode</span><span class="d">Any of the 27 targets</span></div>
+    <div class="r"><span class="k c-amber">SEQ 3</span><span class="v" style="color:var(--amber)">LFO 3, step mode</span><span class="d">Any of the 27 targets</span></div>
+  </div>
+  <p>All four are edited in the same large graph: the <b>MAIN / SEQ 1 / SEQ 2 / SEQ 3</b> tabs at the top right of the MOTION SEQUENCER panel switch the lane on display.</p>
+  <div class="panel" style="padding:16px 18px" id="laneDemo"></div>
+  <div class="note" style="--acc:var(--purple)">
+    <span class="lab">Note</span>
+    <p><b>SEQ RND randomises the lane you are looking at</b>, not always the main one.</p>
+  </div>
+</section>
+
+<section class="page" data-ch="02" data-title="Motion sequencer">
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Steps</span><span class="v">per bar</span><span class="d">Every bar is a step. <em>MAIN is unipolar</em> (0–100 %); the <em>SEQ lanes are bipolar</em> (−100 … +100 %) and grow from the centre line.</span></div>
+    <div class="r"><span class="k">LEN</span><span class="v">1 … 16</span><span class="d">Pattern length. A 7-step lane against a 16-step MAIN makes polymeter — the two only come back into phase after <em>112 steps</em>.</span></div>
+    <div class="r"><span class="k">Swing</span><span class="v">0 … 75 %</span><span class="d">Delays the odd step of every pair. Each lane has its own, so you can layer different grooves.</span></div>
+    <div class="r"><span class="k">Linear</span><span class="v">MAIN only</span><span class="d">Linear interpolation between steps.</span></div>
+    <div class="r"><span class="k">Glide</span><span class="v">SEQ only</span><span class="d">Portamento between steps, from hard steps to a full slide.</span></div>
+    <div class="r"><span class="k">Lane ON</span><span class="v">on / off</span><span class="d">Switches the lane on or off without leaving the page.</span></div>
+    <div class="r"><span class="k">Sync</span><span class="v">1/32 … 1/4</span><span class="d">Divides every step into time units (1/16 = one step every sixteenth). For SEQ lanes the division is the length of one step, so the cycle lasts <em>LEN × division</em>.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 18px" id="polyDemo"></div>
+</section>
+
+<!-- 03 RANDOMIZE -->
+<section class="page" data-ch="03" data-title="Randomize" data-acc="pink" data-sub="Per section, per lane, all at once">
+  <div class="opener">
+    <span class="eyebrow">03 — Randomize</span>
+    <h1 class="display">Roll the dice,<br><span class="c-pink">keep the seed</span></h1>
+  </div>
+  <p>Every section has its own randomiser — Filter, Volume, Pan, Beat Repeat, Drive, Noise, the three LFOs, Reverb, Delay, Chorus, Flanger, Granular — plus a global <b>ALL RND</b>. A <b>Seed Lock</b> in each section fixes the random seed, to repeat the same result or vary it step by step.</p>
+  <h2>Envelope <span class="c-pink">sequencer</span></h2>
+  <div class="spec two" style="--acc:var(--pink)">
+    <div class="r"><span class="k">RND Shape</span><span class="d">A new random curve over the 16 steps, with a uniform or weighted distribution: <em>Smooth / Sparse / Dense</em>.</span></div>
+    <div class="r"><span class="k">RND Sync</span><span class="d">Picks a random subdivision among 1/32, 1/16, 1/8, 1/4.</span></div>
+    <div class="r"><span class="k">RND Module</span><span class="d">Randomly switches one or more modules on or off (Filter, Volume, Pan).</span></div>
+    <div class="r"><span class="k">Seed Lock</span><span class="d">Fixes the random seed — useful to repeat the same result or vary it incrementally.</span></div>
+  </div>
+  <div class="cols3" id="distDemo"></div>
+  <div class="panel" style="padding:12px 18px;display:flex;flex-wrap:wrap;gap:6px;align-items:center" id="rndSections"></div>
+</section>
+
+<!-- 04 TRIGGER -->
+<section class="page" data-ch="04" data-title="Trigger" data-acc="amber" data-sub="Euclidean, clock, MIDI, transients">
+  <div class="opener">
+    <span class="eyebrow">04 — Trigger · envelope sequencer</span>
+    <h1 class="display">When the<br><span class="c-amber">motion starts</span></h1>
+  </div>
+  <p>The Trigger module decides when and how the envelope sequencer is started, reset or pulsed. <b>Four selectable sources</b>, which can be combined.</p>
+  <div class="cols2" style="grid-template-columns:1fr 250px;align-items:center">
+    <div>
+      <h2 style="margin-bottom:10px">01 · <span class="c-amber">Euclidean</span></h2>
+      <p style="margin-bottom:8px">Rhythmic patterns spread euclideanly over N steps.</p>
+      <div class="spec" style="--acc:var(--amber)">
+        <div class="r" style="grid-template-columns:110px 80px 1fr"><span class="k">Steps (N)</span><span class="v">1 … 32</span><span class="d">Total steps of the pattern.</span></div>
+        <div class="r" style="grid-template-columns:110px 80px 1fr"><span class="k">Pulses (K)</span><span class="v">K ≤ N</span><span class="d">Hits spread as evenly as possible over N.</span></div>
+        <div class="r" style="grid-template-columns:110px 80px 1fr"><span class="k">Rotation (R)</span><span class="v">offset</span><span class="d">Pattern rotation (0 = canonical position).</span></div>
+        <div class="r" style="grid-template-columns:110px 80px 1fr"><span class="k">Rate</span><span class="v">1/32 … 1/4…</span><span class="d">How fast the pattern advances.</span></div>
+      </div>
+    </div>
+    <div class="panel" style="padding:14px;text-align:center"><div id="eucl"></div><div class="lab" style="margin-top:6px">N 16 · K 5 · R 0</div><p style="font-size:9.5px;margin-top:4px">Classic Björklund pattern.</p></div>
+  </div>
+  <h2>02 · <span class="c-amber">Clock</span></h2>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r"><span class="k">Division</span><span class="v">1/32 … 1 bar</span><span class="d">1/32, 1/16T, 1/16, 1/8T, 1/8, 1/4, 1/2, 1 bar — synced to the host transport.</span></div>
+    <div class="r"><span class="k">Phase offset</span><span class="v">0 … 100 %</span><span class="d">Delays the trigger as a percentage of the division.</span></div>
+    <div class="r"><span class="k">Reset on bar</span><span class="v">on / off</span><span class="d">Resets the envelope position at the start of every bar.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="04" data-title="Trigger">
+  <h2>03 · <span class="c-amber">MIDI</span></h2>
+  <p>The envelope starts (or is reset) when MIDI notes or CCs arrive.</p>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r"><span class="k">Note On</span><span class="v">channel</span><span class="d">Triggers on every Note On on the selected channel.</span></div>
+    <div class="r"><span class="k">Note filter</span><span class="v">All / C3 / D#4…</span><span class="d">Filters by a specific pitch.</span></div>
+    <div class="r"><span class="k">CC trigger</span><span class="v">0 … 127</span><span class="d">Triggers on a CC message — CC number and value threshold selectable.</span></div>
+    <div class="r"><span class="k">Latch</span><span class="v">on / off</span><span class="d">Keeps the envelope looping until a Note Off arrives.</span></div>
+    <div class="r"><span class="k">Channel</span><span class="v">1 … 16 / Omni</span><span class="d">MIDI listening channel.</span></div>
+  </div>
+  <h2>04 · <span class="c-amber">Transient detector</span></h2>
+  <p>Analyses the incoming audio and triggers the envelope on the detected attacks.</p>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r"><span class="k">Sensitivity</span><span class="v">0 … 100 %</span><span class="d">Transient detection threshold.</span></div>
+    <div class="r"><span class="k">Attack</span><span class="v">fast / med / slow</span><span class="d">Response time of the detector.</span></div>
+    <div class="r"><span class="k">Filter band</span><span class="v">4 bands</span><span class="d"><em>Low</em> (kick), <em>Mid</em> (snare/clap), <em>High</em> (hat/perc), <em>Full</em>.</span></div>
+    <div class="r"><span class="k">Cooldown</span><span class="v">ms</span><span class="d">Minimum time between two triggers — avoids double triggers.</span></div>
+    <div class="r"><span class="k">Sidechain input</span><span class="v">self / ext.</span><span class="d">Audio source for the detector: the signal itself or an external sidechain bus.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="04" data-title="Trigger">
+  <h2>Combining <span class="c-amber">the sources</span></h2>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-amber">First</h3><p>The first source to fire wins — useful for a MIDI override on top of the clock.</p></div>
+    <div class="panel card"><h3 class="c-amber">AND</h3><p>Triggers only if two or more sources fire in the same window (±1 step).</p></div>
+    <div class="panel card" style="border-color:rgba(226,179,71,.5)"><h3 class="c-amber">OR · default</h3><p>Any source starts the envelope.</p></div>
+    <div class="panel card"><h3 class="c-amber">Priority</h3><p>Manual priority order — drag and drop the sources in the list.</p></div>
+  </div>
+  <h2>Randomize <span class="c-amber">— trigger</span></h2>
+  <div class="spec two" style="--acc:var(--amber)">
+    <div class="r"><span class="k">RND Euclidean</span><span class="d">A new random N/K pair with K between <em>N/4 and N/2</em> (musical density) and a random rotation.</span></div>
+    <div class="r"><span class="k">RND Source</span><span class="d">Randomly enables a combination of trigger sources in OR mode.</span></div>
+    <div class="r"><span class="k">RND Division</span><span class="d">Clock: picks a random subdivision among the synced ones.</span></div>
+    <div class="r"><span class="k">Seed Lock</span><span class="d">Fixes the seed.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 18px" id="euclRow"></div>
+</section>
+
+<!-- 05 DRIVE NOISE -->
+<section class="page" data-ch="05" data-title="Drive and noise" data-acc="red" data-sub="Five clip modes, five noise colours">
+  <div class="opener">
+    <span class="eyebrow">05 — Distortion modules</span>
+    <h1 class="display">Drive<br><span class="c-red">and noise</span></h1>
+  </div>
+  <p>Two independent distortion modules, placeable in the chain <b>before or after</b> the Filter/Volume/Pan modules.</p>
+  <h2>Drive</h2>
+  <div class="cols3" id="driveModes"></div>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r"><span class="k">Drive</span><span class="v">0 … 100 %</span><span class="d">Input gain into the saturator.</span></div>
+    <div class="r"><span class="k">Tone</span><span class="v">Dark ↔ Bright</span><span class="d">Post-distortion EQ: cuts the highs or lifts them.</span></div>
+    <div class="r"><span class="k">Mix</span><span class="v">0 … 100 %</span><span class="d">Dry/wet — allows parallel distortion.</span></div>
+    <div class="r"><span class="k">Pre / Post</span><span class="v">position</span><span class="d"><em>Pre</em>: before the filter, it colours the sweep. <em>Post</em>: after it, it distorts the result.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="05" data-title="Drive and noise">
+  <h2>No<span class="c-red">ise</span></h2>
+  <p>A modulatable noise generator, added to the signal.</p>
+  <div style="display:flex;gap:6px" id="noiseTypes"></div>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r"><span class="k">Level</span><span class="v">−∞ … 0 dB</span><span class="d">Noise level relative to the signal.</span></div>
+    <div class="r"><span class="k">Filter</span><span class="v">20 Hz – 20 kHz, Q</span><span class="d">A band-pass on the noise.</span></div>
+    <div class="r"><span class="k">Gate</span><span class="v">on / off</span><span class="d">The noise follows the envelope sequencer — <em>ON = rhythmic, synced noise</em>.</span></div>
+    <div class="r"><span class="k">Stereo width</span><span class="v">mono → stereo</span><span class="d">Width of the generated noise.</span></div>
+  </div>
+  <h2>Randomize <span class="c-red">— distortion</span></h2>
+  <div class="spec two" style="--acc:var(--red)">
+    <div class="r"><span class="k">RND Drive</span><span class="d">Random Mode, Drive (<em>30–80 %</em>) and Tone — avoids extremes that saturate for nothing.</span></div>
+    <div class="r"><span class="k">RND Noise</span><span class="d">Random Type, Level (<em>−30 … −12 dB</em>) and filter band.</span></div>
+    <div class="r"><span class="k">RND Chain</span><span class="d">Randomises the Pre/Post position and the activation of both modules.</span></div>
+    <div class="r"><span class="k">Seed Lock</span><span class="d">Fixes the seed.</span></div>
+  </div>
+  <h2>Recipes <span class="c-red">for acid / techno</span></h2>
+  <div class="cols3">
+    <div class="panel recipe"><h3 class="c-red">Acid Dirt</h3><div class="kv"><span><i>Drive</i>Soft Clip</span><span><i>Amt</i>65 %</span><span><i>Tone</i>Bright</span><span>Pre-filter</span><span><i>Mix</i>80 %</span></div></div>
+    <div class="panel recipe"><h3 class="c-red">Industrial Noise Layer</h3><div class="kv"><span><i>Noise</i>White</span><span><i>Level</i>−18 dB</span><span><i>Filter</i>3 kHz / Q 2</span><span><i>Gate</i>ON</span></div></div>
+    <div class="panel recipe"><h3 class="c-red">Lo-Fi Crunch</h3><div class="kv"><span><i>Drive</i>Bitcrush 8 bit</span><span><i>Tone</i>Dark</span><span><i>Mix</i>60 %</span><span><i>Noise</i>Vinyl</span><span><i>Level</i>−24 dB</span></div></div>
+  </div>
+</section>
+
+<!-- 06 LFO -->
+<section class="page" data-ch="06" data-title="LFOs and routing" data-acc="purple" data-sub="Three generators, 27 targets">
+  <div class="opener">
+    <span class="eyebrow">06 — LFO / step generators</span>
+    <h1 class="display">Three generators,<br><span class="c-purple">27 destinations</span></h1>
+  </div>
+  <p>Three independent modulation sources, on top of the main envelope sequencer. Each can modulate any parameter through the routing matrix, and each works in two modes: <b>LFO</b> (a continuous waveform) or <b>Step Sequencer</b> (16 steps, the same engine as the main envelope, set up separately).</p>
+  <h2>LFO <span class="c-purple">parameters</span></h2>
+  <div class="cols3" id="shapes" style="grid-template-columns:repeat(9,1fr);gap:6px"></div>
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r"><span class="k">Shape</span><span class="v">9 shapes</span><span class="d">SINE, TRI, SAW, RSAW, SQR, S&amp;H, BIN, RND, <em>SEQ</em>.</span></div>
+    <div class="r"><span class="k">Rate</span><span class="v">0.01–20 Hz · 1/1–1/32</span><span class="d">Free frequency, or synced to the BPM.</span></div>
+    <div class="r"><span class="k">Sync</span><span class="v">on / off</span><span class="d">Locks the rate to the host transport.</span></div>
+    <div class="r"><span class="k">Depth</span><span class="v">0 … 1</span><span class="d">Modulation amount, applied to the bipolar signal.</span></div>
+  </div>
+  <h2>SEQ <span class="c-purple">mode</span></h2>
+  <p>Choosing SEQ as the shape turns the LFO into a <b>16-step lane</b>. Edit it in the large graph of the MOTION SEQUENCER panel (tabs SEQ 1 / SEQ 2 / SEQ 3); the scope on the LFO page shows the pattern with the playing step highlighted.</p>
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r"><span class="k">LEN</span><span class="v">1 … 16</span><span class="d">Lane length in steps.</span></div>
+    <div class="r"><span class="k">Swing</span><span class="v">per lane</span><span class="d">Shuffle inside the lane, independent of the others.</span></div>
+    <div class="r"><span class="k">Glide</span><span class="v">0 … 1</span><span class="d">Portamento between adjacent steps (0 = steps, 1 = full slide).</span></div>
+    <div class="r"><span class="k">Sync div</span><span class="v">step length</span><span class="d">The full cycle lasts LEN × div.</span></div>
+    <div class="r"><span class="k">Step values</span><span class="v">−1 … +1</span><span class="d">Bipolar: a lane can push the destination above <em>and</em> below the value set by its knob.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="06" data-title="LFOs and routing">
+  <h2>Routing <span class="c-purple">matrix</span></h2>
+  <p>Every LFO/Step can be assigned to <b>one or more destinations at once</b> — 27 of them, chosen from each LFO’s <b>TARGETS</b> button. The indices are stable: new ones are only added at the end, never reordered.</p>
+  <div class="panel" style="padding:10px 18px 14px" id="matrix"></div>
+  <div class="cols3">
+    <div class="panel card"><h3 class="c-purple">LFO 1</h3><p>Primary modulation — typically the slowest, the global shape.</p></div>
+    <div class="panel card"><h3 class="c-pink">LFO 2</h3><p>Secondary modulation, or in quadrature with LFO 1.</p></div>
+    <div class="panel card"><h3 class="c-amber">LFO 3</h3><p>Fast / timbral modulation, or a variation step sequencer.</p></div>
+  </div>
+  <p style="font-size:10px">The three LFOs can be phase-synced or run free, independently.</p>
+</section>
+
+<section class="page" data-ch="06" data-title="LFOs and routing">
+  <h2>Randomize <span class="c-purple">— LFO / step</span></h2>
+  <div class="spec two" style="--acc:var(--purple)">
+    <div class="r"><span class="k">RND LFO</span><span class="d">Per generator: randomises Shape, Rate (synced), Phase and Depth — keeps Smooth and Retrigger unchanged so the timing stays stable.</span></div>
+    <div class="r"><span class="k">RND Steps</span><span class="d">Step mode: a new random N-step sequence with a <em>Smooth / Sparse / Groove</em> distribution (random swing between even and odd steps).</span></div>
+    <div class="r"><span class="k">RND Route</span><span class="d">Randomly assigns each LFO to a destination in the matrix, with an Amount between <em>−50 % and +50 %</em>.</span></div>
+    <div class="r"><span class="k">RND ALL</span><span class="d">Randomises all three generators at once while keeping musical coherence — avoids modulation clashes on the same destination.</span></div>
+    <div class="r"><span class="k">Seed Lock</span><span class="d">Fixes the seed — allows incremental variations of the same random patch.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 18px" id="bipolarDemo"></div>
+</section>
+
+<!-- 07 BEAT REPEAT -->
+<section class="page" data-ch="07" data-title="Beat repeat" data-acc="green" data-sub="Grid, roll, reverse, pitch glitch">
+  <div class="opener">
+    <span class="eyebrow">07 — Beat repeat</span>
+    <h1 class="display">Catch it,<br><span class="c-green">loop it, flip it</span></h1>
+  </div>
+  <p>An effect module that captures and replays portions of audio in a loop, in real time, <b>synced to the host BPM</b>.</p>
+  <div class="spec" style="--acc:var(--green)">
+    <div class="r hd"><span>Parameter</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Grid</span><span class="v">1/32 … 1 bar</span><span class="d">Size of the capture cell — 1/32, 1/16, 1/8, 1/4, 1/2, 1 bar.</span></div>
+    <div class="r"><span class="k">Interval</span><span class="v">× grid</span><span class="d">How many grids between repeats (e.g. every 2 steps of 1/16).</span></div>
+    <div class="r"><span class="k">Gate length</span><span class="v">0 … 100 %</span><span class="d">Length of the repeated portion, as a share of the grid.</span></div>
+    <div class="r"><span class="k">Pitch</span><span class="v">−12 … +12 st</span><span class="d">Transposes the loop, with a <em>Glitch</em> mode (random jitter).</span></div>
+    <div class="r"><span class="k">Chance</span><span class="v">0 … 100 %</span><span class="d">Probability of the repeat firing — adds random variation.</span></div>
+    <div class="r"><span class="k">Reverse</span><span class="v">on / off</span><span class="d">Plays the captured cell backwards.</span></div>
+    <div class="r"><span class="k">Roll</span><span class="v">2× · 4× · 8×</span><span class="d">Subdivide mode — splits the cell into even smaller slices.</span></div>
+    <div class="r"><span class="k">Mix</span><span class="v">dry ↔ wet</span><span class="d">Balance between the original and the repeated signal.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 18px" id="rollDemo"></div>
+</section>
+
+<section class="page" data-ch="07" data-title="Beat repeat">
+  <h2>Randomize <span class="c-green">— beat repeat</span></h2>
+  <div class="spec two" style="--acc:var(--green)">
+    <div class="r"><span class="k">RND Grid</span><span class="d">Random Grid and Interval among musically useful values (1/32–1/4).</span></div>
+    <div class="r"><span class="k">RND FX</span><span class="d">Randomises Pitch (<em>±7 semitones</em>), Reverse and Roll consistently with each other.</span></div>
+    <div class="r"><span class="k">RND Chance</span><span class="d">Sets Chance to a random value between <em>20 % and 80 %</em> — avoids the extremes.</span></div>
+    <div class="r"><span class="k">Seed Lock</span><span class="d">Fixes the seed for repeatability.</span></div>
+  </div>
+  <div class="note" style="--acc:var(--green)">
+    <span class="lab">The step grid</span>
+    <p>The beat-repeat <b>step grid — Roll, Reverse, Pitch, Stretch, Stop</b> — supports drag-to-merge of columns, with ON/OFF, DRY/WET, RATE and RND. It is covered by undo like every knob, and it is reset by every preset.</p>
+  </div>
+  <h2>Recipes <span class="c-green">for acid / techno</span></h2>
+  <div class="cols3">
+    <div class="panel recipe"><h3 class="c-green">Micro-Stutter 1/32</h3><div class="kv"><span><i>Grid</i>1/32</span><span><i>Gate</i>50 %</span><span><i>Chance</i>40 %</span><span><i>Roll</i>4×</span><span><i>Pitch</i>0</span></div></div>
+    <div class="panel recipe"><h3 class="c-green">Glitch Drop</h3><div class="kv"><span><i>Grid</i>1/8</span><span><i>Reverse</i>ON</span><span><i>Pitch</i>Glitch</span><span><i>Chance</i>60 %</span><span><i>Mix</i>0.7</span></div></div>
+    <div class="panel recipe"><h3 class="c-green">Tape Loop</h3><div class="kv"><span><i>Grid</i>1/4</span><span><i>Gate</i>100 %</span><span><i>Roll</i>OFF</span><span><i>Reverse</i>OFF</span><span><i>Pitch</i>−12</span></div></div>
+  </div>
+</section>
+
+<!-- 08 PRESETS -->
+<section class="page" style="gap:12px" data-ch="08" data-title="Preset library" data-acc="orange" data-sub="145 factory presets by genre">
+  <div class="opener">
+    <span class="eyebrow">08 — Preset library</span>
+    <h1 class="display">145 presets,<br><span class="c-orange">by genre and instrument</span></h1>
+  </div>
+  <p>The PRESET menu groups the library by genre and instrument. <b>Every preset is self-contained</b>: recalling it resets the whole parameter tree — modules, per-section envelopes, modulation lanes and the beat-repeat grid — so it never inherits anything from the previous patch.</p>
+  <div class="panel" style="padding:8px 18px 12px" id="presetTable"></div>
+
+  <h2>Start from <span class="c-orange">Modulation Lab</span> <span style="font:500 10px/1 var(--mono);color:var(--muted);letter-spacing:.1em;text-transform:none">— the best presets to understand the engine</span></h2>
+  <div class="spec two" style="--acc:var(--orange)">
+    <div class="r"><span class="k">Triple Lanes</span><span class="d">One lane per module (cutoff / drive / pan), same 1/16 grid.</span></div>
+    <div class="r"><span class="k">Poly Lanes 5-7-16</span><span class="d">Three lanes of coprime lengths: they don’t realign for <em>560 steps</em>.</span></div>
+    <div class="r"><span class="k">Glide Lane Bass</span><span class="d">The lane is the bass line, glide at 50 %.</span></div>
+    <div class="r"><span class="k">Shuffle Lanes</span><span class="d">Three different swings at the same time.</span></div>
+    <div class="r"><span class="k">Cross Mod Chaos</span><span class="d">Every lane hits several destinations at once.</span></div>
+  </div>
+</section>
+
+
+
+<!-- 09 UNDO & SAFETY -->
+<section class="page" data-ch="09" data-title="Undo and output safety" data-acc="cyan" data-sub="Undo everything, a ceiling for your ears">
+  <div class="opener">
+    <span class="eyebrow">09 — Undo and output safety</span>
+    <h1 class="display">Undo anything,<br><span class="c-cyan">hurt nobody</span></h1>
+  </div>
+  <h2>Undo <span class="c-cyan">/ redo</span></h2>
+  <p>Two buttons in the header, between SYNC and PREFERENCES — dimmed when there is nothing to undo or redo, white otherwise. <b>The tooltip says what would be undone or redone.</b></p>
+  <div class="spec two" style="--acc:var(--cyan)">
+    <div class="r"><span class="k">Knobs, toggles, menus</span><span class="d">One step per interaction: <em>one knob turn = one undo</em>, not one per pixel of movement.</span></div>
+    <div class="r"><span class="k">Presets</span><span class="d">Factory and user: loading one is a single undo step, even though it changes ~150 parameters and resets the beat-repeat grid. Loading a user preset <em>keeps the earlier history</em>.</span></div>
+    <div class="r"><span class="k">Beat repeat</span><span class="d">The step grid, drag-to-merge, ON/OFF, DRY/WET, RATE, RND — all undoable.</span></div>
+    <div class="r"><span class="k">RND</span><span class="d">Per module, SEQ RND, ALL RND: one click, one undo — even when ALL RND touches ten modules at once.</span></div>
+  </div>
+  <p style="font-size:10.5px">The history is cleared only when the host reloads the plugin state — that is, when you open a saved project. Never on a preset change during the session.</p>
+  <h2>Output <span class="c-cyan">safety ceiling</span></h2>
+  <div class="cols2" style="grid-template-columns:1fr 250px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p>The output goes through a soft limit: <b>transparent up to 2× full scale</b>, then a knee that <b>never exceeds 4×</b>. It is not an effect and is not meant to be touched — it only makes sure no combination of parameters can slam the monitors of whoever is trying the plugin.</p>
+      <p>It touches nothing musical: the hottest preset in the library reaches ~3.3× only with an already hot input (the ceiling takes 0.4 dB off that single peak), and every parameter measured on its own from the defaults stays well below.</p>
+    </div>
+    <div class="panel" style="padding:12px" id="ceilCurve"></div>
+  </div>
+</section>
+
+<!-- 10 ACTIVATION -->
+<section class="page" data-ch="10" data-title="Activation" data-acc="amber" data-sub="Demo, preferences, serial">
+  <div class="opener">
+    <span class="eyebrow">10 — Activation</span>
+    <h1 class="display">Ten minutes,<br><span class="c-amber">then one serial</span></h1>
+  </div>
+  <p>The plugin runs for <b>10 minutes from first launch</b> — real time, not playback time — then goes into stand-by: the audio comes out muted until a valid serial is entered. The ten minutes are <b>a single budget tied to the machine</b>, not a per-session timer: closing and reopening the plugin or the DAW doesn’t reset it.</p>
+  <p>The header shows no countdown and no AUTHORIZE button — only a <b>PREFERENCES</b> button, to the left of POWER.</p>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-amber">1 · Any time</h3><p><b>PREFERENCES › AUTHORIZATION</b>: the demo status (time left, or ACTIVE with the registered serial), the serial field and the <b>UNLOCK</b> button.</p></div>
+    <div class="panel card"><h3 class="c-amber">2 · At expiry</h3><p>When the 10 minutes run out the plugin opens the preferences on the AUTHORIZATION tab by itself — <b>once per session</b>, so it doesn’t keep stealing focus. The window can be closed; the audio stays muted until a serial is entered.</p></div>
+  </div>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r hd"><span>Tab</span><span></span><span>What’s there</span></div>
+    <div class="r"><span class="k">General</span><span class="v">folders</span><span class="d">The folders the plugin writes to — user presets and authorisation data — each with an OPEN button.</span></div>
+    <div class="r"><span class="k">Authorization</span><span class="v">licence</span><span class="d">Demo/licence status, serial field, UNLOCK.</span></div>
+    <div class="r"><span class="k">About</span><span class="v">info</span><span class="d">Logo, name, version, company and website — the same screen that opens when you click the logo in the sidebar.</span></div>
+  </div>
+  <div class="cols2" style="align-items:stretch">
+    <div class="panel card"><div class="lab">Serial format</div><div style="font:700 19px/1.2 var(--mono);color:var(--amber);margin:10px 0 12px;letter-spacing:.04em">AXLM-XXXX-XXXX-XXXX</div><p>Upper-case letters and digits; case and dashes don’t matter when typing it.</p></div>
+    <div class="panel card"><div class="lab">One activation, every format</div><p style="margin-top:8px">Per installed plugin on the machine, not per DAW session: <b>VST3, AU and Standalone</b> share the same state. It survives plugin updates as long as <b>~/Library/AudioXL/MotionFX/</b> is not deleted.</p></div>
+  </div>
+</section>
+
+<!-- BACK -->
+<section class="page cover back" data-nochrome>
+  <img src="img/logo.png" alt="" style="width:200px;margin-bottom:60px">
+  <h1 class="display">Now make<br><span class="outline">it move</span></h1>
+  <p class="sub">Four lanes, three LFOs, 27 destinations — all on your tempo.</p>
+  <div class="deco panel" id="backLanes"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>AudioXL Motion FX · v1.1.0</span></div>
+</section>
+
+<script src="../audioxl-shared/core.js"></script>
+<script>
+(function(){
+const {$}=AXL;
+// lane bars: unipolar/bipolar
+const MAIN=[1,.2,.6,.15,.9,.25,.7,.1,1,.3,.55,.2,.85,.4,.65,.15];
+const S1=[.8,-.4,.2,-.9,.5,-.1,.9,-.6,.3,-.3,.7,-.8,.4,0,-.5,.6];
+function lane(label,c,vals,bip,h){ h=h||44;
+  return `<div style="display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center"><span class="tag" style="color:var(--${c});font-size:11px">${label}</span><div style="display:grid;grid-template-columns:repeat(${vals.length},1fr);gap:3px;height:${h}px;position:relative">${
+   vals.map(v=>bip?`<div style="position:relative"><i style="position:absolute;left:0;right:0;${v>=0?`bottom:50%;height:${v*50}%`:`top:50%;height:${-v*50}%`};background:var(--${c});border-radius:2px"></i></div>`:`<div style="display:flex;align-items:flex-end;background:#10161F;border-radius:2px"><i style="width:100%;height:${v*100}%;background:var(--${c});border-radius:2px"></i></div>`).join('')}${bip?'<div style="position:absolute;left:0;right:0;top:50%;border-top:1px dashed #2A3446"></div>':''}</div></div>`;}
+const decoHTML=lane('MAIN','cyan',MAIN,0,40)+lane('SEQ 1','purple',S1,1,40)+lane('SEQ 2','pink',S1.map((v,i)=>S1[(i*5)%16]*.9),1,36);
+$('#coverLanes').innerHTML=decoHTML; $('#backLanes').innerHTML=decoHTML;
+$('#coverLanes').style.gap=$('#backLanes').style.gap='8px';
+
+$('#laneDemo').innerHTML=`<div style="display:flex;gap:6px;margin-bottom:12px"><span class="pill" style="color:var(--cyan);border-color:var(--cyan)">MAIN</span><span class="pill" style="color:var(--purple)">SEQ 1</span><span class="pill" style="color:var(--pink)">SEQ 2</span><span class="pill" style="color:var(--amber)">SEQ 3</span><span class="lab" style="margin-left:auto;align-self:center">MOTION SEQUENCER</span></div><div style="display:flex;flex-direction:column;gap:12px">`+
+ lane('MAIN','cyan',MAIN,0,56)+lane('SEQ 1','purple',S1,1,56)+`</div><div style="display:flex;justify-content:space-between;margin-top:10px" class="lab"><span>MAIN · unipolar 0 … 100 %</span><span>SEQ · bipolar −100 … +100 %</span></div>`;
+
+// polymeter 7 vs 16
+function poly(el,lanes,total,label){ let h=`<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><span class="lab">${label}</span><span style="font:800 20px/1 var(--display);color:var(--ink)">back in phase after <span class="c-cyan">${total} steps</span></span></div>`;
+ lanes.forEach(([n,L,c])=>{h+=`<div style="display:grid;grid-template-columns:92px 1fr;gap:10px;align-items:center;margin-bottom:5px"><span class="tag" style="color:var(--${c});font-size:11px">${n} · ${L}</span><div style="display:grid;grid-template-columns:repeat(32,1fr);gap:2px">`+[...Array(32)].map((_,s)=>{const i=s%L;return `<i style="height:18px;border-radius:2px;background:${i==0?`var(--${c})`:'#141B28'};font:700 7.5px/18px var(--mono);text-align:center;color:${i==0?'#07090E':'var(--dim)'};font-style:normal">${i+1}</i>`}).join('')+'</div></div>';});
+ $(el).innerHTML=h;}
+poly('#polyDemo',[['MAIN',16,'cyan'],['SEQ 1',7,'purple']],112,'LEN 16 against LEN 7 · first 32 steps');
+//poly('#poly3',[['Lane',5,'orange'],['Lane',7,'purple'],['Lane',16,'cyan']],560,'Poly Lanes 5-7-16 · first 32 steps');
+
+// distributions
+const rnd=(s=>()=>(s=(s*16807)%2147483647)/2147483647)(7);
+const D={Smooth:[.5,.6,.7,.65,.55,.45,.4,.5,.62,.7,.6,.48,.4,.45,.55,.6],Sparse:[1,0,0,.2,0,0,.7,0,0,0,.4,0,.9,0,0,.1],Dense:[.8,.9,.6,.95,.7,.85,.9,.6,.8,.95,.7,.9,.85,.65,.9,.8]};
+$('#distDemo').innerHTML=Object.entries(D).map(([n,v])=>`<div class="panel card"><h3 class="c-pink">${n}</h3><div style="display:grid;grid-template-columns:repeat(16,1fr);gap:2px;height:46px;margin-top:6px">${v.map(x=>`<div style="display:flex;align-items:flex-end;background:#10161F;border-radius:2px"><i style="width:100%;height:${x*100}%;background:var(--pink);border-radius:2px"></i></div>`).join('')}</div></div>`).join('')+'<p style="grid-column:span 3;font-size:9.5px;color:var(--muted)">Illustrative curves of the three RND Shape distributions.</p>';
+$('#rndSections').innerHTML='<span class="lab" style="margin-right:6px">RND in every section</span>'+['Filter','Volume','Pan','Beat Repeat','Drive','Noise','LFO 1','LFO 2','LFO 3','Reverb','Delay','Chorus','Flanger','Granular'].map(s=>`<span class="pill" style="color:var(--pink)">${s}</span>`).join('')+'<span class="pill" style="color:var(--ink);border-color:var(--pink)">ALL RND</span>';
+
+// euclidean
+function bjork(n,k,r=0){const p=[];for(let i=0;i<n;i++)p.push(Math.floor((i*k)/n)!==Math.floor(((i-1)*k)/n)?1:0);
+ // canonical: rotate so first is a hit
+ const f=p.indexOf(1);const q=p.slice(f).concat(p.slice(0,f));return q.slice(r).concat(q.slice(0,r));}
+function ring(n,k,r,size,c){const p=bjork(n,k,r),R=size/2-12,cx=size/2;let s=`<svg viewBox="0 0 ${size} ${size}" style="width:100%"><circle cx="${cx}" cy="${cx}" r="${R}" fill="none" stroke="#283243"/>`;let pts=[];
+ p.forEach((b,i)=>{const a=-Math.PI/2+i*2*Math.PI/n,x=cx+R*Math.cos(a),y=cx+R*Math.sin(a);if(b)pts.push([x,y]);s+=`<circle cx="${x}" cy="${y}" r="${b?7:3.5}" fill="${b?`var(--${c})`:'#2A3446'}"/>`;});
+ s+=`<polygon points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="var(--${c})" stroke-opacity=".5"/></svg>`;return s;}
+$('#eucl').innerHTML=ring(16,5,0,200,'amber');
+$('#euclRow').innerHTML='<div class="lab" style="margin-bottom:10px">RND Euclidean · K between N/4 and N/2 · examples</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">'+[[16,4,0],[16,6,2],[12,5,1],[8,3,0]].map(([n,k,r])=>`<div style="text-align:center">${ring(n,k,r,120,'amber')}<div style="font:700 10px/1 var(--mono);color:var(--soft);margin-top:4px">N ${n} · K ${k} · R ${r}</div></div>`).join('')+'</div>';
+
+// drive modes
+$('#driveModes').innerHTML=[['Soft Clip','Soft tape/valve-style saturation.'],['Hard Clip','Clean digital clipping.'],['Fold','Wavefolder — complex harmonics, great for metallic sounds.'],['Bitcrush','Word-length reduction (1–16 bit).'],['Tube','Asymmetric triode-style emulation.']].map(([n,d])=>`<div class="panel card" style="border-left:3px solid var(--red)"><h3 class="c-red">${n}</h3><p>${d}</p></div>`).join('')+
+ `<div class="panel card" style="display:flex;align-items:center;justify-content:center"><span class="lab">Mode · 5 types</span></div>`;
+$('#noiseTypes').innerHTML=['White','Pink','Brown','Vinyl · crackle','Digital · bit noise'].map((n,i)=>`<div class="panel" style="flex:1;padding:12px;text-align:center"><div style="font:800 17px/1 var(--display);text-transform:uppercase;color:${['#E9EDF3','var(--pink)','var(--orange)','var(--amber)','var(--cyan)'][i]}">${n}</div></div>`).join('');
+
+// LFO shapes
+const sh={SINE:x=>Math.sin(x*2*Math.PI),TRI:x=>1-4*Math.abs(((x+.25)%1)-.5),SAW:x=>2*(x%1)-1,RSAW:x=>1-2*(x%1),SQR:x=>(x%1)<.5?1:-1,'S&H':x=>[.6,-.4,.9,-.8,.2,-.1,.7,-.6][Math.floor(x*8)%8],BIN:x=>[1,-1,-1,1,1,-1,1,-1][Math.floor(x*8)%8],RND:x=>.7*Math.sin(x*9.3)*Math.cos(x*4.1),SEQ:x=>[.8,-.4,.2,-.9,.5,-.1,.9,-.6][Math.floor(x*8)%8]};
+$('#shapes').innerHTML=Object.entries(sh).map(([n,f])=>{let d='';for(let i=0;i<=120;i++){const x=i/120;d+=(i?'L':'M')+(x*100).toFixed(1)+' '+(23-f(x*1.999)*19).toFixed(1);}
+ return `<div class="panel shape" style="padding:6px"><svg viewBox="0 0 100 46" preserveAspectRatio="none"><path d="${d}" fill="none" stroke="${n=='SEQ'?'var(--pink)':'var(--purple)'}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg><div style="font:800 12px/1 var(--display);text-align:center;color:var(--ink);margin-top:4px">${n}</div></div>`}).join('');
+
+// matrix
+const T=['Filter Cutoff','Volume','Pan','Drive','Noise','Granular (GRAN LFO DEST)','Filter Res','Filter Depth','Volume Depth','Pan Center','Pan Depth','Drive Mix','Drive Output','Reverb Size','Reverb Damp','Reverb Mix','Delay Feedback','Delay Mix','Chorus Rate','Chorus Depth','Chorus Mix','Flanger Rate','Flanger Depth','Flanger Feedback','Flanger Mix','Beat Repeat Mix','Output Gain'];
+const col=i=>i<=2||(i>=6&&i<=10)?'cyan':i<=5||i==11||i==12?'red':i<=24?'purple':'green';
+$('#matrix').innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 22px">'+T.map((t,i)=>`<div class="mtx"><b>${AXL.pad(i)}</b><span style="border-left:3px solid var(--${col(i)});padding-left:8px">${t}</span></div>`).join('')+'</div>'+
+ '<div style="display:flex;gap:16px;margin-top:10px" class="lab"><span style="color:var(--cyan)">■ filter · volume · pan</span><span style="color:var(--red)">■ drive · noise · granular</span><span style="color:var(--purple)">■ FX rack</span><span style="color:var(--green)">■ beat repeat · output</span></div>';
+
+// bipolar demo
+$('#bipolarDemo').innerHTML='<div class="lab" style="margin-bottom:10px">A bipolar lane pushes the target above and below its knob</div>'+lane('SEQ 1','purple',S1,1,60)+'<div style="display:flex;justify-content:space-between;margin-top:8px" class="lab"><span>+1 · above the knob</span><span>knob value</span><span>−1 · below the knob</span></div>';
+
+// roll demo
+$('#rollDemo').innerHTML='<div class="lab" style="margin-bottom:10px">Roll · one captured cell, subdivided</div>'+[['OFF',1],['2×',2],['4×',4],['8×',8]].map(([n,k])=>`<div style="display:grid;grid-template-columns:50px 1fr;gap:10px;align-items:center;margin-bottom:5px"><span style="font:800 16px/1 var(--display);color:var(--green)">${n}</span><div style="display:grid;grid-template-columns:repeat(${k},1fr);gap:3px">${[...Array(k)].map(()=>`<i style="height:18px;border-radius:3px;background:linear-gradient(90deg,var(--green),rgba(79,217,138,.25))"></i>`).join('')}</div></div>`).join('');
+
+// preset table
+const P=[['Acid','10','303, ladder LP, high resonance, valve drive'],['Techno','13','gate, pump, tunnel, industrial, modular patchbay'],['House','9','disco filter, sidechain pump, garage shuffle'],['Minimal / Dub Techno','7','dub delay, click, micro groove'],['Trance / Psy','5','1/16 gate, rolling bass, uplifter'],['Bass Music','7','neuro morph, wobble, talkbox, sub drop'],['Drum & Bass / Breaks','5','amen chopper, rollers, jungle stutter'],['IDM / Glitch','14','polymeters, granular, bit rot, random walk'],['Transitions / FX','7','riser, downlifter, tape stop, impact'],['Ambient / Downtempo','12','frozen grains, drift, long rooms'],['Dub / Delay','3','echo chamber, dub siren, ping-pong'],['Texture / Lo-Fi','7','tape, vinyl, metal fold, sub rumble'],['Modulation Lab','13','a showcase of the lanes: triple, polymetric, glide, shuffle'],['Lead','8','supersaw gate, formant talk, screamer, analogue unison'],['Vocal','8','chop gate, formant wobble, telephone, doubler, robotic talk'],['Keys','8','classic tremolo, chorus ensemble, auto-wah, vintage flange'],['Pad','8','slow riser, granular shimmer, breathing filter, choir swell']];
+const mx=14;
+$('#presetTable').innerHTML=P.map(([n,k,d])=>`<div style="display:grid;grid-template-columns:150px 110px 1fr;gap:12px;padding:4px 0;border-bottom:1px solid var(--line);align-items:center"><span style="font:700 14px/1.1 var(--display);text-transform:uppercase;color:var(--ink)">${n.replace('&','&amp;')}</span><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;border-radius:4px;background:#1A2230"><i style="display:block;height:100%;width:${k/mx*100}%;background:var(--orange);border-radius:4px"></i></div><b style="font:700 11px/1 var(--mono);color:var(--orange);width:18px;text-align:right">${k}</b></div><span style="font-size:10px;color:var(--soft)">${d}</span></div>`).join('');
+
+// ceiling curve
+(function(){const W=220,H=170,sx=x=>20+x/6*(W-30),sy=y=>H-20-y/6*(H-30);
+ const f=x=>x<=2?x:2+2*(1-Math.exp(-(x-2)/2));
+ let d='';for(let i=0;i<=120;i++){const x=i/120*6;d+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(f(x)).toFixed(1);}
+ $('#ceilCurve').innerHTML=`<div class="lab" style="margin-bottom:6px">In → out (× full scale)</div><svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="20" y1="${sy(0)}" x2="${W}" y2="${sy(0)}" stroke="#283243"/><line x1="20" y1="0" x2="20" y2="${sy(0)}" stroke="#283243"/>
+ <line x1="20" y1="${sy(4)}" x2="${W}" y2="${sy(4)}" stroke="var(--red)" stroke-dasharray="3 4"/><text x="${W-2}" y="${sy(4)-4}" text-anchor="end" font-size="9" fill="var(--red)" font-family="JetBrains Mono">never above 4×</text>
+ <line x1="${sx(2)}" y1="0" x2="${sx(2)}" y2="${sy(0)}" stroke="#283243" stroke-dasharray="3 4"/><text x="${sx(2)+3}" y="${H-24}" font-size="9" fill="#7D879A" font-family="JetBrains Mono">2×</text>
+ <path d="${d}" fill="none" stroke="var(--cyan)" stroke-width="2.4"/></svg><div style="font-size:9px;color:var(--muted)">Shape drawn for illustration.</div>`;})();
+})();
+</script>
+</body></html>
