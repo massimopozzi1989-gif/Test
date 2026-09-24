@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL SEQ — User Manual</title>
+<link rel="stylesheet" href="axl.css">
+<style>
+@page{size:A4;margin:0}
+body{background:#000}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;padding:96px 54px 74px;break-after:page;
+  background:radial-gradient(120% 60% at 100% 0%,rgba(60,200,242,.07),transparent 60%),radial-gradient(90% 50% at 0% 100%,rgba(255,90,78,.05),transparent 60%),var(--bg);
+  font-size:11px;line-height:1.62;color:var(--soft);display:flex;flex-direction:column;gap:20px}
+.ptop{position:absolute;left:54px;right:54px;top:30px;display:flex;align-items:center;gap:12px}
+.ptop img{height:30px}
+.ptop .chip{white-space:nowrap}
+.ptop .status{margin-left:auto;font:500 10.5px/1 var(--mono);letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.ptop .status b{color:var(--ink);font-weight:700}
+.ptop .ico{width:32px;height:32px;border:1px solid var(--line2);background:var(--panel2);border-radius:8px;display:grid;place-items:center;color:var(--soft)}
+.ptop .ico svg{width:15px;height:15px}
+.pfoot{position:absolute;left:54px;right:54px;bottom:28px;display:flex;justify-content:space-between;font:500 9.5px/1 var(--mono);letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
+.pfoot .n{color:var(--muted)} .pfoot .n i{font-style:normal;color:var(--dim);margin:0 6px}
+
+p{margin:0}
+.opener{display:flex;flex-direction:column;gap:14px;padding-bottom:4px}
+.opener .display{font-size:60px}
+.opener .lede{font-size:13px;max-width:60ch}
+h2{font:800 27px/1 var(--display);text-transform:uppercase;letter-spacing:.005em;color:var(--ink);margin:6px 0 0}
+h3{font:700 10.5px/1.2 var(--mono);letter-spacing:.24em;text-transform:uppercase;margin:0 0 6px}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{padding:16px 16px 15px}
+.card p{font-size:10.5px}
+
+/* spec table */
+.spec{border-top:1px solid var(--line)}
+.spec .r{display:grid;grid-template-columns:128px 104px 1fr;gap:14px;padding:10px 0 11px;border-bottom:1px solid var(--line);align-items:baseline}
+.spec.two .r{grid-template-columns:168px 1fr}
+.spec .hd{padding:8px 0}
+.spec .hd span{font:500 9px/1 var(--mono);letter-spacing:.28em;color:var(--dim);text-transform:uppercase}
+.spec .k{font:700 16px/1.05 var(--display);text-transform:uppercase;color:var(--ink);letter-spacing:.02em}
+.spec .k small{display:block;font:500 9px/1.4 var(--mono);letter-spacing:.16em;color:var(--muted);margin-top:3px}
+.spec .v{font:500 10px/1.3 var(--mono);color:var(--acc,var(--cyan));letter-spacing:.04em}
+.spec .d{font-size:10.5px;line-height:1.58}
+.spec .d em{color:var(--ink);font-style:normal;font-weight:700}
+
+.note{position:relative;padding:14px 16px 14px 20px;border-radius:12px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line)}
+.note::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:0 3px 3px 0;background:var(--acc,var(--orange))}
+.note .lab{color:var(--acc,var(--orange));margin-bottom:7px;display:block}
+.note p{font-size:10.5px}
+.note p b:first-child{color:var(--ink)}
+
+.fig{margin:0;display:flex;flex-direction:column;gap:9px}
+.fig .frame{padding:14px;border-radius:14px;background:#0B0F17;border:1px solid var(--line);display:flex;flex-direction:column;gap:8px;align-items:center}
+.fig img{max-width:100%;display:block}
+.fig figcaption{font-size:9.5px;line-height:1.5;color:var(--muted)}
+.fig figcaption b{color:var(--acc,var(--cyan));letter-spacing:.14em;margin-right:8px;font-weight:700}
+
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step{padding:14px 12px;border-radius:12px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.step .no{font:800 34px/1 var(--display);color:var(--acc)}
+.step .t{font:800 17px/1 var(--display);text-transform:uppercase;color:var(--ink)}
+.step p{font-size:9.8px;line-height:1.5}
+
+.flow{display:flex;flex-direction:column;gap:6px}
+.flow .s{display:grid;grid-template-columns:28px 1fr 190px;gap:12px;align-items:center;padding:13px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line)}
+.flow .s .i{font:700 10px/1 var(--mono);color:var(--dim)}
+.flow .s .c{font:700 11px/1.35 var(--mono);color:var(--ink)}
+.flow .s .c span{color:var(--acc)}
+.flow .s .w{font-size:10px;color:var(--muted);text-align:right}
+.flow .s.out{border-color:rgba(79,217,138,.45);background:rgba(79,217,138,.06)}
+
+.toc{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.toc a{display:grid;grid-template-columns:54px 1fr auto 40px;gap:14px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.toc .n{font:800 26px/1 var(--display);color:var(--acc)}
+.toc .t{font:800 21px/1 var(--display);text-transform:uppercase;color:var(--ink)}
+.toc .s{font-size:10px;color:var(--muted)}
+.toc .p{font:500 11px/1 var(--mono);color:var(--muted);text-align:right}
+
+.lanegroup{display:flex;gap:6px;flex-wrap:wrap}
+.kbd{font:700 10px/1 var(--mono);color:var(--ink);border:1px solid var(--line2);background:var(--panel2);border-radius:5px;padding:3px 6px;white-space:nowrap}
+
+/* cover */
+.cover{padding:48px 54px;gap:0;background:radial-gradient(70% 45% at 85% 70%,rgba(60,200,242,.16),transparent 70%),radial-gradient(60% 40% at 10% 15%,rgba(255,90,78,.10),transparent 70%),#05070B}
+.cover .logo{width:210px;margin-top:22px}
+.cover .pills{display:flex;gap:10px;margin-top:40px}
+.cover h1{margin-top:28px;font-size:112px}
+.cover .deco{position:absolute;left:54px;right:54px;bottom:78px;padding:16px 18px;display:flex;flex-direction:column;gap:5px}
+.cover h1 .outline{-webkit-text-stroke:2.4px var(--ink)}
+.cover .sub{margin-top:22px;font-size:14px;color:var(--soft);max-width:44ch;line-height:1.55}
+.transport{margin-top:30px;display:flex;align-items:center;gap:26px;padding:18px 22px;border-radius:16px}
+.transport .play{width:52px;height:52px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;background:#0A0E15}
+.transport .num{font:700 34px/1 var(--mono);color:var(--ink)} .transport .num small{font-size:12px;color:var(--muted);margin-left:4px}
+.leds{margin-left:auto;display:flex;gap:5px}
+.leds i{width:11px;height:30px;border-radius:3px;background:#1B2331}
+.cover .shot{position:absolute;right:-150px;top:410px;width:560px;border-radius:14px;box-shadow:0 40px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.06);
+  transform:perspective(1400px) rotateY(-18deg) rotateX(6deg) rotateZ(-2deg);opacity:.95}
+.cover .foot{position:absolute;left:54px;right:54px;bottom:36px;display:flex;justify-content:space-between;font:500 10px/1 var(--mono);letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.back{justify-content:center;align-items:flex-start;padding:54px}
+.back h1{font-size:120px}
+</style></head>
+<body>
+
+<!-- ================= COVER ================= -->
+<section class="page cover" data-nochrome>
+  <img class="logo" src="img/logo.png" alt="AudioXL Sequencer">
+  <div class="pills">
+    <span class="chip hot"><span class="dot"></span>VST3 · AU · LIVE</span>
+    <span class="chip">MIDI SEQUENCER</span>
+    <span class="chip">GENERATIVE</span>
+  </div>
+  <h1 class="display">Never the<br><span class="outline">same</span><br><span class="c-cyan">twice</span></h1>
+  <p class="sub">A generative MIDI sequencer: seventeen independent lanes, sixteen pages, sixteen scenes per page.</p>
+  <div class="transport panel" style="width:380px">
+    <div class="play"><svg width="18" height="20" viewBox="0 0 18 20"><path d="M2 1.5v17L17 10z" fill="#E9EDF3"/></svg></div>
+    <div><div class="lab">User manual</div><div class="num">1.0.5<small>VER</small></div></div>
+    <div><div class="lab">Lanes</div><div class="num">17</div></div>
+  </div>
+  <img class="shot" src="img/window-cover.jpg" alt="">
+  <div class="deco panel" id="coverGrid"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>User manual</span></div>
+</section>
+
+<!-- ================= CONTENTS ================= -->
+<section class="page" data-ch="" data-title="Contents" data-chip="Contents">
+  <div class="opener">
+    <span class="eyebrow">00 — Contents</span>
+    <h1 class="display">What's<br><span class="c-orange">inside</span></h1>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="note" style="--acc:var(--cyan);margin-top:auto">
+    <span class="lab">About the figures</span>
+    <p>The figures are snapshots of the real window, retaken at every build: what you see here is what opens in your host. The wide, shallow bands of the interface are shown cut in half, one half above the other, so they fit the page without shrinking the lettering.</p>
+  </div>
+</section>
+
+<!-- ================= 01 HOW IT WORKS ================= -->
+<section class="page" data-ch="01" data-title="How it works" data-acc="orange" data-sub="Principles, quick start, from step to note" data-tocline="Not a piano roll">
+  <div class="opener">
+    <span class="eyebrow">01 — How it works</span>
+    <h1 class="display">Not a piano roll.<br><span class="c-orange">Seventeen lanes.</span></h1>
+    <p class="lede">Patterns that repeat without ever repeating the same way.</p>
+  </div>
+  <p style="font-size:12px;line-height:1.7">AudioXL SEQ is <b>not a piano roll</b>: it is an <b>independent-lane sequencer</b>. Whether a note plays, what pitch it has, how long it lasts, at what velocity, what chord is built on top of it — every aspect lives on its own row. The rows loop together but not in sync: this is how you get patterns that repeat without ever repeating the same way.</p>
+  <p>Two principles explain almost everything else in this manual — and one more explains the channel selector.</p>
+  <div class="cols3">
+    <div class="panel card"><h3 class="c-orange">Position rules</h3><p>The index of each lane is calculated from the <b>host transport position</b>, not from an internal counter. Stop, seek, loop and tempo changes are correct by design: go back to bar 5 and you hear exactly what was playing at bar 5.</p></div>
+    <div class="panel card"><h3 class="c-cyan">Pitches are degrees</h3><p>The PITCH lane says <b>“the third degree”</b>, not “four semitones”. That is why changing the scale or the root re-harmonises the melody by itself while staying in key, and why randomising never produces an out-of-key note.</p></div>
+    <div class="panel card"><h3 class="c-green">16 pages, 16 channels</h3><p>The <b>CH</b> selector does not filter the view: it changes page. Every MIDI channel from 1 to 16 has its own 16 patterns, its own harmony and its own clock, and all pages play together. What you see is the one you are editing: the others keep playing on their own MIDI bus.</p></div>
+  </div>
+  <div class="panel" style="padding:18px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:left;margin-top:auto">
+    <div><div class="lab">Lanes</div><div style="font:800 44px/1 var(--display);color:var(--ink)">17</div></div>
+    <div><div class="lab">MIDI pages</div><div style="font:800 44px/1 var(--display);color:var(--cyan)">16</div></div>
+    <div><div class="lab">Scenes / page</div><div style="font:800 44px/1 var(--display);color:var(--orange)">16</div></div>
+    <div><div class="lab">Factory presets</div><div style="font:800 44px/1 var(--display);color:var(--red)">408</div></div>
+  </div>
+</section>
+
+<section class="page" data-ch="01" data-title="How it works" style="gap:14px">
+  <h2>Quick <span class="c-orange">start</span></h2>
+  <p>AudioXL SEQ generates <b>MIDI</b>: on its own it makes no sound, it has to drive a software or hardware instrument. Five steps to hear it play.</p>
+  <div class="steps">
+    <div class="step" style="--acc:var(--red)"><span class="no">01</span><span class="t">Load</span><p>The right plug-in for your host: in Logic the MIDI FX slot, in Ableton Live the Live variant, elsewhere the VST3 before the instrument.</p></div>
+    <div class="step" style="--acc:var(--orange)"><span class="no">02</span><span class="t">Route</span><p>Send the MIDI to an instrument. In Live you need a second MIDI track with Monitor set to In.</p></div>
+    <div class="step" style="--acc:var(--amber)"><span class="no">03</span><span class="t">Play</span><p>Start the host transport. With RUN on Clock the sequence follows position, tempo, stop, seek and loop.</p></div>
+    <div class="step" style="--acc:var(--green)"><span class="no">04</span><span class="t">Draw</span><p>Turn on steps on GATE: every lit step can generate a note. PITCH A makes the melody, VELOCITY the dynamics.</p></div>
+    <div class="step" style="--acc:var(--cyan)"><span class="no">05</span><span class="t">Tune</span><p>Choose ROOT and SCALE. PITCH values are scale degrees: changing key re-harmonises everything without redrawing anything.</p></div>
+  </div>
+  <div class="note" style="--acc:var(--orange)">
+    <span class="lab">Note</span>
+    <p><b>The first sound, without thinking about it.</b> DIV 1/16, RUN Clock, ROOT C, SCALE Major; leave GATE, PITCH A, LENGTH and VELOCITY on. From there press <b>RND ALL</b> for an instant variation, or open the <b>PRESET</b> menu and pick one: it loads a four-part arrangement on channels 1-4. The plug-in replaces incoming MIDI with what it generates, and the notes that recall patterns are consumed: they never reach the instrument.</p>
+  </div>
+  <figure class="fig" style="margin-top:auto">
+    <div class="frame"><img src="img/window.png" alt=""></div>
+    <figcaption><b>FIG. 01</b>The whole window. Global parameters of the page at the top, the seventeen lanes in the middle, the Inspector of the selected row at the bottom.</figcaption>
+  </figure>
+</section>
+
+<section class="page" data-ch="01" data-title="How it works">
+  <h2>From step <span class="c-orange">to note</span></h2>
+  <p>Worth reading once, this chain: on its own it explains why TRANSPOSE has two modes, why a chord stays in key, and why OCTAVE and BASE are not the same thing. Read it from the top: each line takes whatever came out of the one above.</p>
+  <div class="flow">
+    <div class="s" style="--acc:var(--red)"><span class="i">01</span><span class="c"><span>GATE</span> → <span>TIE</span> → <span>CHANCE</span></span><span class="w">the step plays, ties or stays silent</span></div>
+    <div class="s" style="--acc:var(--cyan)"><span class="i">02</span><span class="c"><span>PITCH A</span> / <span>PITCH B</span> (PROB A/B)</span><span class="w">= scale degree</span></div>
+    <div class="s" style="--acc:var(--cyan)"><span class="i">03</span><span class="c">+ <span>TRANSPOSE</span> (Before Scale)</span><span class="w">still in degrees: stays in key</span></div>
+    <div class="s" style="--acc:var(--purple)"><span class="i">04</span><span class="c">→ <span>SCALE</span> + <span>CHORD</span></span><span class="w">the voices, still in degrees</span></div>
+    <div class="s" style="--acc:var(--purple)"><span class="i">05</span><span class="c">→ <span>INVERSION</span> → <span>VOICING</span></span><span class="w">inversion and spread, in semitones</span></div>
+    <div class="s" style="--acc:var(--pink)"><span class="i">06</span><span class="c">+ <span>TRANSPOSE</span> (After Scale)</span><span class="w">in semitones: can leave the scale</span></div>
+    <div class="s out" style="--acc:var(--green)"><span class="i">07</span><span class="c">+ <span>OCTAVE</span> × 12 + <span>BASE</span> + <span>ROOT</span></span><span class="w" style="color:var(--green)">= MIDI note</span></div>
+    <div class="s" style="--acc:var(--green)"><span class="i">08</span><span class="c"><span>VELOCITY</span> × V.SCALE → <span>STRUM</span></span><span class="w">dynamics and delay between voices</span></div>
+    <div class="s" style="--acc:var(--red)"><span class="i">09</span><span class="c"><span>LENGTH</span> / <span>HOLD</span> / <span>RATCHET</span></span><span class="w">how long it lasts, and in how many hits</span></div>
+  </div>
+  <div class="cols2" style="margin-top:auto">
+    <div class="panel card"><h3 class="c-cyan">Degrees first</h3><p>Everything down to line 04 is still expressed in <b>scale degrees</b>: that is why a chord or a Before Scale transposition can never step out of key.</p></div>
+    <div class="panel card"><h3 class="c-pink">Semitones after</h3><p>From line 05 on the values are <b>semitones</b>. After Scale transposition sits here — the only place where an out-of-scale note can come out, on purpose.</p></div>
+  </div>
+</section>
+
+<!-- ================= 02 ANATOMY ================= -->
+<section class="page" data-ch="02" data-title="Anatomy of the window" data-acc="cyan" data-sub="Seven bands, top to bottom" data-tocline="Seven bands, one window">
+  <div class="opener">
+    <span class="eyebrow">02 — Anatomy of the window</span>
+    <h1 class="display">Seven bands,<br><span class="c-cyan">one window</span></h1>
+    <p class="lede">From top to bottom: globals, grid, details.</p>
+  </div>
+  <p>From top to bottom, seven bands. The first two are the global parameters of the page in view, the centre is the grid, the bottom holds the details of the selected lane. Every figure in this chapter is a crop of the same shot as Fig. 01, cut in half so it stays readable across the page.</p>
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig02-header.png" alt=""></div>
+    <figcaption><b>FIG. 02</b>The two header rows: clock, scale, swing, base note and MIDI page above; presets, save, MIDI drag and global randomise below. Left half on top, right half underneath.</figcaption>
+  </figure>
+  <div class="spec two" style="--acc:var(--cyan)">
+    <div class="r"><span class="k">Header, row 1</span><span class="d">Clock, scale, swing, base note and MIDI page. These are the instrument’s global parameters, automatable from the host.</span></div>
+    <div class="r"><span class="k">Header, row 2</span><span class="d">Factory and user presets, save, MIDI drag and drop, global randomise.</span></div>
+    <div class="r"><span class="k c-purple">CHORD bar</span><span class="d">How the voices built by the CHORD lane are played, plus the seed of the deterministic random generator.</span></div>
+    <div class="r"><span class="k c-orange">PATTERN bar</span><span class="d">The 16 patterns of the page, the change mode, copy/paste and undo.</span></div>
+    <div class="r"><span class="k c-red">The 17 lanes</span><span class="d">The core: one row per parameter, 16 steps each.</span></div>
+    <div class="r"><span class="k c-amber">Dice row</span><span class="d">Below the last lane: randomises a vertical column, that is a single step across every active lane.</span></div>
+    <div class="r"><span class="k c-green">Inspector</span><span class="d">At the bottom: the details of the selected lane.</span></div>
+    <div class="r"><span class="k">Footer</span><span class="d">Transport state, shortcut reminders, PREFERENCES button.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="02" data-title="Anatomy of the window">
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig03-row.png" alt=""></div>
+    <figcaption><b>FIG. 03</b>A whole row, cut in half: name, switch and the first eight steps on top; the other eight, the length, the direction and the end controls underneath.</figcaption>
+  </figure>
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig04-inspector.png" alt=""></div>
+    <figcaption><b>FIG. 04</b>The Inspector at the foot of the window shows the details of the selected row — here GATE.</figcaption>
+  </figure>
+  <h2>The window <span class="c-cyan">and its foot</span></h2>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-cyan">Resizable</h3>
+      <div style="font:800 34px/1 var(--display);color:var(--ink);margin:4px 0 8px">1400×742 <span class="c-muted" style="font-size:22px">→</span> 3840×2400</div>
+      <p>The window resizes by hand. The size travels with the session, so every project reopens the sequencer as you left it. Nothing moves or disappears at the small sizes — everything tightens together, which is why the figures in this manual look like your window even if your screen is not the same.</p></div>
+    <div class="panel card"><h3 class="c-orange">The status line</h3>
+      <p>Bottom left, it always says four things:</p>
+      <ul style="margin:8px 0 8px;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:10.5px">
+        <li>whether the transport is running and what step it has reached;</li>
+        <li>which page and which pattern you are looking at;</li>
+        <li>whether harmony is shared or per channel;</li>
+        <li>when a scene change is pending, which pattern is about to come in.</li>
+      </ul>
+      <p>Two reminders follow: <span class="kbd">Cmd/Ctrl + click</span> locks a step, and notes <span class="kbd">C-2 … B-2</span> recall the patterns.</p></div>
+  </div>
+</section>
+
+<!-- ================= 03 HEADER ================= -->
+<section class="page" data-ch="03" data-title="Header — global parameters" data-acc="red" data-sub="Clock, scale, swing, base, page" data-tocline="Eleven global controls">
+  <div class="opener">
+    <span class="eyebrow">03 — Header · global parameters</span>
+    <h1 class="display">Eleven<br><span class="c-red">global controls</span></h1>
+    <p class="lede">Automatable from the host. Mappable from your controller.</p>
+  </div>
+  <p>They apply to the MIDI page in view and are exposed to the host as automatable parameters. They are the same eleven you can map to a controller from <b>PREFERENCES › MIDI MAP</b>.</p>
+  <figure class="fig" style="--acc:var(--red)">
+    <div class="frame"><img src="img/fig05-header1.png" alt="" style="width:74%"></div>
+    <figcaption><b>FIG. 05</b>The first header row, cut in half: division, mode, root, scale, lock and transpose mode on top; swing, base note, MIDI page and channel name underneath.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Division</span><span class="v">1/4 … 1/32</span><span class="d">Step length: 1/4, 1/8, 1/8T, 1/16, 1/16T, 1/32. The two triplet settings (T) are the ones that really change the character of a groove without touching a single note.</span></div>
+    <div class="r"><span class="k">Run Mode</span><span class="v">3 modes</span><span class="d"><em>Clock</em> — the sequencer follows the host transport. <em>Gate</em> — lanes advance only on steps where GATE is on, so rests do not consume positions. <em>MIDI Trigger</em> — every incoming note advances one step: you play the sequencer from the keyboard.</span></div>
+    <div class="r"><span class="k">Root</span><span class="v">C … B</span><span class="d">The note the scale rests on. Change it and the whole arrangement transposes while staying in key.</span></div>
+    <div class="r"><span class="k">Scale</span><span class="v">12 scales</span><span class="d">Chromatic, Major, Natural / Harmonic / Melodic Minor, Dorian, Phrygian, Lydian, Mixolydian, Locrian, Pentatonic Major and Minor.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="03" data-title="Header — global parameters">
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Lock</span><span class="v">on / off</span><span class="d"><em>Closed</em>: scale, root and base note are shared by all 16 pages. <em>Open</em>: each page remembers its own — useful for a part that has to stay in another key.</span></div>
+    <div class="r"><span class="k">Transpose Mode</span><span class="v">2 modes</span><span class="d"><em>Before Scale</em> — the TRANSPOSE lane works in degrees, before the scale does its job: you always stay in key. <em>After Scale</em> — it works in semitones afterwards: this is the only place in the plug-in where an out-of-scale note can come out, and it is intentional (acid slides, chromaticism).</span></div>
+    <div class="r"><span class="k">Swing</span><span class="v">50 … 75 %</span><span class="d">The percentage of the step pair taken by the downbeat, the Ableton Live convention: <em>50</em> is straight, <em>66.6</em> is triplets, <em>75</em> is the maximum — the off-beat delayed by half a step. It does not go below 50: pushing the off-beat early is not swing, it is a different groove.</span></div>
+    <div class="r"><span class="k">Base</span><span class="v">0 … 108</span><span class="d">The MIDI note that degree 0 starts from. It is the slider that moves the whole arrangement in register in one go. Factory value <em>48</em>, that is C2.</span></div>
+    <div class="r"><span class="k">CH</span><span class="v">1 … 16</span><span class="d">MIDI page in view. The up/down arrows next to it move one step per click and scroll if held.</span></div>
+    <div class="r"><span class="k">Channel name</span><span class="v">16 characters</span><span class="d">A free label for the page — “Sub”, “Rhodes”, “Arp 1/32”. It travels with the saved session.</span></div>
+  </div>
+  <div class="panel" style="padding:18px 20px">
+    <div class="lab" style="margin-bottom:12px">Swing — where the off-beat lands</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" id="swingDemo"></div>
+  </div>
+  <div class="note" style="--acc:var(--red)">
+    <span class="lab">Note</span>
+    <p><b>Swing travels on the suite bus.</b> The SWING value is published ten times a second on the shared AudioXL bus: if <b>AudioXL DRUMS</b> is in the same session, the drum machine can lock on and follow this pot. SEQ acts as master without you enabling anything; the link itself is controlled from the SYNC panel in DRUMS.</p>
+  </div>
+</section>
+
+<!-- ================= 04 PRESETS ================= -->
+<section class="page" data-ch="04" data-title="Presets, export, chords" data-acc="green" data-sub="Preset menu, MIDI drag, CHORD bar" data-tocline="408 presets, one drag away">
+  <div class="opener">
+    <span class="eyebrow">04 — Presets, export, chords</span>
+    <h1 class="display">408 presets,<br><span class="c-green">one drag away</span></h1>
+  </div>
+  <figure class="fig" style="--acc:var(--green)">
+    <div class="frame"><img src="img/fig06-header2.png" alt="" style="width:86%"></div>
+    <figcaption><b>FIG. 06</b>The second header row: the preset menu, save and MIDI drag on the left; randomise density, undo and the two buttons that rewrite everything on the right.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--green)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Preset</span><span class="v">408 presets</span><span class="d">A folder menu: <em>25 genres</em>, from house to chiptune. The thirteen original ones hold 24 presets each, the twelve added later 8. Plus the USER folder for yours. Every preset loads a four-part arrangement — <em>bass, lead, pad, chords</em> on channels 1-4 — each with 16 scenes.</span></div>
+    <div class="r"><span class="k">Save / Load</span><span class="v">.json file</span><span class="d">Saves the complete state as a user preset, and loads it back from file.</span></div>
+    <div class="r"><span class="k">Drag MIDI</span><span class="v">drag</span><span class="d">Drag the button onto a DAW track: it leaves the current pattern there as a MIDI clip — notes plus the three CC lanes. A plain click is not enough, it has to be a drag.</span></div>
+    <div class="r"><span class="k">MIDI + Params</span><span class="v">drag</span><span class="d">As above, but it adds a CC automation curve for every active lane, so you can reshape the pattern in the DAW. Which lanes to include is chosen in PREFERENCES › EXPORT.</span></div>
+    <div class="r"><span class="k">Dens</span><span class="v">0 … 100</span><span class="d">The density used by RND ALL: percentage of steps touched. It does not alter the saved RND % of individual lanes.</span></div>
+    <div class="r"><span class="k">Undo</span><span class="v">32 steps</span><span class="d">Undoes the last randomise.</span></div>
+    <div class="r"><span class="k">RND ALL</span><span class="v">click</span><span class="d">Randomises every active lane together, respecting each one’s RND MIN / MAX and locked steps. <em>On channels 1-4 it does not roll dice</em>: it writes a part in that channel’s role — bass, lead, pad, chords — with the gate falling where it should, the right register and a fitting chord. From channel 5 up it goes back to uniform randomising.</span></div>
+    <div class="r"><span class="k">Init</span><span class="v">click</span><span class="d">Returns everything to its starting values and silences hanging notes.</span></div>
+  
+  </div>
+</section>
+
+<section class="page" data-ch="04" data-title="Presets, export, chords" style="gap:14px">
+  <h2>The <span class="c-purple">CHORD</span> bar</h2>
+  <p>It governs how the voices built by the CHORD lane are played. Voices are expressed in <b>scale degrees</b>, so a chord always stays inside the key and changes colour by itself when you change scale.</p>
+  <figure class="fig" style="--acc:var(--purple)">
+    <div class="frame"><img src="img/fig08-chord.png" alt="" style="width:70%"></div>
+    <figcaption><b>FIG. 08</b>The CHORD bar: strum, voicing and velocity scaling on the left; at the other end of the band the generator seed and the dice that picks a new one.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Strum</span><span class="v">−60 … +60 ms</span><span class="d">Delay between one voice and the next. <em>Positive</em>: they enter from low to high, like a downstroke. <em>Negative</em>: high to low. The total spread never exceeds half a step, so one chord never overruns the next.</span></div>
+    <div class="r"><span class="k">Voicing</span><span class="v">3 modes</span><span class="d"><em>Closed</em> tight voices. <em>Open</em> alternate voices rise an octave. <em>Wide</em> up to two octaves.</span></div>
+    <div class="r"><span class="k">V.Scale</span><span class="v">−100 … +100</span><span class="d">Per-voice velocity scaling. Positive: higher voices play louder. Negative: softer.</span></div>
+    <div class="r"><span class="k">Seed</span><span class="v">number</span><span class="d">Seed of the pseudo-random generator. The Rnd modes are deterministic: <em>same seed, same sequence, every time</em>. The dice next to it picks a new one.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 20px">
+    <div class="lab" style="margin-bottom:12px">Voicing — measured span of a chord</div>
+    <div id="voicing" style="display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+  <figure class="fig" style="--acc:var(--green)">
+    <div class="frame"><img src="img/fig07-buttons.png" alt="" style="width:86%"></div>
+    <figcaption><b>FIG. 07</b>The four buttons that take the pattern out or rewrite it, enlarged three times: the two drag buttons have to be picked up and moved, the other two are simply pressed.</figcaption>
+  </figure>
+  <div class="panel" style="padding:18px 20px;display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:center">
+    <div><div class="lab">The preset library</div>
+      <div style="display:flex;gap:22px;margin-top:10px">
+        <div><div style="font:800 42px/1 var(--display);color:var(--green)">25</div><div class="lab">genres</div></div>
+        <div><div style="font:800 42px/1 var(--display)">13×24</div><div class="lab">original</div></div>
+        <div><div style="font:800 42px/1 var(--display)">12×8</div><div class="lab">added</div></div>
+      </div></div>
+    <div><div class="lab" style="margin-bottom:10px">Every preset = four parts</div>
+      <div class="lanegroup"><span class="tag c-red">CH1 Bass</span><span class="tag c-cyan">CH2 Lead</span><span class="tag c-purple">CH3 Pad</span><span class="tag c-amber">CH4 Chords</span></div></div>
+  </div>
+</section>
+
+<!-- ================= 05 PATTERN ================= -->
+<section class="page" data-ch="05" data-title="The PATTERN bar" data-acc="purple" data-sub="Scenes, change mode, copy & undo" data-tocline="Sixteen scenes per page">
+  <div class="opener">
+    <span class="eyebrow">05 — The PATTERN bar</span>
+    <h1 class="display">Sixteen scenes<br><span class="c-purple">per page</span></h1>
+  </div>
+  <p>Every MIDI page has 16 patterns. They are meant as the <b>scenes of a performance</b>: in the factory presets they are the same groove at four levels — 1-4 basic, 5-8 development, 9-12 energy, 13-16 break.</p>
+  <figure class="fig" style="--acc:var(--purple)">
+    <div class="frame"><img src="img/fig09-pattern.png" alt="" style="width:86%"></div>
+    <figcaption><b>FIG. 09</b>The sixteen scene pads at the left of the band, the change mode and the copy controls at the other end.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--purple)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Pads</span><span class="v">1 … 16</span><span class="d">Recall the pattern. If the change is deferred the pad blinks until it fires.</span></div>
+    <div class="r"><span class="k">Change mode</span><span class="v">3 modes</span><span class="d"><em>Keep phase</em> changes immediately keeping the current phase: the groove does not stumble. <em>Restart</em> changes immediately starting from step 0. <em>Next bar</em> waits for the next bar.</span></div>
+    <div class="r"><span class="k">Copy / Paste</span><span class="v">click</span><span class="d">Copy and paste the whole pattern (all 17 lanes).</span></div>
+    <div class="r"><span class="k">DUP</span><span class="v">click</span><span class="d">Duplicates the current pattern into the next one: the quickest way to make a variation without starting over.</span></div>
+    <div class="r"><span class="k">CLR</span><span class="v">click</span><span class="d">Empties the current pattern.</span></div>
+    <div class="r"><span class="k">Undo / Redo</span><span class="v">32 steps</span><span class="d">Undo and redo editing changes.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="05" data-title="The PATTERN bar">
+  <h2>Four levels of <span class="c-purple">energy</span></h2>
+  <p>In the factory presets the sixteen scenes are the same groove at four levels.</p>
+  <div id="sceneMap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
+  <div class="note" style="--acc:var(--purple)">
+    <span class="lab">Note</span>
+    <p><b>Changing scene from the keyboard.</b> Sixteen consecutive MIDI notes starting at <b>C-2</b> recall the 16 patterns without touching the mouse, and they apply across the whole arrangement — they change scene on all 16 pages together. Those notes are consumed by the plug-in and never reach the instrument. The recall can be turned off, or moved to another register, from the RECALL tab in preferences.</p>
+  </div>
+  <div class="panel" style="padding:20px">
+    <div class="lab" style="margin-bottom:14px">Scene recall — C-2 … D#-1</div>
+    <div id="keys" style="display:grid;grid-template-columns:repeat(16,1fr);gap:4px"></div>
+  </div>
+  <!-- ================= 06 LANES opener shares no page: continues below ================= -->
+</section>
+
+<!-- ================= 06 LANES ================= -->
+<section class="page" data-ch="06" data-title="The seventeen lanes" data-acc="red" data-sub="Rhythm, pitch, harmony, modulation" data-tocline="Every aspect on its own row">
+  <div class="opener">
+    <span class="eyebrow">06 — The seventeen lanes</span>
+    <h1 class="display">Every aspect<br><span class="c-red">on its own row</span></h1>
+  </div>
+  <p>Every lane has its own <b>length (1-16)</b> and its own <b>playback direction</b>. Giving different lengths to different lanes — 16 to the gate, 7 to the melody, 5 to the chords — is how this sequencer produces very long patterns without writing them out.</p>
+  <div id="polyDemo" class="panel" style="padding:16px 18px"></div>
+  <h2>Rhythm</h2>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Lane</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k c-red">Gate</span><span class="v">0 / 1</span><span class="d">The step plays or is silent. This is the lane that dictates the rhythm; if it is off, every step plays.</span></div>
+    <div class="r"><span class="k c-red">Hold</span><span class="v">0 / 1</span><span class="d">The note is held until the next gate instead of closing according to LENGTH.</span></div>
+    <div class="r"><span class="k c-red">Tie</span><span class="v">0 / 1</span><span class="d">Ties the step to the next: the following gate does not re-trigger, the note continues. A chain of TIEs makes a single note several steps long.</span></div>
+    <div class="r"><span class="k c-red">Ratchet</span><span class="v">1 … 4</span><span class="d">Rapid repeats within a single step. It is the ingredient of rolls and fills.</span></div>
+    <div class="r"><span class="k c-red">Length</span><span class="v">5 … 200 %</span><span class="d">Note duration as a percentage of the step. Above 100 notes overlap and tie; below 30 they become very staccato.</span></div>
+    <div class="r"><span class="k c-purple">Chance</span><span class="v" style="color:var(--purple)">0 … 100 %</span><span class="d">Probability that the step actually plays. It filters the output but not the advance: the melody does not drift out of phase, it gets holes.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="06" data-title="The seventeen lanes">
+  <h2>Pitch <span class="c-cyan">&amp; harmony</span></h2>
+  <div class="spec" style="--acc:var(--cyan)">
+    <div class="r hd"><span>Lane</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k c-cyan">Pitch A</span><span class="v">0 … 14</span><span class="d">Scale degree — <em>not semitones</em>. 0-14 are two full octaves in every 7-note scale (degree 7 = exact octave). Register beyond two octaves is handled by the OCTAVE lane.</span></div>
+    <div class="r"><span class="k c-cyan">Pitch B</span><span class="v">0 … 14</span><span class="d">An alternative melody, chosen step by step by PROB A/B.</span></div>
+    <div class="r"><span class="k c-purple">Prob A/B</span><span class="v" style="color:var(--purple)">0 … 100 %</span><span class="d">Probability of reading PITCH B instead of PITCH A on that step. It is the most direct way to get a melody that varies by itself.</span></div>
+    <div class="r"><span class="k c-purple">Chord</span><span class="v" style="color:var(--purple)">10 types</span><span class="d">Chord built on top of the note. Voices are scale degrees, so the chord stays in key.</span></div>
+    <div class="r"><span class="k c-purple">Inversion</span><span class="v" style="color:var(--purple)">−2 … +3</span><span class="d">Inversions. Positive: the root rises an octave. Negative: the top voice drops below (drop voicing).</span></div>
+    <div class="r"><span class="k c-cyan">Octave</span><span class="v">−3 … +3</span><span class="d">Octave transposition. This is the lane that separates the four parts of a preset in register.</span></div>
+    <div class="r"><span class="k c-cyan">Transpose</span><span class="v">−12 … +12</span><span class="d">In Before Scale it works in degrees and stays in key; in After Scale it works in semitones and can leave it.</span></div>
+    <div class="r"><span class="k c-green">Velocity</span><span class="v" style="color:var(--green)">1 … 127</span><span class="d">Step dynamics.</span></div>
+  </div>
+  <div class="panel" style="padding:16px 18px">
+    <div class="lab" style="margin-bottom:12px">The ten CHORD types</div>
+    <div id="chords" style="display:grid;grid-template-columns:repeat(10,1fr);gap:6px"></div>
+  </div>
+</section>
+
+<section class="page" data-ch="06" data-title="The seventeen lanes">
+  <h2>Modu<span class="c-amber">lation</span></h2>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r hd"><span>Lane</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k c-amber">CC 1 / 2 / 3</span><span class="v">0 … 127</span><span class="d">Three independent Control Change curves, each with its own CC number set in the Inspector. They go out on the channel of the page, and only when the value actually changes: no redundant traffic.</span></div>
+  </div>
+  <div class="note" style="--acc:var(--amber)">
+    <span class="lab">Note</span>
+    <p><b>Mind the CC number, not the lane name.</b> “CC 1” is the name of the row, not the MIDI number it sends. The number is set with <b>CC #</b> in the Inspector. By default they are CC 1, 2 and 3 — that is Mod Wheel, Breath and one unassigned, which almost no synth listens to. The factory presets nearly always reassign them to <b>CC 74</b> (cutoff) and <b>CC 71</b> (resonance). If a CC “does nothing”, look there.</p>
+  </div>
+  <h2>Grid <span class="c-red">gestures</span></h2>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Gesture</span><span></span><span>What it does</span></div>
+    <div class="r"><span class="k">Click</span><span class="v">mouse</span><span class="d">Sets the value of the step. On binary lanes (GATE, HOLD, TIE) it toggles.</span></div>
+    <div class="r"><span class="k">Drag</span><span class="v">mouse</span><span class="d">Draws across several steps in a row. On binary lanes it paints the same value decided by the first click.</span></div>
+    <div class="r"><span class="k">Double click</span><span class="v">mouse</span><span class="d">Opens a field to type the exact value instead of guessing it by dragging. Numeric lanes only.</span></div>
+    <div class="r"><span class="k">Cmd/Ctrl + click</span><span class="v">lock</span><span class="d">Locks or unlocks the step. A locked step is ignored by randomise, by reset and by writing: it is how you <em>pin the downbeat and randomise everything else</em>.</span></div>
+    <div class="r"><span class="k">Cmd/Ctrl + C / V</span><span class="v">keys</span><span class="d">Copy and paste the value of the step under the mouse, even between different lanes.</span></div>
+  </div>
+  <figure class="fig" style="--acc:var(--cyan);margin-top:auto">
+    <div class="frame"><img src="img/fig10-lanes.png" alt="" style="width:44%"></div>
+    <figcaption><b>FIG. 10</b>The first eight columns of CHANCE, PITCH A and PITCH B: the value of a step reads from the height of the bar as well as from the number.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 07 ROW CONTROLS ================= -->
+<section class="page" data-ch="07" data-title="The controls on a row" data-acc="amber" data-sub="Length, direction, dice, Master Shift" data-tocline="Every row, its own rules">
+  <div class="opener">
+    <span class="eyebrow">07 — The controls on a row</span>
+    <h1 class="display">Every row,<br><span class="c-amber">its own rules</span></h1>
+    <p class="lede">From left to right, what you find on every lane.</p>
+  </div>
+  <div class="spec" style="--acc:var(--amber)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Lane name</span><span class="v">click</span><span class="d">Selects the row: the Inspector at the bottom shows its details.</span></div>
+    <div class="r"><span class="k">Switch</span><span class="v">on / off</span><span class="d">Turns the lane on or off. A lane that is off counts as if it were not there — its neutral value is read, not its steps.</span></div>
+    <div class="r"><span class="k">Grid</span><span class="v">16 steps</span><span class="d">The value area.</span></div>
+    <div class="r"><span class="k">Length</span><span class="v">1 … 16</span><span class="d">How many steps the lane reads before starting over. <em>This is where the polymeter comes from.</em> The up/down arrows move one step per click.</span></div>
+    <div class="r"><span class="k">Direction</span><span class="v">6 modes</span><span class="d"><em>Fwd</em> forward · <em>Bwd</em> backward · <em>Pend</em> pendulum (endpoints not repeated) · <em>BiDir</em> pendulum with endpoints repeated · <em>Rnd</em> random · <em>RndNR</em> random without repeating twice in a row.</span></div>
+    <div class="r"><span class="k">Dice</span><span class="v">click</span><span class="d">Randomises this lane — horizontally, all of its steps. It respects RND %, RND MIN/MAX and locked steps.</span></div>
+    <div class="r"><span class="k">Arrows ‹ ›</span><span class="v">click</span><span class="d">Rotate the lane values by one step. Different from PHASE, which moves the read position and leaves the values where they are.</span></div>
+    <div class="r"><span class="k">Cross</span><span class="v">click</span><span class="d">Returns the lane to its initial values.</span></div>
+    <div class="r"><span class="k">Lock</span><span class="v">on / off</span><span class="d"><em>Master Shift.</em> Closed, the arrows and the length of this lane apply to every lane at once: it is how you shift or shorten a whole pattern while keeping its relationships.</span></div>
+  </div>
+  <figure class="fig" style="--acc:var(--amber)">
+    <div class="frame"><img src="img/fig11-rowctrl.png" alt="" style="width:34%"></div>
+    <figcaption><b>FIG. 11</b>The five controls at the end of every row, enlarged three times: dice, rotate back and forward, reset, Master Shift.</figcaption>
+  </figure>
+</section>
+
+<section class="page" data-ch="07" data-title="The controls on a row">
+  <div class="panel" style="padding:16px 18px">
+    <div class="lab" style="margin-bottom:12px">Direction — the six read orders on a 6-step lane</div>
+    <div id="dirs" style="display:grid;grid-template-columns:1fr 1fr;gap:10px 22px"></div>
+  </div>
+  <h2>The row of <span class="c-amber">vertical dice</span></h2>
+  <div class="cols2">
+    <p>Below the last lane there is a row of 16 dice, one per column. Click one and you randomise that step across every active lane at once — <b>vertically</b>. It is the complement of the row dice, which randomises a whole lane <b>horizontally</b>.</p>
+    <p>It is what you want when a pattern is good but one single step does not convince: instead of redoing everything, you re-roll just that column. Every click can be undone, and locked steps stay untouched.</p>
+  </div>
+  <figure class="fig" style="--acc:var(--amber)">
+    <div class="frame"><img src="img/fig12-dice.png" alt=""></div>
+    <figcaption><b>FIG. 12</b>The row of sixteen vertical dice, cut in half: the first eight on top, the other eight underneath.</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 08 INSPECTOR ================= -->
+<section class="page" data-ch="08" data-title="Inspector" data-acc="cyan" data-sub="Phase, randomise range and gravity" data-tocline="The details of a lane">
+  <div class="opener">
+    <span class="eyebrow">08 — Inspector</span>
+    <h1 class="display">The details<br><span class="c-cyan">of a lane</span></h1>
+    <p class="lede">The bar at the bottom. Click the name of a row to change it.</p>
+  </div>
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig13-inspector.png" alt="" style="width:50%"></div>
+    <figcaption><b>FIG. 13</b>The Inspector with GATE selected, cut in half: phase and randomise percentage on top, the two limits underneath. On a CC lane, RND OFFSET and CC # appear alongside them.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--cyan)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Phase</span><span class="v">−15 … +15</span><span class="d">Shifts the read phase of the lane: the melody moves, but the values stay where they are. Different from the row arrows, which really move the values. Use it to offset one lane against the others without rewriting it.</span></div>
+    <div class="r"><span class="k">RND %</span><span class="v">0 … 100</span><span class="d">Percentage of steps that randomise touches. At 100 % it touches them all. On GATE, HOLD and TIE every touched step still gets a genuine random 0/1 value — at 100 % they do not all turn on, they all get randomised.</span></div>
+    <div class="r"><span class="k">RND Min</span><span class="v">lane range</span><span class="d">The lowest value randomise can generate.</span></div>
+    <div class="r"><span class="k">RND Max</span><span class="v">lane range</span><span class="d">The highest value randomise can generate.</span></div>
+    <div class="r"><span class="k c-amber">RND Offset</span><span class="v" style="color:var(--amber)">−100 … +100</span><span class="d">CC 1/2/3 only, independent for each. It moves the centre of gravity of randomise inside RND MIN…MAX: positive keeps high values more often, negative low ones, 0 is uniform.</span></div>
+    <div class="r"><span class="k c-amber">CC #</span><span class="v" style="color:var(--amber)">0 … 127</span><span class="d">CC 1/2/3 only. The Control Change number actually sent.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="08" data-title="Inspector">
+  <h2>Fence <span class="c-cyan">vs gravity</span></h2>
+  <div class="panel" style="padding:20px">
+    <div id="gravity"></div>
+  </div>
+  <div class="note" style="--acc:var(--cyan)">
+    <span class="lab">Note</span>
+    <p><b>RND OFFSET is not a duplicate of RND MIN/MAX.</b> MIN and MAX are a <b>fence</b>: they define what is <i>possible</i>. OFFSET is the <b>gravity</b> inside the fence: it defines what is <i>likely</i>. With MIN/MAX alone you can keep a filter high by narrowing the range to 90-127 — but then it never closes, and the modulation goes flat. With the full 0-127 range and OFFSET at +70 the filter sits high 71 % of the time, and every so often it really drops: those rare dips are what makes the line alive.</p>
+  </div>
+  <div class="note" style="--acc:var(--orange)">
+    <span class="lab">Note</span>
+    <p><b>The slider does not respond to a click.</b> The bar sliders in the Inspector and on the rows move by dragging, not with a single click. That is the standard behaviour of this kind of control. If a parameter seems to “do nothing”, try dragging it.</p>
+  </div>
+</section>
+
+<!-- ================= 09 PREFERENCES ================= -->
+<section class="page" data-ch="09" data-title="Preferences" data-acc="pink" data-sub="Nine tabs: arrangement, studio, licence" data-tocline="Nine tabs, one button">
+  <div class="opener">
+    <span class="eyebrow">09 — Preferences</span>
+    <h1 class="display">Nine tabs,<br><span class="c-pink">one button</span></h1>
+  </div>
+  <p>The button at the bottom right opens nine tabs. The first four are about the arrangement, the three in the middle about how the plug-in ties into the rest of the studio, the last two about the licence and the version.</p>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">
+    <span class="tag c-pink">Channels</span><span class="tag c-pink">Chain</span><span class="tag c-pink">Recall</span><span class="tag c-pink">Export</span>
+    <span class="tag c-cyan">Timing</span><span class="tag c-cyan">MIDI Map</span><span class="tag c-cyan">Step Ctrl</span>
+    <span class="tag c-amber">Authorized</span><span class="tag c-amber">About</span>
+  </div>
+  <figure class="fig" style="--acc:var(--pink)">
+    <div class="frame"><img src="img/fig14-prefs.png" alt="" style="width:88%"></div>
+    <figcaption><b>FIG. 14</b>CHANNELS — the names of the 16 pages. CHAIN — the chain of scenes.</figcaption>
+  </figure>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-pink">Channels</h3><p>The names of the 16 MIDI pages, all at once instead of one at a time paging through CH. The factory presets fill them in with the role of the part (Bass, Lead, Pad, Chords).</p></div>
+    <div class="panel card"><h3 class="c-pink">Chain</h3><p>It plays the patterns in sequence on its own: 1, 2, 3… up to the chosen number, then over from the first. It is the only way of changing scene that does not ask for a hand: with the chain set to 4 you have a four-bar structure that keeps turning while you play.</p></div>
+  </div>
+</section>
+
+<section class="page" data-ch="09" data-title="Preferences">
+  <div class="spec" style="--acc:var(--pink)">
+    <div class="r hd"><span>Chain</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Patterns</span><span class="v">1 … 16</span><span class="d">How many patterns enter the chain, starting from the first. At 1 the chain is off.</span></div>
+    <div class="r"><span class="k">Bars</span><span class="v">1 … 8</span><span class="d">How many bars each link lasts. At 1/16 a sixteen-step pattern is exactly one bar; with finer divisions it takes more bars to hear it all.</span></div>
+  </div>
+  <div class="note" style="--acc:var(--pink)">
+    <span class="lab">Note</span>
+    <p><b>Why a host loop does not throw it out of sync.</b> Which pattern is due is decided by the host’s bar, not by an internal counter. A loop or a jump back puts the chain where it belongs. The chain applies to all sixteen pages together, so the four parts of an arrangement change scene at the same moment. A pattern chosen by hand takes priority, and the chain picks up again from the next bar.</p>
+  </div>
+  <figure class="fig" style="--acc:var(--pink)">
+    <div class="frame"><img src="img/fig15-prefs.png" alt="" style="width:88%"></div>
+    <figcaption><b>FIG. 15</b>RECALL — scene recall from incoming MIDI notes. EXPORT — which lanes come out as automation.</figcaption>
+  </figure>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-pink">Recall</h3><p>Scene recall from incoming MIDI notes: sixteen consecutive notes recall the sixteen scenes. <b>FROM NOTE</b> moves the sixteen-note window. Watch out for feedback: if you use the “AudioXL SEQ Virtual” port as the input of the very track hosting it, the generated notes can come back in and change scene on their own.</p></div>
+    <div class="panel card"><h3 class="c-pink">Export</h3><p>Which lanes come out as automation when you drag <b>MIDI + PARAMS</b>. Notes and the three CC lanes are always included; here you choose whether to add GATE, LENGTH, PITCH, VELOCITY and the rest — handy for not filling the clip with curves you will not use.</p></div>
+  </div>
+</section>
+
+<section class="page" data-ch="09" data-title="Preferences">
+  <h2>Timing <span class="c-cyan">— MIDI look-ahead</span></h2>
+  <div class="cols2" style="grid-template-columns:1.2fr 1fr">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p><b>OFF, 1 buffer or 2 buffers</b>, with the equivalent in milliseconds calculated on the block size in use. It compensates a latency that is not the sequencer’s: Live delivers MIDI routed out of the track one audio buffer later, and does not compensate for it.</p>
+      <p>That is why the delay grows with the block size, while the sequencer places every event at the exact sample at any buffer size.</p>
+      <p><b>Keep it OFF</b> if the sequencer sits in the same chain as the instrument it drives (typical in Logic, Bitwig, Reaper): there is no buffer to make up there, and it would genuinely play early.</p>
+    </div>
+    <div class="panel" style="padding:16px 18px" id="latency"></div>
+  </div>
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig16-prefs.png" alt="" style="width:88%"></div>
+    <figcaption><b>FIG. 16</b>TIMING — MIDI look-ahead. STEP CTRL — the bridge to a sixteen-button controller.</figcaption>
+  </figure>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-cyan">MIDI Map</h3><p>MIDI Learn for the eleven automatable header parameters. Press <b>LEARN</b>, then move a knob on your controller: the first CC that arrives stays mapped to that parameter, from any controller and on any channel. One CC drives one parameter only: mapping it elsewhere takes it away from where it was. The map travels with the plug-in state, not in the preset — it is a preference about your physical controller, not part of the arrangement.</p></div>
+    <div class="panel card"><h3 class="c-cyan">Step Ctrl</h3><p>A bridge between a 16-button hardware controller — designed around the Step buttons of the <b>Arturia BeatStep Pro</b> in Control Mode — and the lane selected in the editor. Each button always toggles the same step (1-16), but on whichever lane is selected at that moment: switch lanes on screen and the 16 buttons re-attach by themselves.</p></div>
+  </div>
+</section>
+
+<section class="page" data-ch="09" data-title="Preferences">
+  <figure class="fig" style="--acc:var(--amber)">
+    <div class="frame"><img src="img/fig17-prefs.png" alt="" style="width:88%"></div>
+    <figcaption><b>FIG. 17</b>MIDI MAP — one CC per parameter. AUTHORIZED — serial and activation state.</figcaption>
+  </figure>
+  <h2>Autho<span class="c-amber">rized</span></h2>
+  <p>Paste the serial you received with your purchase into the <b>SERIAL</b> field and press <b>ACTIVATE</b>. Dashes, spaces and case do not matter. <b>REMOVE</b> takes the activation off this computer. Activation covers the machine and every open instance, even across different projects.</p>
+  <div class="panel" style="padding:18px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div><div class="lab">Demo, full</div><div style="font:800 38px/1 var(--display);color:var(--amber)">10 min</div></div>
+    <div><div class="lab">Stand-by every</div><div style="font:800 38px/1 var(--display)">30 s</div></div>
+    <div><div class="lab">Computers / serial</div><div style="font:800 38px/1 var(--display)">2</div></div>
+    <div><div class="lab">Products / serial</div><div style="font:800 38px/1 var(--display)">1</div></div>
+  </div>
+  <div class="note" style="--acc:var(--amber)">
+    <span class="lab">Note</span>
+    <p><b>What demo mode does.</b> Without a serial the plug-in runs in full for ten minutes from loading, with a brief stand-by every thirty seconds. After ten minutes the MIDI output stays in stand-by until you reload the plug-in or enter a serial. In stand-by only the output is silent: the sequencer keeps running and what you wrote in the grid is never lost. Each serial covers two computers and one product of the suite: a SEQ serial does not activate DRUMS and vice versa.</p>
+  </div>
+</section>
+
+<!-- ================= 10 HOOK UP ================= -->
+<section class="page" data-ch="10" data-title="How to hook it up" data-acc="green" data-sub="Hosts, formats, quick recipes" data-tocline="Plug it in, play it out">
+  <div class="opener">
+    <span class="eyebrow">10 — How to hook it up</span>
+    <h1 class="display">Plug it in,<br><span class="c-green">play it out</span></h1>
+  </div>
+  <div class="spec" style="--acc:var(--green)">
+    <div class="r hd"><span>Host</span><span>Format</span><span>What it does</span></div>
+    <div class="r"><span class="k">Ableton Live</span><span class="v">VST3 Live</span><span class="d">Use <em>AudioXL SEQ Live</em>: Live does not open pure VST3 MIDI effects, so this variant presents itself as an instrument with silent audio output and MIDI out. Route the MIDI output to the instrument track, or use the “AudioXL SEQ Virtual” port as an external MIDI input to get the 1-16 channel selector. With several instances open each one opens its own numbered port.</span></div>
+    <div class="r"><span class="k">Logic Pro</span><span class="v">AU</span><span class="d"><em>AudioXL SEQ.component</em> as a MIDI effect, before the instrument in the same chain. No latency to compensate: TIMING OFF.</span></div>
+    <div class="r"><span class="k">Bitwig · Reaper · Cubase · Studio One</span><span class="v">VST3</span><span class="d"><em>AudioXL SEQ.vst3</em> as a MIDI effect before the instrument. TIMING OFF here too.</span></div>
+  </div>
+  <h2>Quick <span class="c-green">recipes</span></h2>
+  <div class="spec two" style="--acc:var(--green)">
+    <div class="r"><span class="k">A pattern that never repeats the same way</span><span class="d">Give the lanes lengths that are coprime: 16 to GATE, 7 to PITCH A, 5 to CHORD, 3 to OCTAVE. The complete cycle returns to its starting point after 16×7×5×3 steps — more than twenty bars — but each individual row stays simple and readable.</span></div>
+    <div class="r"><span class="k">Pin the downbeat and randomise the rest</span><span class="d">Cmd/Ctrl + click steps 1, 5, 9 and 13 of GATE to lock them, then press RND ALL as often as you like. The four-on-the-floor stays put, everything else changes.</span></div>
+    <div class="r"><span class="k">A melody that varies by itself</span><span class="d">Turn on PITCH B with notes different from PITCH A, then turn on PROB A/B and set it to 30-40 on a few steps only. Every pass the sequencer chooses: the line stays recognisable but is never identical.</span></div>
+    <div class="r"><span class="k">A living filter instead of a uniform one</span><span class="d">On CC 1 set CC # to 74 (cutoff), RND MIN 0, RND MAX 127 and RND OFFSET to +70. Randomise. The filter stays mostly open but every so often it really drops — and those dips are what make the line alive.</span></div>
+    <div class="r"><span class="k">Take it into the DAW and finish by hand</span><span class="d">When you like a pattern, drag MIDI + PARAMS onto a track: you get notes and curves as an editable clip. In PREFERENCES › EXPORT choose which lanes to include.</span></div>
+  </div>
+</section>
+
+<!-- ================= 11 SCENES ================= -->
+<section class="page" data-ch="11" data-title="Building the sixteen scenes" data-acc="orange" data-sub="Workflow, combinations, troubleshooting" data-tocline="Building the sixteen scenes">
+  <div class="opener">
+    <span class="eyebrow">11 — Building the sixteen scenes</span>
+    <h1 class="display">One groove,<br><span class="c-orange">sixteen scenes</span></h1>
+  </div>
+  <div class="steps">
+    <div class="step" style="--acc:var(--red)"><span class="no">01</span><span class="t">Essential</span><p>Build pattern 1 in the barest version that stands on its own.</p></div>
+    <div class="step" style="--acc:var(--orange)"><span class="no">02</span><span class="t">Add</span><p>DUP into pattern 2 and add ratchets or chords on one or two steps only.</p></div>
+    <div class="step" style="--acc:var(--amber)"><span class="no">03</span><span class="t">Offset</span><p>DUP again, and use prime lengths — 5, 7, 11, 13 — on PITCH and CC.</p></div>
+    <div class="step" style="--acc:var(--green)"><span class="no">04</span><span class="t">Randomise</span><p>Lock the steps that give the pattern its identity, then RND ALL with a low DENS.</p></div>
+    <div class="step" style="--acc:var(--cyan)"><span class="no">05</span><span class="t">Chain</span><p>In PREFERENCES › CHAIN choose how many scenes to run, and let them go.</p></div>
+  </div>
+  <div class="note" style="--acc:var(--orange)">
+    <span class="lab">Note</span>
+    <p><b>The rule that holds a bank together.</b> Change one dimension at a time: either the rhythm, or the pitches, or the durations, or the harmony, or the modulations. The scenes stay recognisable as relatives of each other, and that is exactly what makes them useful in an arrangement: they alternate without the track changing the subject.</p>
+  </div>
+  <h2>Three combinations <span class="c-orange">to start from</span></h2>
+  <div class="cols3">
+    <div class="panel card"><h3 class="c-cyan">Melodic polymeter</h3><p>GATE length 16, PITCH A 7, VELOCITY 5. The cycle only closes after <b>560 steps</b>. Put PITCH A in RndNR and lock two degrees you like, so they stay put while the rest turns.</p></div>
+    <div class="panel card"><h3 class="c-purple">Dub chords</h3><p>CHORD 7th, VOICING Wide, STRUM 18 ms. CHANCE at 80 % so it does not land every pass, LENGTH at 65 %, and a slow CC 74 on a lane of length 11 for the filter movement.</p></div>
+    <div class="panel card"><h3 class="c-red">Pad trigger</h3><p>RUN on MIDI Trig. Every incoming Note On advances the sequencer one step: you play the rhythm, it chooses the notes. Avoid the sixteen pattern-recall notes, or move them in RECALL.</p></div>
+  </div>
+</section>
+
+<section class="page" data-ch="11" data-title="Building the sixteen scenes">
+  <h2>If something <span class="c-red">is off</span></h2>
+  <div class="spec two" style="--acc:var(--red)">
+    <div class="r hd"><span>Symptom</span><span>Where to look</span></div>
+    <div class="r"><span class="k">A CC does nothing</span><span class="d">Check <em>CC #</em> in the Inspector, not the row name. The default is CC 1/2/3, which almost no synth listens to.</span></div>
+    <div class="r"><span class="k">I hear a delay</span><span class="d">If it grows with the block size it is not the sequencer: it is the DAW’s MIDI routing. See PREFERENCES › TIMING.</span></div>
+    <div class="r"><span class="k">A slider does not move</span><span class="d">Drag it instead of clicking it.</span></div>
+    <div class="r"><span class="k">Randomise leaves the scale</span><span class="d">Transpose Mode only: After Scale can do that, and it is intentional. Put it back on Before Scale.</span></div>
+    <div class="r"><span class="k">The preset plays in the wrong octave</span><span class="d">That is the OCTAVE lane of the part; the BASE slider moves the whole arrangement together instead.</span></div>
+    <div class="r"><span class="k">Dragging produces no clip</span><span class="d">It needs a real drag, not a click: press and move.</span></div>
+    <div class="r"><span class="k">The recall notes reach the instrument</span><span class="d">They should not: they are consumed. If it happens, check you do not have a second MIDI path bypassing the plug-in — typically the virtual port used as the input of the same track.</span></div>
+  </div>
+  <h2>Cheat <span class="c-orange">sheet</span></h2>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-orange">On the grid</h3>
+      <div class="spec two" style="border:0">
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">Click</span></span><span class="d">set a value · toggle GATE, HOLD, TIE</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">Drag</span></span><span class="d">paint several steps · move sliders</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">Double click</span></span><span class="d">type the exact value</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">Cmd/Ctrl + click</span></span><span class="d">lock / unlock a step</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr;border:0"><span><span class="kbd">Cmd/Ctrl + C / V</span></span><span class="d">copy / paste a step value</span></div>
+      </div></div>
+    <div class="panel card"><h3 class="c-cyan">Remember</h3>
+      <div class="spec two" style="border:0">
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">C-2 … D#-1</span></span><span class="d">recall scenes 1-16, all pages</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">RND ALL</span></span><span class="d">on CH 1-4 writes parts by role</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">DRAG MIDI</span></span><span class="d">drag, never just click</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr"><span><span class="kbd">SEED</span></span><span class="d">same seed, same sequence</span></div>
+        <div class="r" style="grid-template-columns:120px 1fr;border:0"><span><span class="kbd">UNDO</span></span><span class="d">32 steps deep</span></div>
+      </div></div>
+  </div>
+</section>
+
+<!-- ================= BACK ================= -->
+<section class="page cover back" data-nochrome>
+  <img src="img/logo.png" alt="" style="width:170px;margin-bottom:60px">
+  <h1 class="display">Now make<br><span class="outline">it move</span></h1>
+  <p class="sub">Seventeen lanes. Sixteen pages. Sixteen scenes per page. Never the same pattern twice.</p>
+  <div class="deco panel" id="backGrid"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>AudioXL SEQ · v1.0.5</span></div>
+</section>
+
+<script src="manual.js"></script>
+</body></html>
