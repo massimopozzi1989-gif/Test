@@ -1,0 +1,45 @@
+/* AudioXL SEQ — shared look (Mobile Groove family) */
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:500;src:url(fonts/BarlowCondensed-500.woff2) format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;src:url(fonts/BarlowCondensed-600.woff2) format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;src:url(fonts/BarlowCondensed-700.woff2) format('woff2');}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:800;src:url(fonts/BarlowCondensed-800.woff2) format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 800;src:url(fonts/JetBrainsMono-400.woff2) format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:italic;font-weight:400;src:url(fonts/JetBrainsMono-400i.woff2) format('woff2');}
+
+:root{
+  --bg:#07090E; --bg2:#0A0E16; --panel:#0F1520; --panel2:#141B28; --line:#1D2533; --line2:#283243;
+  --ink:#E9EDF3; --soft:#B7C0CE; --muted:#7D879A; --dim:#4B5467;
+  --red:#FF5A4E; --orange:#F5A524; --cyan:#3CC8F2; --blue:#3E8BFF; --purple:#9A7BFF; --green:#4FD98A; --amber:#E2B347; --pink:#F2609F; --teal:#2CB5C8;
+  --display:'Barlow Condensed','Arial Narrow',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:var(--mono);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+b,strong{color:var(--ink);font-weight:700}
+.c-red{color:var(--red)}.c-orange{color:var(--orange)}.c-cyan{color:var(--cyan)}.c-purple{color:var(--purple)}
+.c-green{color:var(--green)}.c-amber{color:var(--amber)}.c-pink{color:var(--pink)}.c-blue{color:var(--blue)}.c-muted{color:var(--muted)}
+
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.display{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.005em;line-height:.9;margin:0}
+.outline{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.lede{font-style:italic;color:var(--soft)}
+
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);background:var(--panel2);border-radius:8px;
+  font:500 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--soft);padding:9px 13px}
+.chip.hot{border-color:rgba(255,90,78,.55);background:rgba(255,90,78,.08);color:var(--red)}
+.chip svg{width:14px;height:14px}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block}
+
+.panel{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px}
+.lab{font:500 10px/1.2 var(--mono);letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+
+/* lane tags */
+.tag{display:inline-flex;align-items:center;gap:6px;font:800 13px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;
+  padding:6px 9px;border-radius:6px;background:var(--panel2);border:1px solid var(--line)}
+.tag::before{content:"";width:3px;height:12px;border-radius:2px;background:currentColor}
+
+/* step grid mock */
+.grid{display:grid;gap:4px}
+.cell{height:100%;border-radius:3px;background:#161D2A;border:1px solid #1C2432}
+.cell.on{border-color:transparent}
