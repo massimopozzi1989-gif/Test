@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL DRUMS — User Manual</title>
+<link rel="stylesheet" href="../audioxl-shared/axl.css">
+<link rel="stylesheet" href="../audioxl-shared/manual.css">
+<style>
+.cover .logo{width:230px;margin-top:10px}
+.cover h1{font-size:96px;margin-top:22px}
+.cover .sub{max-width:34ch}
+.cover .transport{margin-top:22px}
+.back{justify-content:flex-start;padding-top:150px}
+.statrow{padding:18px 20px;display:grid;gap:10px}
+.statrow .n{font:800 42px/1 var(--display);color:var(--ink)}
+.states{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pill{display:inline-flex;align-items:center;font:500 10px/1 var(--mono);letter-spacing:.08em;padding:6px 9px;border-radius:6px;border:1px solid var(--line2);background:var(--panel2);color:var(--soft);text-transform:uppercase}
+.tree{font:500 11px/1.9 var(--mono);color:var(--soft)}
+.tree b{color:var(--ink)} .tree .dim{color:var(--dim)}
+</style></head>
+<body data-product="AudioXL DRUMS" data-version="1.0.0" data-logo="img/logo.png">
+
+<!-- COVER -->
+<section class="page cover" data-nochrome>
+  <img class="logo" src="img/logo.png" alt="AudioXL DRUMS">
+  <div class="pills">
+    <span class="chip hot"><span class="dot"></span>VST3 · AU · STANDALONE</span>
+    <span class="chip">DRUM MACHINE</span>
+    <span class="chip">SAMPLER</span>
+  </div>
+  <h1 class="display">Synth<br><span class="outline">or</span><br><span class="c-orange">sample</span></h1>
+  <p class="sub">A 16-step drum machine with eight synthesised voices, a sampler and an effects rack.</p>
+  <div class="transport panel" style="width:380px">
+    <div class="play"><svg width="18" height="20" viewBox="0 0 18 20"><path d="M2 1.5v17L17 10z" fill="#E9EDF3"/></svg></div>
+    <div><div class="lab">User manual</div><div class="num">1.0.0<small>VER</small></div></div>
+    <div><div class="lab">Voices</div><div class="num">8</div></div>
+  </div>
+  <img class="shot" src="img/window-cover.jpg" alt="">
+  <div class="deco panel" id="coverGrid"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>User manual</span></div>
+</section>
+
+<!-- CONTENTS -->
+<section class="page" data-title="Contents">
+  <div class="opener">
+    <span class="eyebrow">00 — Contents</span>
+    <h1 class="display">What's<br><span class="c-orange">inside</span></h1>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="note" style="--acc:var(--cyan);margin-top:auto">
+    <span class="lab">About the figures</span>
+    <p>The figures are snapshots of the real window, retaken at every build: what you see here is what opens in your host. The enlarged controls are the Blender renders the plugin’s skin is built from.</p>
+  </div>
+</section>
+
+<!-- 01 GETTING STARTED -->
+<section class="page" data-ch="01" data-title="Getting started" data-acc="orange" data-sub="Installing, the demo, the window" data-tocline="">
+  <div class="opener">
+    <span class="eyebrow">01 — Getting started</span>
+    <h1 class="display">Eight voices.<br><span class="c-orange">Synth or sample.</span></h1>
+    <p class="lede">Mix them freely: a sampled 909 kick with a synthesised 808 snare.</p>
+  </div>
+  <p style="font-size:12px;line-height:1.7">AudioXL DRUMS is a <b>16-step, eight-voice drum machine</b>, available as <b>VST3, Audio Unit and a standalone application</b>. Each voice can be an analogue-style synthesis engine or a sample, and the two mix freely: a sampled 909 kick with a synthesised 808 snare is a perfectly normal combination.</p>
+  <h2>Instal<span class="c-orange">ling</span></h2>
+  <p>Two separate packages, with different lives. The plugin is small and updated often; the library is heavy and rarely changes.</p>
+  <div class="cols2">
+    <div class="panel card"><h3 class="c-orange">The plugin</h3>
+      <div class="kbd" style="display:inline-block;margin:4px 0 10px">AudioXL-DRUMS-1.0.0-macOS.pkg</div>
+      <p>VST3, Audio Unit and the standalone application.</p></div>
+    <div class="panel card"><h3 class="c-cyan">The library</h3>
+      <div class="kbd" style="display:inline-block;margin:4px 0 10px">AudioXL-DRUMS-Library-1.0.0-macOS.pkg</div>
+      <p>The <b>3469 samples</b>. Installer.app lets you pick the drive, external included: the plugin finds the library on its own.</p></div>
+  </div>
+  <div class="note" style="--acc:var(--orange)">
+    <span class="lab">Note</span>
+    <p><b>On first launch the plugin runs as a demo:</b> it plays for ten minutes and then the output goes silent. The serial goes in <b>PREFERENCES › LICENSE</b>. See the last chapter.</p>
+  </div>
+  <div class="panel statrow" style="grid-template-columns:repeat(4,1fr);margin-top:auto">
+    <div><div class="lab">Voices</div><div class="n">8</div></div>
+    <div><div class="lab">Steps</div><div class="n c-orange">16</div></div>
+    <div><div class="lab">Samples</div><div class="n c-cyan">3469</div></div>
+    <div><div class="lab">Grooves</div><div class="n c-red">136</div></div>
+  </div>
+</section>
+
+<section class="page" data-ch="01" data-title="Getting started">
+  <h2>The <span class="c-orange">window</span></h2>
+  <div class="cols3">
+    <div class="panel card"><h3 class="c-orange">Top</h3><p>Groove, kit and transport.</p></div>
+    <div class="panel card"><h3 class="c-cyan">Middle</h3><p>The step grid.</p></div>
+    <div class="panel card"><h3 class="c-green">Below</h3><p>A row of tabs: <b>VOICE</b> for the selected voice, <b>MASTER FX RACK</b> for the effects, <b>BROWSER</b> to search across kits, samples and grooves.</p></div>
+  </div>
+  <figure class="fig" style="--acc:var(--orange)">
+    <div class="frame"><img src="img/fig01-voice.png" alt=""></div>
+    <figcaption><b>FIG. 01</b>The VOICE page: source on the left, nine knobs on the right.</figcaption>
+  </figure>
+</section>
+
+<!-- 02 SEQUENCER -->
+<section class="page" data-ch="02" data-title="The sequencer" data-acc="red" data-sub="Grid, chain, swing, accent, undo">
+  <div class="opener">
+    <span class="eyebrow">02 — The sequencer</span>
+    <h1 class="display">Eight tracks,<br><span class="c-red">sixteen steps</span></h1>
+  </div>
+  <p>A grid of <b>8 tracks by 16 steps</b>. Every step has three states: <b>rest, hit, accented hit</b>. Click to write, drag to fill several steps in one gesture.</p>
+  <div class="panel" style="padding:16px 18px">
+    <div class="lab" style="margin-bottom:12px">Three states per step</div>
+    <div class="states">
+      <div style="display:flex;align-items:center;gap:12px"><i style="width:34px;height:34px;border-radius:5px;background:#141B28;border:1px solid #1C2432"></i><span style="font:800 18px/1 var(--display);text-transform:uppercase;color:var(--ink)">Rest</span></div>
+      <div style="display:flex;align-items:center;gap:12px"><i style="width:34px;height:34px;border-radius:5px;background:var(--orange);opacity:.55"></i><span style="font:800 18px/1 var(--display);text-transform:uppercase;color:var(--ink)">Hit</span></div>
+      <div style="display:flex;align-items:center;gap:12px"><i style="width:34px;height:34px;border-radius:5px;background:var(--orange)"></i><span style="font:800 18px/1 var(--display);text-transform:uppercase;color:var(--ink)">Accented hit</span></div>
+    </div>
+  </div>
+  <figure class="fig" style="--acc:var(--red)">
+    <div class="frame"><img src="img/fig02-transport.png" alt=""></div>
+    <figcaption><b>FIG. 02</b>Transport and grid: play off and on, LED off and on, button off and on. These are the Blender renders the skin takes its frames from.</figcaption>
+  </figure>
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">SEQ A B C D</span><span class="v">4 sequences</span><span class="d">Four chainable sequences. <em>Right-click</em> a letter to copy another sequence into it or to empty it.</span></div>
+    <div class="r"><span class="k">Chain</span><span class="v">1 … 4</span><span class="d">How many sequences go into the loop. The others stay in memory, they simply don’t play. The button of the one currently playing lights up green.</span></div>
+    <div class="r"><span class="k">Steps</span><span class="v">1 … 16</span><span class="d">Shortens every sequence. It combines with the chain, so four 12-step sequences make a <em>48-step loop</em>.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="02" data-title="The sequencer">
+  <div class="spec" style="--acc:var(--red)">
+    <div class="r hd"><span>Control</span><span>Range</span><span>What it does</span></div>
+    <div class="r"><span class="k">Swing</span><span class="v">50 … 75 %</span><span class="d">From 50 % (straight) to 75 %. It delays the even sixteenths; at <em>66.7 %</em> the ratio is exactly triplet.</span></div>
+    <div class="r"><span class="k">Accent</span><span class="v">knob</span><span class="d">How far an accented hit stands out from the rest, like the knob on a TR.</span></div>
+    <div class="r"><span class="k">Internal</span><span class="v">BPM</span><span class="d">The tempo while the host is stopped. If the host is playing, the sequencer follows it <em>sample-accurately</em>.</span></div>
+  </div>
+  <div class="note" style="--acc:var(--cyan)">
+    <span class="lab">Hardware feel</span>
+    <p><b>The closed hat chokes the open one</b>, as on a real machine.</p>
+  </div>
+  <div class="panel" style="padding:16px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px"><span class="lab">Chain 4 × Steps 12</span><span style="font:800 20px/1 var(--display);color:var(--ink)">= <span class="c-red">48-step loop</span></span></div>
+    <div id="chainDemo" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
+  </div>
+  <h2>Undo <span class="c-red">and redo</span></h2>
+  <div class="cols2" style="grid-template-columns:1fr 1.3fr">
+    <div class="panel card">
+      <div style="display:flex;gap:8px;margin-bottom:12px"><span class="kbd">UNDO</span><span class="kbd">REDO</span><span class="kbd">cmd Z</span><span class="kbd">cmd shift Z</span></div>
+      <div style="font:800 46px/1 var(--display);color:var(--ink)">64 <span style="font-size:22px;color:var(--muted)">steps</span></div>
+      <p style="margin-top:8px">At the bottom of the window. The history covers everything: steps, knobs, kits, effect profiles, loaded samples, copied sequences.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p>Operations that move many things at once count as <b>a single step</b>: loading a groove changes pattern, kit and effect profile, and undoing it takes all three back in one go.</p>
+      <p>Dragging to write eight steps also costs <b>one undo, not eight</b>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 VOICES -->
+<section class="page" data-ch="03" data-title="The voices" data-acc="pink" data-sub="Engines, SAMPLE mode, the three menus">
+  <div class="opener">
+    <span class="eyebrow">03 — The voices</span>
+    <h1 class="display">Nine knobs,<br><span class="c-pink">one layout</span></h1>
+  </div>
+  <p>The eight tracks share the same nine controls, in the same places: your hand learns where DECAY is and finds it again on any instrument. <b>Only the first four labels change</b>, because they describe the engine.</p>
+  <figure class="fig" style="--acc:var(--pink)">
+    <div class="frame"><img src="img/fig03-parts.png" alt=""></div>
+    <figcaption><b>FIG. 03</b>Knob, HIT pad at rest and pressed, drop-down: the pieces of the VOICE page, modelled and rendered in Blender.</figcaption>
+  </figure>
+  <div class="panel" style="padding:6px 18px 10px">
+    <div id="voiceTable"></div>
+  </div>
+  <p>Then, on every voice: <span class="kbd">DRIVE</span> <span class="kbd">LEVEL</span> <span class="kbd">PAN</span> <span class="kbd">REVERB</span> <span class="kbd">DELAY</span></p>
+</section>
+
+<section class="page" data-ch="03" data-title="The voices">
+  <h2>Real <span class="c-pink">synthesis</span></h2>
+  <p>The engines are real synthesis, not samples.</p>
+  <div class="cols3" id="engines"></div>
+  <h2>SAMPLE <span class="c-pink">mode</span></h2>
+  <div class="cols2">
+    <p>The two tabs <b>SYNTH</b> and <b>SAMPLE</b> choose where the voice’s sound comes from. In SAMPLE the first four knobs change job and the labels say so.</p>
+    <p>Switching to SYNTH, the sample stays in memory: only the mode changes, and one click brings it back. The waveform box says so, printing <b>sample not active</b> instead of letting you think the load failed.</p>
+  </div>
+  <div class="spec" style="--acc:var(--pink)">
+    <div class="r hd"><span>Knob</span><span>Range</span><span>In SAMPLE mode</span></div>
+    <div class="r"><span class="k">Pitch</span><span class="v">±24 st</span><span class="d">Plus or minus 24 semitones.</span></div>
+    <div class="r"><span class="k">Decay</span><span class="v">knob</span><span class="d">How long the sample rings.</span></div>
+    <div class="r"><span class="k">Filter</span><span class="v">LP ↔ HP</span><span class="d">Low-pass below centre, high-pass above.</span></div>
+    <div class="r"><span class="k">Start</span><span class="v">knob</span><span class="d">Where playback begins in the file.</span></div>
+  </div>
+</section>
+
+<section class="page" data-ch="03" data-title="The voices">
+  <figure class="fig" style="--acc:var(--pink)">
+    <div class="frame"><img src="img/fig04-sample.png" alt="" style="width:88%"></div>
+    <figcaption><b>FIG. 04</b>In SAMPLE mode the box shows the waveform, with the START and DECAY bars.</figcaption>
+  </figure>
+  <h2>The three <span class="c-pink">menus</span></h2>
+  <div class="spec two" style="--acc:var(--pink)">
+    <div class="r"><span class="k">Kit</span><span class="d">Changes the sound of the selected voice only — engine, colour and sends — leaving the others as they are. It doubles as <em>“reset this voice”</em> after you have edited it by hand.</span></div>
+    <div class="r"><span class="k">Sample</span><span class="d">Opens the library and changes only the file on this voice, without touching level, pan and sends. It is what you want in order to try one snare after another without losing the mix. With a SYNTH kit the row stays empty: that voice is not reading any file.</span></div>
+    <div class="r"><span class="k">Colour</span><span class="d">The output conversion stage of the single voice. <em>MASTER</em> means no stage of its own: the rack’s global model applies.</span></div>
+  </div>
+  <div class="panel card" style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center">
+    <p>Below there are <b>LOAD</b> for any file, <b>X</b> to remove the sample and <b>HIT</b> to audition the voice. An audio file can also be <b>dragged straight onto the row</b> in the grid.</p>
+    <div style="display:flex;gap:6px"><span class="pill">wav</span><span class="pill">aif</span><span class="pill">mp3</span><span class="pill">flac</span><span class="pill">ogg</span></div>
+  </div>
+</section>
+
+<!-- 04 KITS & GROOVES -->
+<section class="page" data-ch="04" data-title="Kits and grooves" data-acc="amber" data-sub="Synth and sample kits, 136 grooves">
+  <div class="opener">
+    <span class="eyebrow">04 — Kits and grooves</span>
+    <h1 class="display">Two versions<br><span class="c-amber">of every machine</span></h1>
+  </div>
+  <p>The KIT menu shows, inside the same brand folder, the <b>SYNTH kits</b> (the synthesis engines, tuned preset by preset) and the <b>SAMPLE kits</b> (the samples of the real machine). They are two ways of having the same machine and both are visible, so you never have to guess which side the sound you want is on.</p>
+  <div class="cols2" style="grid-template-columns:1fr 1fr;align-items:stretch">
+    <div class="panel card tree">
+      <div class="lab" style="margin-bottom:8px">KIT menu</div>
+      <b>▾ Roland</b><br>
+      &nbsp;&nbsp;&nbsp;<span class="c-orange">TR-909 SYNTH</span><br>
+      &nbsp;&nbsp;&nbsp;<span class="c-orange">TR-909 RAVE SYNTH</span><br>
+      &nbsp;&nbsp;&nbsp;<span class="dim">───</span><br>
+      &nbsp;&nbsp;&nbsp;<span class="c-cyan">TR-909 SAMPLE</span> <span class="dim">(8/8)</span><br>
+      &nbsp;&nbsp;&nbsp;<span class="c-cyan">TR-808 SAMPLE</span> <span class="dim">(8/8)</span>
+    </div>
+    <div class="panel statrow" style="grid-template-columns:1fr 1fr;align-content:center">
+      <div><div class="lab">Synth kits</div><div class="n c-orange" style="font-size:56px">77</div></div>
+      <div><div class="lab">Sample kits</div><div class="n c-cyan" style="font-size:56px">68</div></div>
+      <p style="grid-column:span 2;font-size:10px">The number next to the sampled kits says how many of the eight voices that machine can cover.</p>
+    </div>
+  </div>
+  <h2>Groo<span class="c-amber">ves</span></h2>
+  <p><b>A hundred and thirty-six patterns</b> with a suggested tempo and swing, each paired with a kit and an effect profile, split into <b>twenty-eight genre folders</b>:</p>
+  <div id="genres" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  <div class="note" style="--acc:var(--amber)">
+    <span class="lab">Note</span>
+    <p><b>Grooves and kits are independent:</b> you can put a house pattern on an SP-1200 or a boom bap on a 909. Grooves are also exposed as programs, so they show up in the DAW’s own preset menu.</p>
+  </div>
+</section>
+
+<!-- 05 LIBRARY -->
+<section class="page" data-ch="05" data-title="The sample library" data-acc="cyan" data-sub="68 machines, naming, where it lives">
+  <div class="opener">
+    <span class="eyebrow">05 — The sample library</span>
+    <h1 class="display">3469 samples,<br><span class="c-cyan">68 machines</span></h1>
+  </div>
+  <p>The plugin ships with 3469 samples taken from 68 real machines, across <b>fourteen brands</b>:</p>
+  <div id="brands" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+  <p>The menu is organised in levels: <span class="kbd">brand</span> › <span class="kbd">machine</span> › <span class="kbd">instrument</span> › <span class="kbd">sample</span></p>
+  <h2>How the samples <span class="c-cyan">are named</span></h2>
+  <div class="cols2">
+    <p>Samples are called <b>TYPE NN</b> (SNARE 03), and in full <b>MACHINE TYPE NN</b> (TR-808 SNARE 03) where the machine they come from isn’t otherwise visible.</p>
+    <p>The file name is never shown: in the packs it carries the signature of whoever bundled them, which tells you the seller and not the instrument. Nothing is renamed on disk: this is only the label.</p>
+  </div>
+  <h2>Which sample ends up <span class="c-cyan">on which voice</span></h2>
+  <p>For kick, snare, clap, tom and rim the first of the category will do. For hats and cymbals it won’t: in these packs the numbering is the <b>degree of opening</b>, not a ranking. The closed hat takes the shortest and the open hat the longest, which is after all the definition of the two sounds.</p>
+  <div class="panel" style="padding:16px 18px">
+    <div class="lab" style="margin-bottom:12px">Hats &amp; cymbals — the number is the degree of opening</div>
+    <div id="hats" style="display:flex;flex-direction:column;gap:6px"></div>
+  </div>
+</section>
+
+<section class="page" data-ch="05" data-title="The sample library">
+  <h2>Where the <span class="c-cyan">library lives</span></h2>
+  <p>The plugin looks for it in this order:</p>
+  <div class="flow">
+    <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">01</span><span class="c">the folder chosen with <span>LIBRARY FOLDER</span> on the BROWSER page, remembered between sessions</span></div>
+    <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">02</span><span class="c"><span>~/Library/Application Support/AudioXL/DRUMS/Samples</span></span></div>
+    <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">03</span><span class="c"><span>/Library/Application Support/AudioXL/DRUMS/Samples</span></span></div>
+    <div class="s out" style="--acc:var(--green);grid-template-columns:28px 1fr"><span class="i">04</span><span class="c">the same folder on a <span>mounted external drive</span></span></div>
+  </div>
+  <p>That last entry is what makes the library work from an external drive without having to point at it by hand every time. If the drive isn’t there, the browser says so instead of pretending nothing happened.</p>
+  <div class="note" style="--acc:var(--cyan)">
+    <span class="lab">Note</span>
+    <p><b>To add machines of your own</b>, create the folders following the <b>Brand/Machine/sample.wav</b> pattern and press <b>RESCAN</b>: they appear at once, with no need to restart the host.</p>
+  </div>
+  <h2>Eight categories <span class="c-cyan">and MISC</span></h2>
+  <p>The instrument is derived from the file name. <b>1850 samples out of 3469</b> land in one of the eight categories; the rest don’t disappear, they sit under <b>MISC</b>.</p>
+  <div class="panel" style="padding:16px 18px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><span class="lab">Derived from the file name</span><span style="font:800 20px/1 var(--display);color:var(--ink)"><span class="c-cyan">1850</span> / 3469 in the eight categories</span></div>
+    <div style="height:16px;border-radius:5px;background:#1A2230;overflow:hidden;display:flex"><i style="width:53.3%;background:var(--cyan)"></i><i style="flex:1;background:repeating-linear-gradient(45deg,#1A2230 0 6px,#232D3E 6px 12px)"></i></div>
+    <div style="display:flex;justify-content:space-between;font:500 9.5px/1 var(--mono);color:var(--muted);margin-top:6px"><span>8 categories</span><span>MISC — the rest stays, it doesn’t disappear</span></div>
+    <p style="margin-top:10px;font-size:10px">Sixteen machines have purely numeric names: for those there is only MISC, because guessing would be worse than letting the ear choose.</p>
+  </div>
+  <!-- 06 browser shares the page -->
+</section>
+
+<!-- 06 BROWSER -->
+<section class="page" data-ch="06" data-title="The browser" data-acc="green" data-sub="One list, one search box">
+  <div class="opener">
+    <span class="eyebrow">06 — The browser</span>
+    <h1 class="display">One list,<br><span class="c-green">one search box</span></h1>
+  </div>
+  <p>The BROWSER page puts synth kits, sampled machines, single samples and grooves into one list with one search box. With <b>77 kits, 68 machines, 3469 samples and 136 grooves</b>, menus are for picking something you already know you want; this is where you go looking.</p>
+  <div class="spec two" style="--acc:var(--green)">
+    <div class="r"><span class="k">Search</span><span class="d">By name, brand or genre: <em>909</em> pulls up the synth kits, the sampled machine and all of its files; <em>house</em> pulls up the grooves too.</span></div>
+    <div class="r"><span class="k">Type filters</span><span class="d">Four filters to switch on and off, each with its own colour, the same as the tag on the row.</span></div>
+    <div class="r"><span class="k">Group column</span><span class="d">On the left: brands and genres, to narrow things down without typing.</span></div>
+    <div class="r"><span class="k">Audition</span><span class="d">One click auditions a sample right away, on a utility voice that doesn’t go through the rack and doesn’t touch the eight tracks.</span></div>
+    <div class="r"><span class="k">Load</span><span class="d">LOAD or a double click applies the row: a groove loads the pattern, a kit the eight voices, a sample goes onto the selected track.</span></div>
+  </div>
+  <figure class="fig" style="--acc:var(--green)">
+    <div class="frame"><img src="img/fig05-browser.png" alt="" style="width:66%"></div>
+    <figcaption><b>FIG. 05</b>The BROWSER page with the four type filters.</figcaption>
+  </figure>
+</section>
+
+<!-- 07 EFFECTS -->
+<section class="page" data-ch="07" data-title="The effects rack" data-acc="purple" data-sub="Eight modules, inserts and sends">
+  <div class="opener">
+    <span class="eyebrow">07 — The effects rack</span>
+    <h1 class="display">Eight modules<br><span class="c-purple">on the master</span></h1>
+    <p class="lede">Each with its own bypass LED.</p>
+  </div>
+  <div class="spec two" style="--acc:var(--purple)">
+    <div class="r hd"><span>Module</span><span>Controls</span></div>
+    <div class="r"><span class="k">Transient</span><span class="d">ATTACK, SUSTAIN. <em>Bipolar</em>: you can take away as well as add.</span></div>
+    <div class="r"><span class="k">Machine</span><span class="d">Conversion model, AMOUNT. Bit depth, sample rate, bandwidth and saturation of the classic machines.</span></div>
+    <div class="r"><span class="k">Drive</span><span class="d">Type (tape, tube, clip, fold), DRIVE, TONE, MIX, NOISE.</span></div>
+    <div class="r"><span class="k">Filter</span><span class="d">Type (LP, HP, BP), CUTOFF, RESO.</span></div>
+    <div class="r"><span class="k">Comp</span><span class="d">THRESH, RATIO, ATTACK, RELEASE, MAKEUP, MIX, with a reduction meter.</span></div>
+    <div class="r"><span class="k">Delay</span><span class="d">Synced division or free time, FEEDBK, TONE, WIDTH (from stereo to ping-pong), MIX.</span></div>
+    <div class="r"><span class="k">Reverb</span><span class="d">SIZE, DAMP, PREDLY, WIDTH, MIX.</span></div>
+    <div class="r"><span class="k">Master preset</span><span class="d">Twelve profiles:</span></div>
+  </div>
+  <div id="profiles" style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:-8px"></div>
+  <p>The <b class="c-green">green LED</b> inside the MASTER FX RACK button switches the whole rack on and off; the rest of the button opens the page. The LED stays visible from the VOICE page too, so you can compare with and without the rack while working on sounds.</p>
+</section>
+
+<section class="page" data-ch="07" data-title="The effects rack">
+  <h2>Inserts and sends <span class="c-purple">are not the same thing</span></h2>
+  <div class="panel" style="padding:18px 20px" id="rackFlow"></div>
+  <p><b>Transient, Machine, Drive, Filter and Comp are inserts</b>: they work on the whole mix. <b>Delay and Reverb are marked SEND</b> because they are returns: they come back in after the master chain, so drive, filter and compressor don’t colour them again. The two sends are independent of each other: what you send to the delay never ends up in the reverb.</p>
+  <div class="note" style="--acc:var(--purple)">
+    <span class="lab">Note</span>
+    <p><b>The REVERB, DELAY and DRIVE of a single voice do not go through the rack.</b> The sends on the voice panel knobs have two engines of their own, always running: you hear them with the rack switched off. From the rack modules they only take the character — time, damping, size, pre-delay — not the switches.</p>
+  </div>
+  <figure class="fig" style="--acc:var(--purple)">
+    <div class="frame"><img src="img/fig06-effects.png" alt="" style="width:62%"></div>
+    <figcaption><b>FIG. 06</b>The effects page, with the SYNC MASTER RACK button at the bottom right.</figcaption>
+  </figure>
+</section>
+
+<!-- 08 LINK -->
+<section class="page" data-ch="08" data-title="Linking with Master Rack" data-acc="orange" data-sub="SYNC MASTER RACK, what travels">
+  <div class="opener">
+    <span class="eyebrow">08 — Linking with AudioXL Master Rack</span>
+    <h1 class="display">One chain,<br><span class="c-orange">two plugins</span></h1>
+  </div>
+  <p>The <b>SYNC MASTER RACK</b> button, at the bottom of the effects page next to MASTER PRESET, is the same switch that the other plugin calls <b>SYNC DRUMS</b>: turn it on from either side, it makes no difference, and the two windows stay in agreement.</p>
+  <figure class="fig" style="--acc:var(--orange)">
+    <div class="frame"><img src="img/fig07-sync.png" alt=""></div>
+    <figcaption><b>FIG. 07</b>The states you see from the other side: SYNC DRUMS off and on, padlock open and closed.</figcaption>
+  </figure>
+  <div class="cols3">
+    <div class="panel card"><h3 class="c-muted">Separate</h3><p>Each on its own: this rack is all in here.</p></div>
+    <div class="panel card"><h3 class="c-amber">Waiting</h3><p>On, but there is nobody on the other side yet. You can switch it on before opening Master Rack: when it arrives, the link engages by itself.</p></div>
+    <div class="panel card" style="border-color:rgba(245,165,36,.5)"><h3 class="c-orange">Chain handed over</h3><p>Linked: from here on the one doing the colouring is Master Rack.</p></div>
+  </div>
+  <p>Open AudioXL DRUMS on its own and nothing changes: the button is off. <b>The link is something you ask for.</b> When it engages, the whole master rack goes over to Master Rack exactly as it stands — transient, machine, drive, filter, compressor, delay and reverb, values and menus included — and all seven go into bypass here. Over there you find the very same chain, and from that moment the knobs are its own.</p>
+</section>
+
+<section class="page" data-ch="08" data-title="Linking with Master Rack">
+  <div class="panel" style="padding:18px 20px" id="travel"></div>
+  <div class="note" style="--acc:var(--orange)">
+    <span class="lab">Note</span>
+    <p><b>What travels is the master rack, not the sends of a single voice.</b> The REVERB and DELAY knobs on the voice panel have two engines of their own, one per track, and they stay here: a tail on the snare is not a tail on the mix. The DRIVE and CLICK of each voice don’t travel either: they are controls inside that track’s synthesis engine, not rack modules, and they stay per channel — the rack’s DRIVE and the voice’s DRIVE share a name but not a stage.</p>
+  </div>
+  <p>The stages Master Rack has on top — <b>EQ, exciter, maximizer and clipper</b> — are switched off when the link engages, otherwise what you would hear wouldn’t be the DRUMS chain but the DRUMS chain plus four stages left on by a preset chosen earlier. <b>Not the limiter</b>: that is protection, and pulling it out from under a master bus mid-take would be a poor way to be consistent.</p>
+  <p>Turn the sync off — from either side — and the switches go back as they were, with the values they had before handing the chain over. If Master Rack disappears without saying goodbye, <b>the rack comes back on its own after a second and a half</b>.</p>
+  <div class="note" style="--acc:var(--green)">
+    <span class="lab">The padlock</span>
+    <p>A padlock, next to Master Rack’s MASTER PRESET menu, decides whether that plugin follows every change made here (<b>open</b>, the factory setting) or whether the preset it has built stays protected (<b>closed</b>) — the chain is handed over all the same, only nothing arrives on the other side. Details in the Master Rack manual.</p>
+  </div>
+</section>
+
+<!-- 09 BOUNCE -->
+<section class="page" data-ch="09" data-title="Bounce and MIDI output" data-acc="cyan" data-sub="Stems, mix with and without rack">
+  <div class="opener">
+    <span class="eyebrow">09 — Bounce and MIDI output</span>
+    <h1 class="display">Out of<br><span class="c-cyan">the box</span></h1>
+  </div>
+  <h2>Bounce <span class="c-cyan">in place</span></h2>
+  <div class="cols2" style="grid-template-columns:1fr 1fr;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p><b>BOUNCE IN PLACE</b> writes one file per sounding voice to disk, plus the mix. You choose:</p>
+      <div class="flow">
+        <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">01</span><span class="c">how many <span>loops</span></span></div>
+        <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">02</span><span class="c">whether to add a <span>tail</span></span></div>
+        <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">03</span><span class="c">whether to honour <span>mute and solo</span></span></div>
+        <div class="s" style="--acc:var(--cyan);grid-template-columns:28px 1fr"><span class="i">04</span><span class="c">two mixes: <span>with the rack</span> and <span>without</span></span></div>
+      </div>
+    </div>
+    <figure class="fig" style="--acc:var(--cyan)">
+      <div class="frame"><img src="img/fig08-bounce.png" alt=""></div>
+      <figcaption><b>FIG. 08</b>The bounce window.</figcaption>
+    </figure>
+  </div>
+  <h2>MIDI <span class="c-cyan">output</span></h2>
+  <p>The eight voices can send their notes to another machine: you choose the channel, and <b>the accent travels as velocity</b>. Every note that goes on is turned off again.</p>
+  <figure class="fig" style="--acc:var(--cyan)">
+    <div class="frame"><img src="img/fig09-jacks.png" alt=""></div>
+    <figcaption><b>FIG. 09</b>The chassis jacks: audio out and MIDI out, idle and live.</figcaption>
+  </figure>
+</section>
+
+<!-- 10 AUTH -->
+<section class="page" data-ch="10" data-title="Authorisation" data-acc="amber" data-sub="Demo, serial, unlock">
+  <div class="opener">
+    <span class="eyebrow">10 — Authorisation</span>
+    <h1 class="display">The sound stops,<br><span class="c-amber">the work doesn’t</span></h1>
+  </div>
+  <p>Without a serial, AudioXL DRUMS runs as a demo: it plays for <b>ten minutes</b> and then the output goes silent. What is counted is minutes of actual work, not the clock. Everything else keeps running — the sequencer advances, parameters respond, the pattern saves.</p>
+  <p>To unlock: <b>PREFERENCES › LICENSE</b>, the first tab. Paste the serial you received with your purchase and press <b>UNLOCK</b>. The limits disappear immediately, with nothing to reopen and nothing lost of what you were doing.</p>
+  <div class="cols2" style="align-items:center">
+    <figure class="fig" style="--acc:var(--amber)">
+      <div class="frame"><img src="img/fig10-license.png" alt=""></div>
+      <figcaption><b>FIG. 10</b>The LICENSE tab in the preferences.</figcaption>
+    </figure>
+    <div class="panel card">
+      <div class="lab">Serial format</div>
+      <div style="font:700 19px/1.2 var(--mono);color:var(--amber);margin:10px 0 12px;letter-spacing:.04em">AXD-XXXXX-XXXXX-XXXXX</div>
+      <p>Type it without worrying about case, dashes or spaces. The letters that get confused when reading off a sheet — an <b>o</b> for a zero, an <b>l</b> for a one — are accepted all the same.</p>
+    </div>
+  </div>
+  <div class="note" style="--acc:var(--amber)">
+    <span class="lab">Note</span>
+    <p><b>The serial is registered on this computer:</b> on another machine it has to be entered again. An AudioXL DRUMS serial will not open AudioXL Master Rack: they are two products with two different keys.</p>
+  </div>
+</section>
+
+<!-- BACK -->
+<section class="page cover back" data-nochrome>
+  <img src="img/logo.png" alt="" style="width:200px;margin-bottom:60px">
+  <h1 class="display">Now hit<br><span class="outline">play</span></h1>
+  <p class="sub">Eight voices. Sixteen steps. Synth or sample, on every track.</p>
+  <div class="deco panel" id="backGrid"></div>
+  <div class="foot"><span>AudioXL · Milano</span><span>AudioXL DRUMS · v1.0.0</span></div>
+</section>
+
+<script src="../audioxl-shared/core.js"></script>
+<script>
+(function(){
+const {$}=AXL;
+const V=[['BD','red','2000100020001000'],['SD','pink','0000200000002000'],['CP','orange','0000100000001001'],['CH','cyan','1010101010101010'],['OH','blue','0010001000100010'],['LT','green','0000000100000100'],['RS','purple','0001000000010000'],['CY','amber','1000000000000000']];
+AXL.stepGrid($('#coverGrid'),V,{labelWidth:44,h:12,gap:4});
+AXL.stepGrid($('#backGrid'),V,{labelWidth:44,h:12,gap:4});
+
+// chain demo 4 x 12
+$('#chainDemo').innerHTML=['A','B','C','D'].map((l,i)=>`<div><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font:800 18px/1 var(--display);color:${i==0?'var(--green)':'var(--ink)'}">SEQ ${l}</span><span class="lab">12 steps</span></div><div style="display:grid;grid-template-columns:repeat(12,1fr);gap:2px">${[...Array(12)].map((_,k)=>`<i style="height:16px;border-radius:2px;background:${k%4==0?'var(--red)':'#141B28'}"></i>`).join('')}</div></div>`).join('');
+
+// voice table
+const rows=[['BD','kick','red',['TUNE','DECAY','CLICK','BEND']],['SD','snare','pink',['TUNE','DECAY','TONE','SNAP']],['CP','clap','orange',['TONE','DECAY','WIDTH','SPREAD']],['CH / OH','hat','cyan',['TUNE','DECAY','HPF','NOISE']],['LT','tom','green',['TUNE','DECAY','SKIN','BEND']],['RS','rim','purple',['TUNE','DECAY','RES','NOISE']],['CY','cymbal','amber',['TUNE','DECAY','HPF','NOISE']]];
+$('#voiceTable').innerHTML=`<div style="display:grid;grid-template-columns:120px repeat(4,1fr);gap:8px;padding:10px 0;border-bottom:1px solid var(--line)"><span class="lab">Voice</span><span class="lab">1</span><span class="lab">2</span><span class="lab">3</span><span class="lab">4</span></div>`+
+ rows.map(([v,n,c,k])=>`<div style="display:grid;grid-template-columns:120px repeat(4,1fr);gap:8px;padding:8px 0;border-bottom:1px solid var(--line);align-items:center"><span><span class="tag" style="color:var(--${c})">${v}</span> <span style="font-size:9.5px;color:var(--muted)">${n}</span></span>${k.map(x=>`<span style="font:700 10.5px/1 var(--mono);color:var(--ink);letter-spacing:.06em">${x}</span>`).join('')}</div>`).join('');
+
+// engines
+$('#engines').innerHTML=[['red','Kick','A sine with a pitch envelope and a click.'],['pink','Snare','Body plus filtered noise.'],['orange','Clap','Three banded reflections.'],['cyan','Hats & cymbals','A six-square-wave bank in 808 ratios.'],['purple','Rim','An impulse through a resonant filter.'],['green','Hardware feel','The closed hat chokes the open one, as on a real machine.']].map(([c,n,d])=>`<div class="panel card" style="border-left:3px solid var(--${c})"><h3 style="color:var(--${c})">${n}</h3><p>${d}</p></div>`).join('');
+
+// genres
+const G=['house','techno','acid','electro','breaks','jungle','garage','hip hop','latin','afro','bass','club','disco','trance','EDM','downtempo','synthwave','hardcore','industrial','funk','rock','pop','R&amp;B','reggae','ambient','experimental','world','juke'];
+$('#genres').innerHTML=G.map((g,i)=>`<span class="pill" style="color:${['var(--amber)','var(--orange)','var(--red)','var(--pink)'][i%4]}">${g}</span>`).join('');
+$('#brands').innerHTML=['Roland','Boss','Alesis','Casio','Korg','Yamaha','Oberheim','E-mu','Linn','Simmons','Akai','Acetone','Elektron','Buchla'].map(b=>`<span class="tag" style="color:var(--cyan)">${b}</span>`).join('');
+
+// hats: opening degree
+AXL.$('#hats').innerHTML=[1,2,3,4,5,6].map(n=>{const w=12+n*14,t=n==1?'CH · closed hat':n==6?'OH · open hat':'';const c=n==1?'var(--cyan)':n==6?'var(--blue)':'#2A3446';
+ return `<div style="display:grid;grid-template-columns:70px 1fr 110px;gap:10px;align-items:center"><span style="font:700 10px/1 var(--mono);color:var(--soft)">HAT 0${n}</span><div style="height:12px;border-radius:3px;background:#0A0E15"><div style="height:100%;width:${w}%;background:${c};border-radius:3px"></div></div><span style="font:700 10px/1 var(--mono);color:${c}">${t}</span></div>`}).join('')+`<p style="font-size:9.5px;color:var(--muted);margin-top:4px">Illustration: the closed hat takes the shortest, the open hat the longest.</p>`;
+// profiles
+$('#profiles').innerHTML=['Clean','Punch','Warm','Lo-Fi','Rave','Dub','Trap','Industrial','Air','Tape Glue','Tunnel','Crushed'].map(p=>`<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:7px;padding:8px 4px;text-align:center;font:800 14px/1 var(--display);text-transform:uppercase;color:var(--purple)">${p}</div>`).join('');
+
+// inserts vs sends flow
+const box=(t,c,sub)=>`<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:8px;padding:9px 10px;text-align:center"><div style="font:800 15px/1 var(--display);text-transform:uppercase;color:var(--${c})">${t}</div>${sub?`<div style="font:500 8.5px/1 var(--mono);color:var(--muted);margin-top:4px;letter-spacing:.1em">${sub}</div>`:''}</div>`;
+const arrow='<div style="color:var(--dim);font:700 14px/1 var(--mono);text-align:center">→</div>';
+$('#rackFlow').innerHTML=`<div class="lab" style="margin-bottom:12px">Signal path of the master rack</div>
+ <div style="display:grid;grid-template-columns:repeat(5,1fr 14px) 1fr;gap:4px;align-items:center">
+ ${box('Mix','ink','8 voices')}${arrow}${box('Transient','purple','insert')}${arrow}${box('Machine','purple','insert')}${arrow}${box('Drive','purple','insert')}${arrow}${box('Filter','purple','insert')}${arrow}${box('Comp','purple','insert')}</div>
+ <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;align-items:center">
+ <div style="font:500 10px/1.4 var(--mono);color:var(--muted)">sends tap the mix and come back <b>after</b> the chain ↘</div>${box('Delay','cyan','send · return')}${box('Reverb','cyan','send · return')}</div>
+ <div style="margin-top:12px">${box('Out','green','inserts + independent returns')}</div>`;
+
+// what travels
+const yes=(t)=>`<div style="display:flex;gap:8px;align-items:center;font:700 10.5px/1.3 var(--mono);color:var(--ink)"><i style="width:9px;height:9px;border-radius:50%;background:var(--green)"></i>${t}</div>`;
+const no=(t)=>`<div style="display:flex;gap:8px;align-items:center;font:700 10.5px/1.3 var(--mono);color:var(--muted)"><i style="width:9px;height:9px;border-radius:50%;border:1.5px solid var(--red)"></i>${t}</div>`;
+$('#travel').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px"><div><div class="lab" style="color:var(--green);margin-bottom:10px">Travels to Master Rack</div><div style="display:grid;gap:7px">${['Transient','Machine','Drive','Filter','Compressor','Delay','Reverb'].map(yes).join('')}<div style="font-size:9.5px;color:var(--muted)">values and menus included</div></div></div>
+ <div><div class="lab" style="color:var(--red);margin-bottom:10px">Stays in DRUMS</div><div style="display:grid;gap:7px">${['Voice REVERB send','Voice DELAY send','Voice DRIVE','Voice CLICK'].map(no).join('')}<div style="font-size:9.5px;color:var(--muted)">one engine per track, per channel</div></div></div></div>`;
+})();
+</script>
+</body></html>

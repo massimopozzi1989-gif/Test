@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL Master Rack</title>
+<link rel="stylesheet" href="../audioxl-shared/axl.css">
+<link rel="stylesheet" href="../audioxl-shared/slides.css">
+<style>
+.stop img{height:40px}
+.pill{display:inline-flex;align-items:center;font:500 12px/1 var(--mono);letter-spacing:.08em;padding:7px 10px;border-radius:7px;border:1px solid var(--line2);background:var(--panel2);text-transform:uppercase;color:var(--soft)}
+.disp{display:inline-flex;align-items:center;font:700 16px/1 var(--mono);letter-spacing:.3em;color:var(--orange);background:#140B06;border:1px solid #3A2414;border-radius:6px;padding:9px 12px;text-shadow:0 0 10px rgba(245,120,40,.6)}
+.chainbox{border:1px solid var(--line2);background:#0A0E15;border-radius:9px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center}
+.chainbox b{font:800 20px/1 var(--display);text-transform:uppercase}
+.chainbox span{font:500 11px/1 var(--mono);color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+</style></head>
+<body data-product="AudioXL Master Rack" data-version="1.0.0" data-logo="img/logo.png">
+
+<!-- 1 HERO -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(55% 70% at 78% 55%,rgba(79,217,138,.10),transparent 70%),radial-gradient(40% 50% at 8% 10%,rgba(245,165,36,.08),transparent 70%),#05070B">
+  <div id="heroBg" style="position:absolute;inset:0;opacity:.14;-webkit-mask-image:linear-gradient(90deg,transparent 0%,transparent 45%,#000 100%)"></div>
+  <img src="img/fig01-window.png" alt="" style="position:absolute;left:820px;top:60px;width:640px;transform:perspective(1900px) rotateY(-22deg) rotateX(7deg) rotateZ(-4deg);filter:drop-shadow(0 50px 70px rgba(0,0,0,.8))">
+  <div style="position:absolute;left:92px;top:60px;width:780px">
+    <img src="img/logo.png" alt="" style="width:250px">
+    <div style="display:flex;gap:12px;margin-top:28px">
+      <span class="chip hot" style="font-size:13px;padding:11px 16px"><span class="dot"></span>VST3 · AU · STANDALONE</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">MASTER BUS</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">COLOUR</span>
+    </div>
+    <h1 class="display" style="font-size:128px;margin-top:22px;line-height:.86">Master<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">Rack</span></h1>
+    <p style="font:400 24px/1.3 var(--mono);color:var(--soft);margin:22px 0 0">The DRUMS rack, on any track.</p>
+    <div class="panel" style="margin-top:28px;display:flex;align-items:center;gap:30px;padding:20px 28px;width:715px;border-radius:18px">
+      <img src="img/btn-rack.png" alt="" style="width:130px">
+      <div><div class="lab" style="letter-spacing:.3em">Input</div><div style="font:700 36px/1 var(--mono);color:var(--ink);white-space:nowrap">−18<small style="font-size:15px;color:var(--muted)"> dBFS</small></div></div>
+      <div><div class="lab" style="letter-spacing:.3em">Ceiling</div><div style="font:700 36px/1 var(--mono);color:var(--ink);white-space:nowrap">−0.3<small style="font-size:15px;color:var(--muted)"> dB</small></div></div>
+      <div id="heroMeter" style="margin-left:auto;display:flex;gap:4px;align-items:flex-end"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 WHAT -->
+<section class="slide" data-chip="Overview" data-status="Rack · <b>ON</b>">
+  <div class="eyebrow">01 — What is it</div>
+  <h1 class="display title">What is <span class="c-green">Master Rack?</span></h1>
+  <p class="lede sub">The master rack of AudioXL DRUMS, as an effect plugin in its own right.</p>
+  <div class="cols" style="grid-template-columns:1.35fr 1fr 1fr;margin-top:34px">
+    <div class="panel card" style="grid-row:span 2">
+      <h4>Same stages, not a copy</h4>
+      <p>The stages are the same ones as in the instrument: what you hear here is what you hear inside DRUMS — now on a track, a bus or the master.</p>
+      <div class="panel" style="padding:14px;margin-top:18px;background:#0A0E15"><img src="img/fig02-displays.png" alt="" style="width:100%;display:block"></div>
+      <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap"><span class="pill">Track</span><span class="pill">Bus</span><span class="pill">Master</span><span class="pill" style="color:var(--green)">VST3 · AU · Standalone</span></div>
+    </div>
+    <div class="panel card"><div class="big c-orange">16</div><h4 style="margin-top:6px">Machine models</h4><p>The classic drum-machine converters.</p></div>
+    <div class="panel card"><div class="big c-red">8</div><h4 style="margin-top:6px">Drive characters</h4><p>Four from DRUMS, four new.</p></div>
+    <div class="panel card"><div class="big c-purple">4</div><h4 style="margin-top:6px">Comp characters</h4><p>VCA, Opto, FET, Vari-Mu.</p></div>
+    <div class="panel card"><div class="big c-green">46</div><h4 style="margin-top:6px">Presets</h4><p>In six categories.</p></div>
+  </div>
+</section>
+
+<!-- 3 CHAIN -->
+<section class="slide" data-chip="Chain" data-status="In → <b>Limiter</b>">
+  <div class="cols" style="grid-template-columns:520px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">02 — The chain</div>
+      <h1 class="display title">The DRUMS rack,<br><span class="c-orange">plus four</span></h1>
+      <p class="lede sub">Read it top-left to bottom-right: the order sound actually flows.</p>
+      <div class="rows" style="--acc:var(--orange)">
+        <div class="r"><span class="k">From DRUMS</span><span class="d">Transient, Machine, Drive, Filter, Comp, Delay &amp; Reverb sends.</span></div>
+        <div class="r"><span class="k">Extra</span><span class="d"><b>Program EQ</b>, <b>Exciter</b>, <b>Maximizer</b>, <b>Clipper</b>.</span></div>
+        <div class="r"><span class="k">Protection</span><span class="d">Autogain in front, a <b>Limiter</b> with a true ceiling, last.</span></div>
+      </div>
+    </div>
+    <div class="panel" style="padding:22px 24px;margin-top:24px" id="chainFlow"></div>
+  </div>
+</section>
+
+<!-- 4 EQ -->
+<section class="slide" data-chip="Program EQ" data-status="60 Hz · <b>12 kHz</b>">
+  <div class="eyebrow">03 — Program EQ</div>
+  <h1 class="display title">Boost and cut <span class="c-amber">the same lows</span></h1>
+  <p class="lede sub">Pultec EQP-1A style. Stepped frequencies, the rest by ear.</p>
+  <div class="panel" style="padding:12px;margin-top:22px"><img src="img/fig03-eq.png" alt="" style="width:100%;display:block"></div>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px">
+    <div class="panel card"><h4>Lows</h4><div style="display:flex;gap:6px;margin:6px 0 12px" id="lows"></div><p><b>BOOST + ATTEN</b> on one frequency: the curves differ, so they don’t cancel — <b>bigger kick, less mud</b>.</p></div>
+    <div class="panel card"><h4>Highs</h4><div style="display:flex;gap:6px;margin:6px 0 12px;flex-wrap:wrap" id="highs"></div><p>A bell with BANDWIDTH: narrow and tall is <b>air</b>, wide and low is <b>presence</b>.</p></div>
+    <div class="panel card"><h4>High atten.</h4><div style="display:flex;gap:6px;margin:6px 0 12px" id="hatt"></div><p>Its own shelf. With the boost: a softer top that keeps the sparkle. RBJ biquads + a blended valve stage.</p></div>
+  </div>
+</section>
+
+<!-- 5 CHARACTER -->
+<section class="slide" data-chip="Character" data-status="Drive · <b>TUBE</b>">
+  <div class="eyebrow">04 — Character</div>
+  <h1 class="display title">Eight drives, <span class="c-red">four compressors</span></h1>
+  <div class="cols" style="grid-template-columns:1.2fr 1fr;gap:22px;margin-top:28px">
+    <div class="panel card">
+      <h4>Drive</h4><p style="margin-bottom:14px">With tilt EQ, parallel mix and envelope-keyed noise.</p>
+      <div id="drives" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div class="panel card">
+        <h4>Comp</h4><p style="margin-bottom:12px">Same engine, four behaviours: <b>8 ms on FET is not 8 ms on VARI-MU</b>.</p>
+        <div id="comps" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+      </div>
+      <div class="panel card">
+        <h4>Exciter</h4><p style="margin-bottom:12px">Regenerates the top above FREQ instead of EQ-ing it.</p>
+        <div style="display:flex;gap:8px"><span class="disp">TUBE</span><span class="disp">TAPE</span><span class="disp">DIODE</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 LOUDNESS -->
+<section class="slide" data-chip="Loudness" data-status="Ceiling · <b>−0.3 dB</b>">
+  <div class="eyebrow">05 — Loudness</div>
+  <h1 class="display title">Density, peaks, <span class="c-pink">ceiling</span></h1>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px">
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Maximizer</div>
+      <div class="big c-cyan" style="margin:10px 0 6px">0–200 %</div>
+      <p>One knob, a <b>fixed 180 Hz split</b>: tape weight on the lows, valve presence on the highs, make-up that grows with AMOUNT. 0 % is an exact bypass.</p>
+      <img src="img/disp-100.png" alt="" style="width:100%;margin-top:16px">
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Clipper</div>
+      <div class="big c-pink" style="margin:10px 0 6px">5 curves</div>
+      <p>No gain to breathe: it shaves the peak sample by sample. <b>Hard · Soft · Cubic · Fold · Diode</b> — colour changes, volume doesn’t.</p>
+      <div id="curves" style="margin-top:12px"></div>
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Limiter</div>
+      <div class="big c-green" style="margin:10px 0 6px">2 ms</div>
+      <p>Fixed lookahead, reported to the host and compensated. DRIVE <b>0–18 dB</b>, RELEASE <b>10–500 ms</b>, and a CEILING that is <b>measured, not estimated</b>.</p>
+      <div style="margin-top:18px" id="ceil"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 AUTOGAIN -->
+<section class="slide" data-chip="Autogain" data-status="+7.4 dB → <b>−18 dBFS</b>">
+  <div class="cols" style="grid-template-columns:560px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">06 — Autogain</div>
+      <h1 class="display title">Every stage<br><span class="c-green">in the right place</span></h1>
+      <p class="lede sub">Thresholds are absolute decibels. Autogain feeds them what they expect.</p>
+      <div class="rows" style="--acc:var(--green)">
+        <div class="r"><span class="k">Target</span><span class="d">Brings the input to <b>−18 dBFS RMS</b>, the level the chain is calibrated for.</span></div>
+        <div class="r"><span class="k">Not a comp</span><span class="d">Moves over seconds, respects the dynamics. Stops below <b>−60 dBFS</b>.</span></div>
+        <div class="r"><span class="k">Two speeds</span><span class="d">Quick to lower, slow to raise: a transport stop isn’t a fade-out.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px">
+      <div class="panel" style="padding:22px" id="agViz"></div>
+      <div class="panel" style="padding:18px"><img src="img/fig05-meter.png" alt="" style="width:100%;display:block"><div class="lab" style="margin-top:10px">Input meter: idle · working · hot · clipping</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 LINK -->
+<section class="slide" data-chip="Sync" data-status="DRUMS · <b>chain taken</b>">
+  <div class="cols" style="grid-template-columns:580px 1fr;gap:50px">
+    <div>
+      <div class="eyebrow">07 — AudioXL suite</div>
+      <h1 class="display title">Take the chain<br><span class="c-orange">from DRUMS</span></h1>
+      <p class="lede sub">No setup: AudioXL plugins find each other, even across processes.</p>
+      <div class="rows" style="--acc:var(--orange)">
+        <div class="r"><span class="k">SYNC DRUMS</span><span class="d">The whole DRUMS rack arrives as it stands — and bypasses over there.</span></div>
+        <div class="r"><span class="k">Clean start</span><span class="d">EQ, exciter, maximizer, clipper switch off. <b>The limiter stays.</b></span></div>
+        <div class="r"><span class="k">Padlock</span><span class="d"><b>Open</b>: follows DRUMS. <b>Closed</b>: your preset is protected.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:24px">
+      <div class="panel" style="padding:18px"><img src="img/fig04-switches.png" alt="" style="width:100%;display:block"></div>
+      <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="panel card"><div class="lab">State 1</div><h4 style="margin-top:8px;color:var(--muted)">Separate</h4><p style="font-size:13px">DRUMS keeps its rack.</p></div>
+        <div class="panel card"><div class="lab">State 2</div><h4 style="margin-top:8px;color:var(--amber)">Waiting</h4><p style="font-size:13px">Engages when DRUMS arrives.</p></div>
+        <div class="panel card" style="border-color:rgba(245,165,36,.5)"><div class="lab">State 3</div><h4 style="margin-top:8px;color:var(--orange)">Chain taken</h4><p style="font-size:13px">This rack colours now.</p></div>
+      </div>
+      <div class="panel" style="padding:18px;display:flex;justify-content:center;gap:24px;align-items:center"><img src="img/btn-sync.png" alt="" style="width:280px"><p style="margin:0;font-size:14px;max-width:240px">Same switch as <b>SYNC MASTER RACK</b> in DRUMS — flip it from either side.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 PRESETS -->
+<section class="slide" data-chip="Presets" data-status="46 · <b>6 categories</b>">
+  <div class="eyebrow">08 — Presets</div>
+  <h1 class="display title">46 presets, <span class="c-purple">six categories</span></h1>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px" id="cats"></div>
+  <div class="cols" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+    <div class="panel card"><h4>A snapshot of the whole chain</h4><p>Clipper and maximizer included. Sync, padlock and autogain stay out: they are session choices, not sound.</p></div>
+    <div class="panel card"><h4>Never stops the music</h4><p>Demo: <b>0.4 s of noise every 30 s</b>, faded in and out — the audio is never cut. One serial, <b>AXR-…</b>, removes it at once.</p></div>
+  </div>
+</section>
+
+<!-- 10 CLOSE -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(50% 70% at 50% 60%,rgba(79,217,138,.10),transparent 70%),#05070B">
+  <div id="closeBg" style="position:absolute;inset:0;opacity:.3;-webkit-mask-image:radial-gradient(60% 60% at 50% 50%,transparent 20%,#000 100%)"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img src="img/logo.png" alt="" style="width:230px;margin-bottom:30px">
+    <h1 class="display" style="font-size:150px">Colour<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">anything</span></h1>
+    <img src="img/btn-rack.png" alt="" style="width:240px;margin-top:30px">
+  </div>
+</section>
+
+<script src="../audioxl-shared/core.js"></script>
+<script>
+(function(){
+const {$}=AXL;
+function bg(el){const cs=['cyan','amber','red','purple','pink','green','orange','cyan','amber','red'];let h='';
+  cs.forEach((c,r)=>{const lvl=12+((r*7)%9);h+=`<div style="display:grid;grid-template-columns:repeat(24,1fr);gap:8px;height:10%;padding:6px 0">`+[...Array(24)].map((_,k)=>`<i style="border-radius:6px;background:${k<lvl?`var(--${c})`:'#10161F'}"></i>`).join('')+'</div>';});
+  el.innerHTML=`<div style="position:absolute;inset:-20px;padding:0 20px;display:flex;flex-direction:column">${h}</div>`;}
+bg($('#heroBg')); bg($('#closeBg'));
+$('#heroMeter').innerHTML=[18,24,30,34,38,36,40,42,38,34,30,26].map((h,i)=>`<i style="width:10px;height:${h}px;border-radius:3px;background:${h>38?'var(--amber)':'var(--green)'}"></i>`).join('');
+
+// chain
+const L=[['In','ink',''],['Autogain','green','−18 dBFS'],['Input','ink','trim'],['EQ','amber','extra'],['Transient','orange','drums'],['Machine','orange','drums'],['Drive','orange','drums'],['Filter','orange','drums']];
+const R=[['Comp','orange','drums'],['Delay & Reverb','orange','sends'],['Exciter','amber','extra'],['Dry / Wet','ink',''],['Out','ink',''],['Maximizer','cyan','extra'],['Clipper','pink','extra'],['Limiter','green','ceiling']];
+const col=(a,off)=>a.map(([n,c,t],i)=>`<div class="chainbox"><b style="color:var(--${c})"><span style="color:var(--dim);font:700 11px/1 var(--mono);margin-right:10px">${AXL.pad(i+1+off)}</span>${n}</b><span>${t}</span></div>`).join('');
+$('#chainFlow').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:18px"><div style="display:flex;flex-direction:column;gap:7px">${col(L,0)}</div><div style="display:flex;flex-direction:column;gap:7px">${col(R,8)}</div></div>`;
+
+// EQ steps
+const chips=(el,a,on)=>$(el).innerHTML=a.map(x=>`<span class="disp" style="font-size:13px;padding:7px 9px;${x==on?'':'opacity:.45'}">${x}</span>`).join('');
+chips('#lows',['20','30','60','100'],'60'); chips('#highs',['3k','4k','5k','8k','10k','12k','16k'],'12k'); chips('#hatt',['5k','10k','20k'],'10k');
+
+// drives & comps
+$('#drives').innerHTML=[['TAPE','the most neutral'],['TUBE','even harmonics, warm'],['CLIP','hard, modern'],['FOLD','turns back on itself'],['GERM','negative half first, thick'],['DIODE','the gentlest'],['RECT','octave up, dirty'],['CRUSH','a broken converter']].map(([n,d],i)=>`<div style="display:flex;align-items:center;gap:12px"><span class="disp" style="width:98px;justify-content:center;${i>3?'color:var(--amber)':''}">${n}</span><span style="font:500 13px/1.3 var(--mono);color:var(--soft)">${d}</span></div>`).join('')+
+ `<div style="grid-column:span 2;display:flex;gap:18px;margin-top:6px" class="lab"><span style="color:var(--orange)">■ from DRUMS</span><span style="color:var(--amber)">■ new</span></div>`;
+$('#comps').innerHTML=[['VCA','precise'],['OPTO','holds together'],['FET','fast, gritty'],['VARI-MU','ratio grows with level']].map(([n,d])=>`<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:8px;padding:10px 12px"><span class="disp" style="font-size:13px">${n}</span><div style="font:500 12px/1.3 var(--mono);color:var(--soft);margin-top:8px">${d}</div></div>`).join('');
+
+// clipper curves
+(function(){const W=300,H=120,sx=x=>W/2+x*W/4.4,sy=y=>H/2-y*H/2.6;
+ const f={hard:x=>Math.max(-1,Math.min(1,x)),soft:x=>Math.tanh(x),cubic:x=>Math.abs(x)>=1.5?Math.sign(x):x-(4/27)*x*x*x,fold:x=>{let y=x;for(let i=0;i<4;i++){if(y>1)y=2-y;if(y<-1)y=-2-y;}return y},diode:x=>x>=0?x*0.95:-(1-Math.exp(x*1.3))/1.3};
+ const col={hard:'var(--pink)',soft:'var(--cyan)',cubic:'var(--green)',fold:'var(--amber)',diode:'var(--purple)'};
+ let p='';for(const k in f){let d='';for(let i=0;i<=160;i++){const x=-2.1+i*4.2/160;const y=Math.max(-1.3,Math.min(1.3,f[k](x)));d+=(i?'L':'M')+sx(x).toFixed(1)+' '+sy(y).toFixed(1);}p+=`<path d="${d}" fill="none" stroke="${col[k]}" stroke-width="2"/>`;}
+ $('#curves').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%"><line x1="0" y1="${H/2}" x2="${W}" y2="${H/2}" stroke="#283243"/><line x1="${W/2}" y1="0" x2="${W/2}" y2="${H}" stroke="#283243"/>${p}</svg>`;})();
+$('#ceil').innerHTML=`<div class="lab" style="display:flex;justify-content:space-between"><span>Ceiling</span><span style="color:var(--ink)">−0.3 dB in = −0.3 dB out</span></div><div style="position:relative;height:60px;margin-top:10px;display:flex;gap:3px;align-items:flex-end">${[30,44,52,40,58,60,48,60,36,54,60,42,60,50,38].map(h=>`<i style="flex:1;height:${h}px;background:${h>=58?'var(--green)':'#2B5B45'};border-radius:2px 2px 0 0"></i>`).join('')}<div style="position:absolute;left:0;right:0;top:0;border-top:2px dashed var(--green)"></div></div>`;
+
+// autogain
+$('#agViz').innerHTML=`<div class="lab" style="margin-bottom:14px">Readout under the AUTOGAIN button · examples</div>`+[['+7.4 dB → −18 dBFS','raising · quiet material','var(--cyan)',-25.4],['−5.1 dB → −18 dBFS','lowering · loud material','var(--red)',-12.9]].map(([t,d,c,inp])=>`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:700 22px/1 var(--mono);color:${c}">${t}</span><span class="lab">${d}</span></div>
+ <div style="position:relative;height:16px;border-radius:5px;background:#1A2230;margin-top:10px"><i style="position:absolute;left:${(60+inp)/60*100}%;top:-4px;width:4px;height:24px;background:${c}"></i><i style="position:absolute;left:70%;top:-4px;width:4px;height:24px;background:var(--green)"></i></div></div>`).join('')+
+ `<div style="display:flex;justify-content:space-between;font:500 11px/1 var(--mono);color:var(--dim)"><span>−60 dBFS · stops below</span><span style="color:var(--green)">−18 target</span><span>0</span></div>`;
+
+// presets
+$('#cats').innerHTML=[['Drum bus','12','orange','The DRUMS effect profiles, same names.'],['Bus','4','cyan','Bus Glue · Parallel · Loud · Bypass'],['Analog','8','amber','Console · Tape 15/7.5 IPS · Transformer · Valve · Class A · Summing · Vintage Desk'],['Electronic','8','red','Berlin &amp; Detroit Techno · Dub Techno · Warm House · Acid · D&amp;B · Melodic Trance · Hardgroove'],['Synths','6','purple','Solid Bass · Wide Pad · Lead Up Front · Arp · Stab · Texture'],['Mastering','8','green','A light hand and a −1 dB ceiling, what platforms expect.']].map(([n,k,c,d])=>`<div class="panel" style="padding:16px 18px;border-left:4px solid var(--${c})"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 24px/1 var(--display);text-transform:uppercase;color:var(--${c})">${n}</span><span style="font:800 34px/1 var(--display);color:var(--ink)">${k}</span></div><div style="font:500 12.5px/1.45 var(--mono);color:var(--soft);margin-top:8px">${d}</div></div>`).join('');
+})();
+</script>
+</body></html>

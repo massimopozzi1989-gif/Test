@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>AudioXL SEQ</title>
+<link rel="stylesheet" href="axl.css">
+<style>
+@page{size:1440px 810px;margin:0}
+body{background:#000}
+.slide{width:1440px;height:810px;position:relative;overflow:hidden;break-after:page;padding:124px 92px 60px;
+  background:radial-gradient(60% 70% at 100% 0%,rgba(60,200,242,.06),transparent 70%),radial-gradient(50% 60% at 0% 100%,rgba(255,90,78,.05),transparent 70%),var(--bg);
+  color:var(--soft);font-size:16px;line-height:1.55}
+.stop{position:absolute;left:92px;right:92px;top:36px;display:flex;align-items:center;gap:18px}
+.stop img{height:42px}
+.stop .chip{font-size:13px;padding:12px 18px;letter-spacing:.2em}
+.stop .chip svg{width:18px;height:18px}
+.stop .status{margin-left:auto;font:500 14px/1 var(--mono);letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.stop .status b{color:var(--ink);font-weight:700}
+.stop .ico{width:46px;height:46px;border:1px solid var(--line2);background:var(--panel2);border-radius:10px;display:grid;place-items:center;color:var(--soft)}
+.stop .ico svg{width:20px;height:20px}
+.pno{position:absolute;right:92px;bottom:34px;font:500 13px/1 var(--mono);letter-spacing:.2em;color:var(--muted)}
+.pno i{font-style:normal;color:var(--dim);margin:0 8px}
+.eyebrow{font-size:14px;letter-spacing:.34em}
+.title{font-size:76px;margin-top:14px}
+.sub{font-size:20px;margin-top:14px}
+.rows{border-top:1px solid var(--line);margin-top:30px}
+.rows .r{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:14px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.rows .k{font:700 13px/1.3 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc,var(--orange))}
+.rows .d{font-size:16px;color:var(--soft);line-height:1.5}
+.card{padding:22px 24px}
+.card h4{font:800 26px/1 var(--display);text-transform:uppercase;color:var(--ink);margin:0 0 8px;letter-spacing:.01em}
+.card p{margin:0;font-size:14.5px;line-height:1.5}
+.big{font:800 64px/1 var(--display);color:var(--ink)}
+.cols{display:grid;gap:18px}
+.knob{width:74px;height:74px}
+.btn{display:grid;place-items:center;height:48px;border-radius:9px;border:1px solid var(--line2);background:var(--panel2);font:700 13px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+.btn.on{border-color:rgba(255,90,78,.6);background:rgba(255,90,78,.12);color:var(--red)}
+.btn.cy{border-color:rgba(60,200,242,.55);background:rgba(60,200,242,.12);color:var(--cyan)}
+.bar{height:12px;border-radius:6px;background:#1A2230;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:6px}
+.lab{font-size:12px}
+</style></head>
+<body>
+
+<!-- 1 HERO -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(55% 70% at 78% 55%,rgba(60,200,242,.14),transparent 70%),radial-gradient(40% 50% at 8% 10%,rgba(255,90,78,.08),transparent 70%),#05070B">
+  <div id="heroGrid" style="position:absolute;inset:0;opacity:.18"></div>
+  <img src="img/window.png" alt="" style="position:absolute;left:650px;top:80px;width:1000px;border-radius:12px;transform:perspective(1900px) rotateY(-24deg) rotateX(9deg) rotateZ(-5deg);filter:drop-shadow(0 50px 70px rgba(0,0,0,.8))">
+  <div style="position:absolute;left:92px;top:64px;width:760px">
+    <img src="img/logo.png" alt="" style="width:230px">
+    <div style="display:flex;gap:12px;margin-top:34px">
+      <span class="chip hot" style="font-size:13px;padding:11px 16px"><span class="dot"></span>VST3 · AU · LIVE</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">MIDI SEQUENCER</span>
+      <span class="chip" style="font-size:13px;padding:11px 16px">GENERATIVE</span>
+    </div>
+    <h1 class="display" style="font-size:140px;margin-top:26px;line-height:.86">AudioXL<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">SEQ</span></h1>
+    <p style="font:400 25px/1.3 var(--mono);color:var(--soft);margin:24px 0 0;letter-spacing:.02em">The Generative MIDI Sequencer</p>
+    <div class="panel" style="margin-top:34px;display:flex;align-items:center;gap:34px;padding:20px 28px;width:715px;border-radius:18px">
+      <div style="width:66px;height:66px;border-radius:50%;border:1px solid var(--line2);display:grid;place-items:center;background:#0A0E15"><svg width="22" height="24" viewBox="0 0 18 20"><path d="M2 1.5v17L17 10z" fill="#E9EDF3"/></svg></div>
+      <div><div class="lab" style="letter-spacing:.3em">Lanes</div><div style="font:700 42px/1 var(--mono);color:var(--ink)">17</div></div>
+      <div><div class="lab" style="letter-spacing:.3em;white-space:nowrap">Pages × Scenes</div><div style="font:700 42px/1 var(--mono);color:var(--ink);white-space:nowrap">16<small style="font-size:18px;color:var(--muted)"> × </small>16</div></div>
+      <div id="heroLeds" style="margin-left:auto;display:flex;gap:6px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 WHAT IS IT -->
+<section class="slide" data-chip="Overview" data-status="Clock · <b>1/16</b>">
+  <div class="eyebrow">01 — What is it</div>
+  <h1 class="display title">What is <span class="c-cyan">AudioXL SEQ?</span></h1>
+  <p class="lede sub">A generative MIDI sequencer for your DAW. It makes no sound — it drives your instruments.</p>
+  <div class="cols" style="grid-template-columns:1.35fr 1fr 1fr;margin-top:34px">
+    <div class="panel card" style="grid-row:span 2">
+      <div class="big">17</div><h4 style="margin-top:6px">Independent lanes</h4>
+      <p>Gate, pitch, length, velocity, chord… every aspect of a note lives on its own row, with its own length and direction.</p>
+      <div id="laneTags" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:18px"></div>
+    </div>
+    <div class="panel card"><div class="big c-cyan">16</div><h4 style="margin-top:6px">MIDI pages</h4><p>One per channel: own patterns, harmony and clock. All play together.</p></div>
+    <div class="panel card"><div class="big c-orange">16</div><h4 style="margin-top:6px">Scenes / page</h4><p>Patterns built as the scenes of a performance.</p></div>
+    <div class="panel card"><div class="big c-red">408</div><h4 style="margin-top:6px">Factory presets</h4><p>25 genres, four-part arrangements.</p></div>
+    <div class="panel card"><div class="big c-green">12</div><h4 style="margin-top:6px">Scales</h4><p>Pitches are degrees: always in key.</p></div>
+  </div>
+</section>
+
+<!-- 3 CONCEPT -->
+<section class="slide" data-chip="Concept" data-status="16 × 7 × 5 · <b>560</b>">
+  <div class="cols" style="grid-template-columns:640px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">02 — The concept</div>
+      <h1 class="display title">Not a piano roll.<br><span class="c-orange">Seventeen lanes.</span></h1>
+      <p class="lede sub">Patterns that repeat without ever repeating the same way.</p>
+      <div class="rows" style="--acc:var(--orange)">
+        <div class="r"><span class="k">Position rules</span><span class="d">Lanes read the <b>host transport position</b>. Stop, seek, loop, tempo: always correct.</span></div>
+        <div class="r"><span class="k">Pitches = degrees</span><span class="d">“The third degree”, not “four semitones”. Change key, it <b>re-harmonises itself</b>.</span></div>
+        <div class="r"><span class="k">Polymeter</span><span class="d">Each lane has its own <b>length 1-16</b> and <b>6 directions</b>. Long patterns, never written out.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px;padding-top:26px">
+      <div class="panel" style="padding:26px 28px" id="poly"></div>
+      <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:12px" id="dirs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 THE GRID -->
+<section class="slide" data-chip="Lanes" data-status="Page <b>1</b> · Bass">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div>
+      <div class="eyebrow">03 — The grid</div>
+      <h1 class="display title">Every aspect, <span class="c-red">on its own row</span></h1>
+    </div>
+  </div>
+  <div class="cols" style="grid-template-columns:780px 1fr;gap:34px;margin-top:24px;align-items:start">
+    <div class="panel" style="padding:12px;border-radius:16px"><img src="img/window.png" alt="" style="width:100%;display:block"></div>
+    <div style="display:flex;flex-direction:column;gap:12px" id="groups"></div>
+  </div>
+</section>
+
+<!-- 5 HARMONY -->
+<section class="slide" data-chip="Harmony" data-status="C · <b>Major</b>">
+  <div class="cols" style="grid-template-columns:600px 1fr;gap:56px">
+    <div>
+      <div class="eyebrow">04 — Harmony engine</div>
+      <h1 class="display title">Always<br><span class="c-purple">in key</span></h1>
+      <p class="lede sub">Scale degrees in, MIDI notes out.</p>
+      <div class="rows" style="--acc:var(--purple)">
+        <div class="r"><span class="k">Scales</span><span class="d"><b>12</b> — from Major and the modes to Pentatonic and Chromatic.</span></div>
+        <div class="r"><span class="k">Chords</span><span class="d"><b>10 types</b> on top of every note, built in degrees.</span></div>
+        <div class="r"><span class="k">Voicing</span><span class="d">Closed · Open · Wide, inversions −2 … +3.</span></div>
+        <div class="r"><span class="k">Strum</span><span class="d"><b>±60 ms</b>, up or down, never overruns the next chord.</span></div>
+        <div class="r"><span class="k">Transpose</span><span class="d"><b>Before Scale</b> stays in key; <b>After Scale</b> goes chromatic, on purpose.</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px;padding-top:26px">
+      <div class="panel" style="padding:22px 24px">
+        <div class="lab" style="margin-bottom:14px">From step to note</div>
+        <div id="chain" style="display:flex;flex-direction:column;gap:7px"></div>
+      </div>
+      <div class="panel" style="padding:20px 24px">
+        <div class="lab" style="margin-bottom:12px">Chord types</div>
+        <div id="chords" style="display:grid;grid-template-columns:repeat(10,1fr);gap:7px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 GENERATION -->
+<section class="slide" data-chip="Generate" data-status="Seed <b>12345</b>">
+  <div class="eyebrow">05 — Generation</div>
+  <h1 class="display title">Dice, seeds <span class="c-green">&amp; locks</span></h1>
+  <div class="cols" style="grid-template-columns:1fr 1fr;gap:18px;margin-top:30px">
+    <div class="panel card">
+      <div style="display:flex;justify-content:space-between;align-items:center"><h4>RND ALL</h4><span class="btn on" style="width:150px;height:40px;display:flex;gap:8px"><span class="dice"></span>RND ALL</span></div>
+      <p>On channels 1-4 it doesn’t roll dice: it <b>writes a part by role</b> — bass, lead, pad, chords — with the right gate, register and chord. From channel 5 up: pure randomness.</p>
+      <div id="roles" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px"></div>
+    </div>
+    <div class="panel card">
+      <h4>Lock what matters</h4>
+      <p><b>Cmd/Ctrl + click</b> pins a step: randomise, reset and writing leave it alone. Pin the downbeat, re-roll the rest.</p>
+      <div id="locks" style="margin-top:16px"></div>
+    </div>
+    <div class="panel card">
+      <h4>Fence <span class="c-cyan">&amp; gravity</span></h4>
+      <p><b>RND MIN/MAX</b> set what’s possible. <b>RND OFFSET</b> sets what’s likely: a filter high 71 % of the time — that still drops.</p>
+      <div id="grav" style="display:flex;gap:4px;align-items:flex-end;height:64px;margin-top:16px"></div>
+    </div>
+    <div class="panel card" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start">
+      <div><div class="big c-green" style="font-size:52px">↔</div><h4 style="font-size:20px">Row dice</h4><p style="font-size:13px">One lane, all its steps.</p></div>
+      <div><div class="big c-amber" style="font-size:52px">↕</div><h4 style="font-size:20px">Vertical dice</h4><p style="font-size:13px">One step, every lane.</p></div>
+      <div><div class="big c-cyan" style="font-size:52px">32</div><h4 style="font-size:20px">Undo</h4><p style="font-size:13px">Same seed, same sequence.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 PRESETS -->
+<section class="slide" data-chip="Presets" data-status="4 parts · <b>16 scenes</b>">
+  <div class="cols" style="grid-template-columns:560px 1fr;gap:60px">
+    <div>
+      <div class="eyebrow">06 — Presets</div>
+      <h1 class="display title">408 presets,<br><span class="c-red">25 genres</span></h1>
+      <p class="lede sub">From house to chiptune. Load one, get a band.</p>
+      <div class="cols" style="grid-template-columns:1fr 1fr;gap:14px;margin-top:34px">
+        <div class="panel card"><div class="big" style="font-size:54px">13<span class="c-muted" style="font-size:30px"> × </span>24</div><p>original genres</p></div>
+        <div class="panel card"><div class="big" style="font-size:54px">12<span class="c-muted" style="font-size:30px"> × </span>8</div><p>genres added later</p></div>
+      </div>
+      <p style="margin-top:18px;font-size:15px">Plus a <b>USER</b> folder for yours — save and load as <b>.json</b>.</p>
+      <div class="panel" style="padding:14px;margin-top:22px"><img src="img/fig06-header2.png" alt="" style="width:100%;display:block"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-top:26px">
+      <div class="panel" style="padding:18px 20px;display:flex;align-items:center;gap:12px">
+        <span class="lab" style="width:74px">Preset</span>
+        <span class="btn" style="width:48px">‹</span>
+        <span class="btn" style="flex:1;justify-content:start;padding:0 18px;display:flex;justify-content:space-between;color:var(--ink)">Choose a factory preset…<span class="c-muted">⌄</span></span>
+        <span class="btn" style="width:48px">›</span>
+      </div>
+      <div id="parts" style="display:flex;flex-direction:column;gap:10px"></div>
+      <div class="panel" style="padding:18px 20px">
+        <div class="lab" style="margin-bottom:12px">Each part · 16 scenes in four levels</div>
+        <div id="levels" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 PERFORMANCE -->
+<section class="slide" data-chip="Scenes" data-status="Scene <b>5</b> → 6">
+  <div class="eyebrow">07 — Performance</div>
+  <h1 class="display title">Sixteen scenes, <span class="c-orange">one performance</span></h1>
+  <div class="panel" style="padding:20px 22px;margin-top:30px">
+    <div style="display:flex;align-items:center;gap:8px" id="pads"></div>
+  </div>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px">
+    <div class="panel card">
+      <h4>Change mode</h4>
+      <div style="display:grid;gap:8px;margin:12px 0">
+        <span class="btn on" style="justify-content:start;display:flex;padding:0 16px">KEEP PHASE</span>
+        <span class="btn" style="justify-content:start;display:flex;padding:0 16px">RESTART</span>
+        <span class="btn" style="justify-content:start;display:flex;padding:0 16px">NEXT BAR</span>
+      </div>
+      <p>Swap scenes without the groove stumbling.</p>
+    </div>
+    <div class="panel card">
+      <h4>Chain</h4>
+      <p>Scenes play in sequence on their own: <b>1 … 16 patterns</b>, <b>1 … 8 bars</b> each. Driven by the host’s bar — loops never throw it out of sync.</p>
+      <div id="chainViz" style="display:flex;gap:6px;margin-top:16px"></div>
+    </div>
+    <div class="panel card">
+      <h4>Play it from the keys</h4>
+      <p>16 notes from <b>C-2</b> recall the scenes on all 16 pages at once — and never reach the instrument.</p>
+      <div id="keys" style="display:grid;grid-template-columns:repeat(16,1fr);gap:3px;margin-top:16px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 WORKFLOW -->
+<section class="slide" data-chip="Export" data-status="Drag <b>→</b> DAW">
+  <div class="eyebrow">08 — Workflow</div>
+  <h1 class="display title">From pattern <span class="c-cyan">to clip</span></h1>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px">
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Drag &amp; drop</div>
+      <div class="big c-cyan" style="margin:10px 0 6px">MIDI</div>
+      <p>Drag onto a DAW track: notes plus the <b>three CC lanes</b> as a clip.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px"><span class="btn cy">DRAG MIDI</span><span class="btn cy">MIDI + PARAMS</span></div>
+      <p style="margin-top:14px;font-size:13.5px">+ PARAMS adds a CC automation curve for every active lane. Choose which in EXPORT.</p>
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Hands on</div>
+      <div class="big c-orange" style="margin:10px 0 6px">11 + 16</div>
+      <p><b>MIDI MAP</b>: MIDI Learn for the 11 header parameters, any controller, any channel.</p>
+      <p style="margin-top:10px"><b>STEP CTRL</b>: 16 hardware buttons — built around the Arturia BeatStep Pro — toggle the steps of whichever lane is selected.</p>
+    </div>
+    <div class="panel card">
+      <div class="lab" style="letter-spacing:.3em">Suite link</div>
+      <div class="big c-green" style="margin:10px 0 6px">10/s</div>
+      <p><b>Swing travels on the AudioXL bus.</b> AudioXL DRUMS in the same session can lock on and follow SEQ’s swing — no setup on this side.</p>
+      <div style="margin-top:18px"><div class="lab" style="display:flex;justify-content:space-between"><span>Swing</span><span class="c-ink" style="color:var(--ink)">66.6 %</span></div><div class="bar" style="margin-top:8px"><i style="width:66%;background:var(--green)"></i></div>
+      <div style="display:flex;justify-content:space-between;font:500 11px/1 var(--mono);color:var(--dim);margin-top:6px"><span>50 straight</span><span>75 max</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 PLATFORM -->
+<section class="slide" data-chip="Platform" data-status="VST3 · AU · <b>Live</b>">
+  <div class="eyebrow">09 — Platform</div>
+  <h1 class="display title">Built for <span class="c-amber">your DAW</span></h1>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px">
+    <div class="panel card"><div class="lab" style="letter-spacing:.3em">VST3 Live</div><h4 style="margin-top:12px;font-size:34px">Ableton Live</h4><p>A dedicated variant with silent audio and MIDI out, plus the “AudioXL SEQ Virtual” port for the 1-16 channel selector.</p></div>
+    <div class="panel card"><div class="lab" style="letter-spacing:.3em">AU</div><h4 style="margin-top:12px;font-size:34px">Logic Pro</h4><p>A MIDI FX before the instrument, in the same chain. Nothing to compensate.</p></div>
+    <div class="panel card"><div class="lab" style="letter-spacing:.3em">VST3</div><h4 style="margin-top:12px;font-size:34px">Bitwig · Reaper · Cubase · Studio One</h4><p>A MIDI effect before the instrument.</p></div>
+  </div>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px">
+    <div class="panel card"><h4>Sample-accurate</h4><p>Every event at the exact sample, at any buffer size. Optional look-ahead covers Live’s one-buffer MIDI routing delay.</p></div>
+    <div class="panel card"><h4>Resizable</h4><p><b>1400×742 → 3840×2400</b>, remembered with the session.</p></div>
+    <div class="panel card"><h4>Licence</h4><p>One serial, <b>two computers</b>. Full 10-minute demo, nothing you write is ever lost.</p></div>
+  </div>
+</section>
+
+<!-- 11 CLOSE -->
+<section class="slide" data-nochrome style="padding:0;background:radial-gradient(50% 70% at 50% 60%,rgba(255,90,78,.10),transparent 70%),#05070B">
+  <div id="closeGrid" style="position:absolute;inset:0;opacity:.35"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img src="img/logo.png" alt="" style="width:200px;margin-bottom:34px">
+    <h1 class="display" style="font-size:150px">Never the<br><span class="outline" style="-webkit-text-stroke:3px var(--ink)">same twice</span></h1>
+    <span class="btn on" style="margin-top:38px;width:260px;height:64px;font-size:18px;display:flex;gap:12px"><span class="dice" style="--sz:22px"></span>RND ALL</span>
+  </div>
+</section>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const FOLDER='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+const RADIO='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M8 8a5.5 5.5 0 0 0 0 8M16 8a5.5 5.5 0 0 1 0 8M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"/></svg>';
+const GEAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>';
+const S=$$('.slide'), N=S.length, pad=n=>String(n).padStart(2,'0');
+S.forEach((s,i)=>{ if(s.hasAttribute('data-nochrome')) return;
+  s.insertAdjacentHTML('afterbegin',`<div class="stop"><img src="img/logo.png" alt=""><span class="chip">${FOLDER}${s.dataset.chip}</span><span class="status">${s.dataset.status}</span><span class="ico">${RADIO}</span><span class="ico">${GEAR}</span></div>`);
+  s.insertAdjacentHTML('beforeend',`<div class="pno">${pad(i+1)}<i>/</i>${pad(N)}</div>`);
+});
+const LANES=[['GATE','red'],['HOLD','red'],['TIE','red'],['RATCHET','red'],['LENGTH','red'],['CHANCE','purple'],['PITCH A','cyan'],['PITCH B','cyan'],['PROB A/B','purple'],['CHORD','purple'],['INVERSION','purple'],['OCTAVE','cyan'],['TRANSPOSE','cyan'],['VELOCITY','green'],['CC 1','amber'],['CC 2','amber'],['CC 3','amber']];
+
+// background grids
+function bgGrid(el,rows,cols){ if(!el) return; let h='';const pats=['1000100010001010','0110010100100110','1000000010000000','1111111111111111','0010010001001001','0100101001001010','1001000100100100','0001000100010001'];
+  const cs=['red','cyan','purple','green','amber','pink','orange','blue'];
+  for(let r=0;r<rows;r++){const p=pats[r%8];h+=`<div style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:8px;height:${100/rows}%;padding:6px 0">`+[...Array(cols)].map((_,c)=>`<i style="border-radius:6px;background:${p[c%16]=='1'?`var(--${cs[r%8]})`:'#10161F'}"></i>`).join('')+'</div>';}
+  el.innerHTML=`<div style="position:absolute;inset:-20px;padding:0 20px;display:flex;flex-direction:column">${h}</div>`;}
+bgGrid($('#heroGrid'),10,24); bgGrid($('#closeGrid'),10,24);
+$('#closeGrid').style.maskImage='radial-gradient(60% 60% at 50% 50%,transparent 20%,#000 100%)';
+$('#closeGrid').style.webkitMaskImage='radial-gradient(60% 60% at 50% 50%,transparent 20%,#000 100%)';
+$('#heroGrid').style.webkitMaskImage='linear-gradient(90deg,transparent 0%,transparent 45%,#000 100%)';
+
+// hero leds
+$('#heroLeds').innerHTML=[1,0,0,0,2,0,0,1,0,0,1,0,2,0,0,0].map(v=>`<i style="width:14px;height:38px;border-radius:4px;background:${v==1?'var(--red)':v==2?'var(--ink)':'#1B2331'}"></i>`).join('');
+
+// lane tags
+$('#laneTags').innerHTML=LANES.map(([n,c])=>`<span class="tag" style="color:var(--${c})">${n}</span>`).join('');
+
+// polymeter
+(function(){const L=[['GATE',16,'red'],['PITCH A',7,'cyan'],['CHORD',5,'purple']];
+ let h=`<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px"><span class="lab">Polymeter · 32 steps</span><span style="font:800 30px/1 var(--display);color:var(--ink)">16 × 7 × 5 = <span class="c-orange">560 steps</span></span></div>`;
+ L.forEach(([n,len,c])=>{h+=`<div style="display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center;margin-bottom:8px"><span class="tag" style="color:var(--${c})">${n} · ${len}</span><div style="display:grid;grid-template-columns:repeat(32,1fr);gap:3px">`+[...Array(32)].map((_,s)=>{const i=s%len;return `<i style="height:28px;border-radius:3px;background:${i==0?`var(--${c})`:'#141B28'};font:700 9px/28px var(--mono);text-align:center;color:${i==0?'#07090E':'var(--dim)'};font-style:normal">${i+1}</i>`}).join('')+'</div></div>';});
+ h+=`<p style="margin:14px 0 0;font-size:14px">The cycle only closes after <b>560 steps</b> — every row stays simple and readable.</p>`;
+ $('#poly').innerHTML=h;})();
+$('#dirs').innerHTML=[['Fwd','→'],['Bwd','←'],['Pend','↔'],['BiDir','⇄'],['Rnd','<span class="dice"></span>'],['RndNR','<span class="dice"></span>']].map(([n,s])=>`<div class="panel" style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center"><span style="font:800 22px/1 var(--display);text-transform:uppercase;color:var(--ink)">${n}</span><span style="font-size:22px;color:var(--orange)">${s}</span></div>`).join('');
+
+// groups
+$('#groups').innerHTML=[['red','Rhythm','GATE · HOLD · TIE · RATCHET · LENGTH'],['purple','Probability & harmony','CHANCE · PROB A/B · CHORD · INVERSION'],['cyan','Pitch','PITCH A · PITCH B · OCTAVE · TRANSPOSE'],['green','Dynamics','VELOCITY'],['amber','Modulation','CC 1 · CC 2 · CC 3']].map(([c,n,l])=>`<div class="panel" style="padding:15px 18px;border-left:4px solid var(--${c})"><div style="font:800 23px/1 var(--display);text-transform:uppercase;color:var(--${c})">${n}</div><div style="font:500 11.5px/1.5 var(--mono);color:var(--soft);margin-top:6px;letter-spacing:.04em">${l}</div></div>`).join('')+
+ `<p style="font-size:14px;margin:6px 2px 0">Each row: <b>length 1-16</b>, <b>6 directions</b>, own dice, rotate, reset and <b>Master Shift</b>.</p>`;
+
+// chain
+$('#chain').innerHTML=[['red','GATE → TIE → CHANCE','plays?'],['cyan','PITCH A / B  (PROB A/B)','degree'],['purple','SCALE + CHORD','voices'],['purple','INVERSION → VOICING','semitones'],['pink','TRANSPOSE  (After Scale)','chromatic'],['green','OCTAVE ×12 + BASE + ROOT','MIDI note']].map(([c,t,w],i)=>`<div style="display:grid;grid-template-columns:30px 1fr 120px;gap:12px;align-items:center;padding:11px 14px;border-radius:9px;background:${i==5?'rgba(79,217,138,.08)':'#0B1018'};border:1px solid ${i==5?'rgba(79,217,138,.45)':'var(--line)'}"><span style="font:700 12px/1 var(--mono);color:var(--dim)">${pad(i+1)}</span><span style="font:700 14px/1 var(--mono);color:var(--${c})">${t}</span><span style="font:500 12px/1 var(--mono);color:var(--muted);text-align:right">${w}</span></div>`).join('');
+$('#chords').innerHTML=['1','5','8','3','s2','s4','6','7','9','11'].map(s=>`<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:8px;padding:12px 0;text-align:center;font:800 26px/1 var(--display);color:var(--purple)">${s}</div>`).join('');
+
+// roles
+$('#roles').innerHTML=[['CH1','Bass','red'],['CH2','Lead','cyan'],['CH3','Pad','purple'],['CH4','Chords','amber']].map(([a,b,c])=>`<div style="border:1px solid var(--line2);background:#0A0E15;border-radius:9px;padding:10px 12px"><div class="lab" style="color:var(--${c})">${a}</div><div style="font:800 22px/1.1 var(--display);text-transform:uppercase;color:var(--ink)">${b}</div></div>`).join('');
+// locks
+(function(){const g='1000100010001000',r='0010011000101101';
+ const row=(p,lock,c)=>`<div style="display:grid;grid-template-columns:repeat(16,1fr);gap:4px;margin-bottom:6px">`+[...p].map((b,i)=>{const L=lock&&b=='1';return `<i style="height:26px;border-radius:4px;background:${b=='1'?`var(--${c})`:'#141B28'};position:relative;${L?'box-shadow:0 0 0 2px var(--ink) inset':''}">${L?'<svg style="position:absolute;left:50%;top:50%;width:12px;height:12px;transform:translate(-50%,-50%)" viewBox="0 0 24 24" fill="#07090E"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="#07090E" stroke-width="2.6"/></svg>':''}</i>`}).join('')+'</div>';
+ $('#locks').innerHTML=row(g,true,'red')+row(r,false,'amber')+`<div style="display:flex;justify-content:space-between;font:500 11px/1 var(--mono);color:var(--dim);margin-top:4px"><span>locked: 1 · 5 · 9 · 13</span><span>re-rolled every press</span></div>`;})();
+document.querySelectorAll('.dice').forEach(d=>{const z=getComputedStyle(d).getPropertyValue('--sz')||'16px';d.innerHTML=`<svg width="${z}" height="${z}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>`;d.style.display='inline-flex'});
+$('#grav').innerHTML=[3,3,3,3,4,4,5,5,6,7,8,9,10,11,12,13].map(v=>`<i style="flex:1;height:${v/13*100}%;background:var(--cyan);border-radius:3px 3px 0 0"></i>`).join('');
+
+// parts + levels
+$('#parts').innerHTML=[['CH 1','Bass','red','1000100010101000'],['CH 2','Lead','cyan','0110010100100110'],['CH 3','Pad','purple','1000000010000000'],['CH 4','Chords','amber','1000100010001000']].map(([a,b,c,p])=>`<div class="panel" style="padding:12px 16px;display:grid;grid-template-columns:70px 110px 1fr;gap:14px;align-items:center"><span class="lab">${a}</span><span style="font:800 24px/1 var(--display);text-transform:uppercase;color:var(--${c})">${b}</span><div style="display:grid;grid-template-columns:repeat(16,1fr);gap:3px">${[...p].map(x=>`<i style="height:20px;border-radius:3px;background:${x=='1'?`var(--${c})`:'#141B28'}"></i>`).join('')}</div></div>`).join('');
+$('#levels').innerHTML=[['1-4','Basic','cyan',[2,2,3,3]],['5-8','Development','green',[4,4,5,5]],['9-12','Energy','orange',[6,6,7,7]],['13-16','Break','red',[2,1,2,1]]].map(([r,n,c,e])=>`<div><div class="lab" style="color:var(--${c})">${r}</div><div style="font:800 20px/1.1 var(--display);text-transform:uppercase;color:var(--ink);margin:3px 0 8px">${n}</div><div style="display:flex;gap:4px;align-items:flex-end;height:40px">${e.map(h=>`<i style="flex:1;height:${h/7*100}%;background:var(--${c});border-radius:2px"></i>`).join('')}</div></div>`).join('');
+
+// pads
+$('#pads').innerHTML='<span class="lab" style="width:90px">Pattern</span>'+[...Array(16)].map((_,i)=>{const n=i+1,cur=n==5,nxt=n==6;return `<span class="btn" style="flex:1;height:64px;font:800 26px/1 var(--display);${cur?'background:rgba(245,165,36,.16);border-color:var(--orange);color:var(--orange)':nxt?'border-color:var(--orange);border-style:dashed;color:var(--ink)':''}">${n}</span>`}).join('');
+$('#chainViz').innerHTML=[1,2,3,4].map((n,i)=>`<div style="flex:1;border-radius:8px;padding:10px;background:${i==1?'rgba(245,165,36,.14)':'#0A0E15'};border:1px solid ${i==1?'var(--orange)':'var(--line2)'};text-align:center"><div style="font:800 24px/1 var(--display);color:${i==1?'var(--orange)':'var(--ink)'}">${n}</div><div class="lab" style="font-size:9px;margin-top:4px">2 bars</div></div>`).join('')+'<div style="display:grid;place-items:center;color:var(--muted);font-size:20px">↺</div>';
+$('#keys').innerHTML=[...Array(16)].map((_,i)=>{const b=[1,3,6,8,10].includes(i%12);return `<i style="height:54px;border-radius:3px;background:${b?'#1A2230':'#D9DEE7'};border:1px solid var(--line2);display:flex;align-items:flex-end;justify-content:center;font:800 11px/1 var(--display);font-style:normal;color:${b?'var(--orange)':'#0B0F17'};padding-bottom:4px">${i+1}</i>`}).join('');
+})();
+</script>
+</body></html>
